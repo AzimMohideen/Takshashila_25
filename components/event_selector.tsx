@@ -5,6 +5,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react"
 import styles from "./event_selector.module.css"
 import Image from 'next/image'
 import EventCard from './eventCard'
+import { showCassetteToast } from '@/components/CassetteToast'
 
 interface Event {
   id: number
@@ -139,6 +140,15 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
       vinylWrapperRef.current.style.transform = 'translateY(-50%)';
     }
   }, []); // Only run once on mount
+
+  const handleEventSelection = (eventId: string) => {
+    if (maxEventsReached) {
+      showCassetteToast('Maximum events limit reached', 'warning');
+      return;
+    }
+    // Selection logic...
+    showCassetteToast('Event selected successfully', 'success');
+  };
 
   if (!isClient) {
     return null;

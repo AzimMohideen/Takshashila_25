@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
+import { StyledToastContainer } from '@/components/CassetteToast';
 
 const lexendExa = localFont({
   src: '../public/fonts/LexendExa.ttf',
@@ -34,6 +35,7 @@ export default function RootLayout({
       </head>
       <body className={`${lexendExa.variable} ${lexendDeca.variable} antialiased`}>
         {children}
+        <StyledToastContainer />
       </body>
     </html>
   );
