@@ -12,6 +12,12 @@ interface LocomotiveScrollProps {
   }
 }
 
+interface ScrollInstance {
+  destroy: () => void;
+  scrollTo: (target: HTMLElement, options: { offset: number; duration: number }) => void;
+  update: () => void;
+}
+
 export default function LocomotiveScrollProvider({ 
   children, 
   options = { 
@@ -29,7 +35,7 @@ export default function LocomotiveScrollProvider({
   useEffect(() => {
     if (!isClient) return;
 
-    let locoScroll: any = null;
+    let locomotiveInstance: ScrollInstance | null = null;
 
     const initLocomotiveScroll = async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default
@@ -38,15 +44,15 @@ export default function LocomotiveScrollProvider({
       if (!scrollContainer) return;
 
       // Cleanup any existing instance
-      if (locoScroll) {
-        locoScroll.destroy();
+      if (locomotiveInstance) {
+        locomotiveInstance.destroy();
       }
 
-      locoScroll = new LocomotiveScroll({
+      locomotiveInstance = new LocomotiveScroll({
         el: scrollContainer,
         ...options,
         smartphone: { smooth: false }
-      });
+      }) as ScrollInstance;
 
       // Handle anchor links
       const handleAnchorClick = (event: MouseEvent) => {
@@ -55,8 +61,8 @@ export default function LocomotiveScrollProvider({
         const targetId = target.getAttribute("href")?.substring(1)
         const targetElement = document.getElementById(targetId || "")
 
-        if (targetElement) {
-          locoScroll.scrollTo(targetElement, {
+        if (targetElement && locomotiveInstance) {
+          locomotiveInstance.scrollTo(targetElement, {
             offset: 0,
             duration: 1000,
           })
@@ -70,15 +76,15 @@ export default function LocomotiveScrollProvider({
 
       // Force a refresh after initialization
       setTimeout(() => {
-        locoScroll.update();
+        locomotiveInstance?.update();
       }, 500);
     }
 
     initLocomotiveScroll();
 
     return () => {
-      if (locoScroll) {
-        locoScroll.destroy();
+      if (locomotiveInstance) {
+        locomotiveInstance.destroy();
       }
     }
   }, [options, isClient]);

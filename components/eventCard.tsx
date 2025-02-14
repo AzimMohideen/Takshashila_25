@@ -14,6 +14,7 @@ interface EventCardProps {
   registrationLink: string
   category: string
   isVinylHovered: boolean
+  onSelect?: (id: string, playerName: string) => boolean
 }
 
 export default function EventCard({
@@ -24,6 +25,7 @@ export default function EventCard({
   description,
   category,
   isVinylHovered,
+  onSelect,
 }: EventCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [showPopup, setShowPopup] = useState(false)
@@ -44,6 +46,10 @@ export default function EventCard({
     }
   };
 
+  const handleClick = () => {
+    setShowPopup(true);
+  };
+
   return (
     <>
       <motion.div
@@ -57,8 +63,11 @@ export default function EventCard({
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
+
+        onClick={handleClick}
+
         onClick={() => setShowPopup(true)}
-        data-hoverable
+
       >
         <Image
           src={image || "/placeholder.svg"}
@@ -134,6 +143,7 @@ export default function EventCard({
           description={description}
           category={category}
           onClose={() => setShowPopup(false)}
+          onSelect={onSelect}
         />
       )}
     </>

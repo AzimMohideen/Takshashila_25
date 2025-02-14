@@ -5,6 +5,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react"
 import styles from "./event_selector.module.css"
 import Image from 'next/image'
 import EventCard from './eventCard'
+import { showCassetteToast } from '@/components/CassetteToast'
 
 interface Event {
   id: number
@@ -74,14 +75,18 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
   }, [])
 
   useEffect(() => {
-    const checkMobile = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
     
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
     
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      // Clean up any other listeners or refs
+      soundBarRefs.current = [];
+    };
   }, []);
 
   const soundBars = useMemo(() => {
@@ -139,6 +144,43 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
       vinylWrapperRef.current.style.transform = 'translateY(-50%)';
     }
   }, []); // Only run once on mount
+
+  const getCartItems = (): string[] => {
+    try {
+      const cart = sessionStorage.getItem("cart");
+      return cart ? JSON.parse(cart) : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const handleEventSelection = (eventId: string, playerName: string) => {
+    try {
+      const cart = getCartItems();
+      
+      // Check if event is already in cart
+      if (cart.includes(eventId)) {
+        showCassetteToast('This event is already in your cart!', 'warning');
+        return false;
+      }
+      
+      // Add event to cart
+      cart.push(eventId);
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+
+      // Store player name for this event
+      const eventPlayers = JSON.parse(sessionStorage.getItem(eventId) || "[]");
+      eventPlayers.push(playerName);
+      sessionStorage.setItem(eventId, JSON.stringify(eventPlayers));
+
+      showCassetteToast('Event added to cart successfully', 'success');
+      return true;
+    } catch (error) {
+      console.error('Error handling event selection:', error);
+      showCassetteToast('Failed to add event to cart', 'error');
+      return false;
+    }
+  };
 
   if (!isClient) {
     return null;
@@ -232,6 +274,7 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
             description={event.description}
             registrationLink={event.registerLink || 'TBA' }
             category={event.category}
+            onSelect={(id, playerName) => handleEventSelection(id, playerName)}
           />
         ))}
       </div>

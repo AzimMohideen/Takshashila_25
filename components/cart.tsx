@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Edit2, X, Save, Plus, ShoppingCart, Users, Calendar } from 'lucide-react';
+import { showCassetteToast } from '@/components/CassetteToast';
 
 interface Event {
   id: string;
@@ -38,6 +39,7 @@ export default function Cart() {
     const cartIds = updatedEvents.map(event => event.id);
     sessionStorage.setItem('cart', JSON.stringify(cartIds));
     sessionStorage.removeItem(eventId);
+    showCassetteToast('Item removed from cart', 'warning');
   };
 
   const removePlayer = (eventId: string, playerIndex: number) => {
@@ -50,6 +52,7 @@ export default function Cart() {
     });
     setEvents(updatedEvents);
     updateSessionStorage(updatedEvents);
+    showCassetteToast('Item removed from cart', 'warning');
   };
 
   const startEditingPlayer = (eventId: string, playerIndex: number, currentName: string) => {
@@ -73,6 +76,7 @@ export default function Cart() {
     updateSessionStorage(updatedEvents);
     setEditingPlayer(null);
     setEditedName('');
+    showCassetteToast('Player updated successfully', 'success');
   };
 
   const addNewPlayer = (eventId: string) => {
@@ -89,6 +93,7 @@ export default function Cart() {
     setEvents(updatedEvents);
     updateSessionStorage(updatedEvents);
     setNewPlayerName(prev => ({ ...prev, [eventId]: '' }));
+    showCassetteToast('New player added successfully', 'success');
   };
 
   const clearCart = () => {
@@ -102,11 +107,18 @@ export default function Cart() {
 
   const handleCheckout = () => {
     if (events.length === 0) {
-      alert('Your cart is empty!');
+      showCassetteToast('Your cart is empty!', 'error');
       return;
     }
-    alert('Checkout successful! Thank you for your registration.');
+    
     clearCart();
+    
+    showCassetteToast('Checkout successful! Thank you for your registration.', 'success');
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+    showCassetteToast('Cart cleared successfully', 'success');
   };
 
   return (
@@ -126,7 +138,7 @@ export default function Cart() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={clearCart}
+                onClick={handleClearCart}
                 className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl
                          bg-red-950/50 hover:bg-red-900/50 text-white border border-red-900/50
                          transition-colors duration-200"
