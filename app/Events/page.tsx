@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import NavBar from "@/components/navBar";
 import Eventsdisc from "@/components/event_selector";
 
+
 interface CustomEvent {
   id: number;
   title: string;
@@ -112,6 +113,7 @@ const eventlist: CustomEvent[] = [
   })
 ];
 
+
 export default function Events() {
   const [, setScrolled] = useState(false);
 
@@ -125,13 +127,15 @@ export default function Events() {
   }, []);
 
   return (
-    <div className="curser-none">
+    <div className="cursor-none">
+      
+      <div className="relative z-50">
       <NavBar />
       <InteractiveCursor />
       
       {/* Integrated Eventsdisc Component */}
       <Eventsdisc events={eventlist} />
-      
+      </div>
       <Footer />
     </div>
   );

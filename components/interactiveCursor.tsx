@@ -23,6 +23,7 @@ export default function InteractiveCursor() {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [clicked, setClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const lastPosition = useRef({ x: 0, y: 0 });
   const lastMoveTime = useRef(Date.now());
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -31,6 +32,12 @@ export default function InteractiveCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       const newPosition = { x: e.clientX, y: e.clientY };
       setMousePosition(newPosition);
+
+      const target = e.target as HTMLElement;
+      const isHoverable = target.tagName === 'BUTTON' || 
+                         target.tagName === 'A' || 
+                         target.closest('[data-hoverable]');
+      setIsHovered(!!isHoverable);
 
       const now = Date.now();
       const timeSinceLastMove = now - lastMoveTime.current;
@@ -129,17 +136,26 @@ export default function InteractiveCursor() {
           left: `${mousePosition.x}px`,
           top: `${mousePosition.y}px`,
           transform: "translate(-50%, -50%)",
-          width: "16px",
-          height: "16px",
+          width: "18px",
+          height: "18px",
           backgroundColor: "white",
           borderRadius: "50%",
         }}
         animate={{
-          width: clicked ? "14px" : "13px",
-          height: clicked ? "14px" : "13px",
-          borderRadius: clicked ? ["50%", "15%", "25%"] : ["25%", "15%", "50%"],
+          width: clicked ? "20px" : "18px",
+          height: clicked ? "20px" : "18px",
+          borderRadius: clicked ? ["60%", "15%", "25%"] : ["25%", "15%", "50%"],
+          scale: isHovered ? 1.5 : 1,
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ 
+          duration: 0.3, 
+          ease: "easeInOut",
+          scale: {
+            type: "spring",
+            stiffness: 200,
+            damping: 15
+          }
+        }}
       />
     </div>
   );

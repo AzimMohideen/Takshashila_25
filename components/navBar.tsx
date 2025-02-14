@@ -51,35 +51,29 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black bg-opacity-90 p-5">
+        <div className="md:hidden bg-black bg-opacity-90 p-5" data-hoverable>
           <Link
-            href="#home"
+            href="/"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
             onClick={toggleMobileMenu}
           >
             Home
           </Link>
           <Link
-            href="#about"
+            href="About"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
             onClick={toggleMobileMenu}
           >
             About
           </Link>
           <Link
-            href="#eventroller"
+            href="Events"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
             onClick={toggleMobileMenu}
           >
             Events
           </Link>
-          <Link
-            href="#contact"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
-          >
-            Contact
-          </Link>
+          
         </div>
       )}
     </nav>
