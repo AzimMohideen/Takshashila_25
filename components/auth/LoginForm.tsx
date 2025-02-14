@@ -1,11 +1,13 @@
+import { FormEvent } from 'react';
 import { showCassetteToast } from '@/components/CassetteToast';
 
-const handleLogin = async (e: FormEvent) => {
+export const handleLogin = async (e: FormEvent) => {
   e.preventDefault();
   try {
     // Login logic...
     showCassetteToast('Welcome back!', 'success');
-  } catch (error) {
+  } catch (err) {
+    console.error('Login error:', err);
     showCassetteToast('Invalid credentials', 'error');
   }
 }; 

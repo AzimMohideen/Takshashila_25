@@ -160,8 +160,8 @@ export const showCassetteToast = (message: string, type: 'success' | 'warning' |
     position: "top-right",
     autoClose: 2500,
     hideProgressBar: true,
-    closeOnClick: false,
-    pauseOnHover: true,
+    closeOnClick: true,
+    pauseOnHover: false,
     draggable: false,
     progress: undefined,
     className: "cassette-toast-container",
@@ -175,11 +175,11 @@ export const StyledToastContainer = () => (
     autoClose={2500}
     hideProgressBar
     newestOnTop
-    closeOnClick={false}
+    closeOnClick={true}
     rtl={false}
-    pauseOnFocusLoss
+    pauseOnFocusLoss={false}
+    pauseOnHover={false}
     draggable={false}
-    pauseOnHover
     theme="dark"
     className="cassette-toast-root"
   />

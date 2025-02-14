@@ -13,6 +13,7 @@ interface EventPopupProps {
   description: string;
   category: string;
   onClose: () => void;
+  onSelect?: (id: string, playerName: string) => boolean;
 }
 
 export default function EventPopup({ 
@@ -21,8 +22,9 @@ export default function EventPopup({
   date, 
   location, 
   description, 
-  category, 
-  onClose 
+  category,
+  onClose,
+  onSelect 
 }: EventPopupProps) {
   const [playerName, setPlayerName] = useState("");
   const popupRef = useRef<HTMLDivElement>(null);
@@ -64,29 +66,14 @@ export default function EventPopup({
       return;
     }
 
-    // Get existing cart or initialize new one
-    const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
-
-    // Check if event is already in cart
-    if (cart.includes(id)) {
-      showCassetteToast('This event is already in your cart!', 'warning');
-      return;
-    }
-
-    // Add event to cart
-    cart.push(id);
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-
-    // Store player name for this event
-    const eventPlayers = JSON.parse(sessionStorage.getItem(id) || "[]");
-    eventPlayers.push(playerName);
-    sessionStorage.setItem(id, JSON.stringify(eventPlayers));
-
-    showCassetteToast('Successfully added to cart!', 'success');
+    // Use the onSelect callback to handle cart management
+    const success = onSelect?.(id, playerName);
     
-    setTimeout(() => {
-      onClose();
-    }, 2500);
+    if (success) {
+      setTimeout(() => {
+        onClose();
+      }, 2500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
