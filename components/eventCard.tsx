@@ -63,7 +63,11 @@ export default function EventCard({
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
+
         onClick={handleClick}
+
+        onClick={() => setShowPopup(true)}
+
       >
         <Image
           src={image || "/placeholder.svg"}
@@ -122,7 +126,7 @@ export default function EventCard({
 
           </div>
         </motion.div>
-        <div
+        <div 
           className="absolute top-0 left-0 p-4 w-full bg-gradient-to-b from-black/70 to-transparent"
           style={{ zIndex: isVinylHovered ? 1 : 10 }}
         >
