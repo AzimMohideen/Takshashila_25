@@ -121,3 +121,28 @@ body {
   box-shadow: none !important;
   padding: 0 !important;
 }
+
+/* Base responsive breakpoints */
+@media (max-width: 1024px) {
+  html {
+    font-size: 95%; /* Slightly reduce base font size */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+/* Ensure proper mobile viewport height handling */
+.min-h-screen {
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh; /* modern browsers */
+}

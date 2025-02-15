@@ -29,6 +29,9 @@ importers:
       react-toastify:
         specifier: ^11.0.3
         version: 11.0.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      takshashila25:
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
