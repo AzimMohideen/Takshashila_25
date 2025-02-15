@@ -19,10 +19,10 @@ export default function NavBar() {
         <div className="flex items-center space-x-2">
           <div className="absolute left-10 top-0">
                     <Image
-                      src="/tk-logo.svg"
+                      src="/tk25-logo.svg"
                       alt="Icon"
-                      width={48}
-                      height={48}
+                      width={50}
+                      height={50}
                     />
                   </div>
           

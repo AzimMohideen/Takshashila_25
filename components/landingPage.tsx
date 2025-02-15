@@ -10,6 +10,7 @@ import Contact from '@/components/contact';
 import MainSection from '@/components/mainSection';
 import EventRoller from './eventRoller';
 
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 

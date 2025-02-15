@@ -23,7 +23,7 @@ body {
     width: 100%;
     height: 100%;
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-    animation: fill-sequence 4s ease-in-out forwards;
+    animation: fill-sequence 3s ease-in-out forwards;
 }
 
 .svg-foreground {
@@ -33,7 +33,7 @@ body {
     width: 100%;
     height: 100%;
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-    animation: fill-up 2s ease-in-out 4s forwards, glitch 0.5s infinite 4s;
+    animation: fill-up 2s ease-in-out 3s forwards, glitch 0.5s infinite 3s;
 }
 
 @keyframes fill-sequence {
@@ -95,7 +95,7 @@ body {
 .svg-final.active .svg-foreground {
     animation: none;
     clip-path: circle(0% at 50% 50%);
-    animation: fill-from-center 2s ease-in-out forwards;
+    animation: fill-up 2s ease-in-out forwards;
 }
 
 @keyframes fill-from-center {

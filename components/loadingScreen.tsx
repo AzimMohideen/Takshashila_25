@@ -11,7 +11,7 @@ const LoadScreen: React.FC = () => {
       if (finalSvg) {
         finalSvg.style.display = "block"
       }
-    }, 5000)
+    }, 4000)
 
     return () => clearTimeout(timer)
   }, [])
