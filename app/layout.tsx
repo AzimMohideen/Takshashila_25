@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
 import "./globals.css";
 import { StyledToastContainer } from '@/components/CassetteToast';
 
@@ -7,13 +7,13 @@ const lexendExa = localFont({
   src: '../public/fonts/LexendExa.ttf',
   variable: '--font-lexend-exa',
   display: 'swap',
-})
+});
 
 const lexendDeca = localFont({
   src: '../public/fonts/LexendDeca-Light.ttf',
   variable: '--font-lexend-deca',
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: "CIT - Takshashila 2025",
@@ -28,11 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
-        
       </head>
       <body className={`${lexendExa.variable} ${lexendDeca.variable} antialiased overflow-x-hidden`}>
         {children}
