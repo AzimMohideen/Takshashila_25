@@ -13,7 +13,7 @@ export default function Home() {
     const timer = setTimeout(() => {
       setLoading(false);
       window.scrollTo(0, 0);
-    }, 7500)
+    }, 5000)
 
     return () => clearTimeout(timer)
   }, [])
