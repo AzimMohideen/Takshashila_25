@@ -6,6 +6,7 @@ import styles from "./event_selector.module.css"
 import Image from 'next/image'
 import EventCard from './eventCard'
 import { showCassetteToast } from '@/components/CassetteToast'
+import { useRouter } from 'next/navigation'
 
 interface Event {
   id: number
@@ -23,6 +24,7 @@ interface EventsdiscProps {
 }
 
 const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
+  const router = useRouter()
   const [active, setActive] = useState<string>('All')
   const [isVinylExpanded, setIsVinylExpanded] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
@@ -34,7 +36,7 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
   const [isVinylHovered, setIsVinylHovered] = useState(false)
   const vinylWrapperRef = useRef<HTMLDivElement>(null)
 
-  const categories = useMemo(() => ['All', 'Technical', 'Non-Technical', 'Workshops'], [])
+  const categories = useMemo(() => ['All', 'Technical', 'Non-Technical', 'Workshops',"Proshows"], [])
 
   const filteredEvents = events.filter(event => 
     active === 'All' ? true : event.category === active
@@ -125,6 +127,10 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
   }, [])
 
   const handleCategorySelect = (category: string) => {
+    if (category === "Proshows") {
+      router.push('/Proshows')
+      return
+    }
     setActive(category)
   }
 
