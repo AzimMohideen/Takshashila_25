@@ -13,22 +13,19 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-white text-xl font-semibold mb-6">Connect With Us</h3>
           <div className="flex space-x-4">
-            <a href="https://instagram.com/takshashila.cit" target="_blank" rel="noopener noreferrer" 
+            <a href="https://www.instagram.com/cittakshashila/" target="_blank" rel="noopener noreferrer" 
               className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
               <FaInstagram size={20} />
             </a>
-            <a href="https://facebook.com/takshashila.cit" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.facebook.com/people/CIT-Takshashila/100064056814271/" target="_blank" rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
               <FaFacebookF size={20} />
             </a>
-            <a href="https://linkedin.com/takshashila.cit" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.linkedin.com/in/cittakshashila/" target="_blank" rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
               <FaLinkedinIn size={20} />
             </a>
-            <a href="https://twitter.com/takshashila.cit" target="_blank" rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-              <FaTwitter size={20} />
-            </a>
+            
           </div>
         </div>
 
@@ -37,17 +34,15 @@ const Footer = () => {
           <h3 className="text-white text-xl font-semibold mb-6">Events</h3>
           <ul className="space-y-3">
             <li>
-              <a href="#technical" className="text-white/70 hover:text-white transition-colors">Technical Events</a>
+              <a href={"/Events"} className="text-white/70 hover:text-white transition-colors">Technical Events</a>
             </li>
             <li>
-              <a href="#cultural" className="text-white/70 hover:text-white transition-colors">Cultural Events</a>
+              <a href={"/Events"} className="text-white/70 hover:text-white transition-colors">Non-Technical Events</a>
             </li>
             <li>
-              <a href="#workshops" className="text-white/70 hover:text-white transition-colors">Workshops</a>
+              <a href={"/Events"} className="text-white/70 hover:text-white transition-colors">Workshops</a>
             </li>
-            <li>
-              <a href="#proshows" className="text-white/70 hover:text-white transition-colors">Pro Shows</a>
-            </li>
+            
           </ul>
         </div>
 
@@ -56,16 +51,16 @@ const Footer = () => {
           <h3 className="text-white text-xl font-semibold mb-6">Website</h3>
           <ul className="space-y-3">
             <li>
-              <a href="#home" className="text-white/70 hover:text-white transition-colors">Home</a>
+              <Link href="/" className="text-white/70 hover:text-white transition-colors">Home</Link>
             </li>
             <li>
-              <a href="#about" className="text-white/70 hover:text-white transition-colors">About</a>
+              <Link href="About" className="text-white/70 hover:text-white transition-colors">About</Link>
             </li>
             <li>
-              <a href="#sponsors" className="text-white/70 hover:text-white transition-colors">Sponsors</a>
+              <Link href="#sponsors" className="text-white/70 hover:text-white transition-colors">Sponsors</Link>
             </li>
             <li>
-              <a href="#contact" className="text-white/70 hover:text-white transition-colors">Contact</a>
+              <Link href="Contact" className="text-white/70 hover:text-white transition-colors">Contact</Link>
             </li>
           </ul>
         </div>

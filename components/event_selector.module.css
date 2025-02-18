@@ -62,6 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 /* Modal */
@@ -101,6 +102,7 @@
   cursor: pointer;
   pointer-events: auto;
   z-index: 3;
+  
 }
 
 .vinyl::before {
@@ -125,6 +127,7 @@
     ),
     linear-gradient(45deg, #28cc6a, #1c4d29);
   z-index: 1;
+  
 }
 
 .vinylInner {
@@ -235,6 +238,7 @@
 .categoriesContainer:hover {
   opacity: 1;
   visibility: visible;
+    
 }
 
 .categoriesContainer:hover ~ .vinyl {
@@ -258,6 +262,7 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   pointer-events: auto;
+  
 }
 
 /* Update categories styles */
@@ -286,6 +291,7 @@
   border-radius: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: 'Lexend Exa', sans-serif;
 }
 
 .category:hover {
@@ -465,6 +471,8 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   will-change: transform, opacity;
   transform: translateZ(0);
+  font-family: 'Lexend Deca', sans-serif;
+  text-transform: uppercase;
 }
 
 /* Opacity levels for static categories */

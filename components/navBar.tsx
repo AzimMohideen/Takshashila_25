@@ -13,16 +13,16 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed top-5 left-0 right-0 z-20 bg-opacity-70">
-      <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between ">
+    <nav className="fixed left-0 right-0 z-20 bg-opacity-50 h-20">
+      <div className="max-w-7xl mx-auto px-5 py-5  flex items-center  justify-between ">
         {/* Left Logo */}
         <div className="flex items-center space-x-2">
-          <div className="absolute left-10 top-0">
+          <div className="absolute left-10 top-2">
                     <Image
                       src="/tk25-logo.svg"
                       alt="Icon"
-                      width={50}
-                      height={50}
+                      width={35}
+                      height={35}
                     />
                   </div>
           
@@ -60,18 +60,18 @@ export default function NavBar() {
             Home
           </Link>
           <Link
-            href="About"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
-          >
-            About
-          </Link>
-          <Link
             href="Events"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
             onClick={toggleMobileMenu}
           >
             Events
+          </Link>
+          <Link
+            href="Cart"
+            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
+            onClick={toggleMobileMenu}
+          >
+            Cart
           </Link>
           
         </div>

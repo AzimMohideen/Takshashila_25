@@ -106,16 +106,27 @@ body {
   padding: 0 !important;
 }
 
-/* Base responsive breakpoints */
+/* Base responsive setup */
 @media (max-width: 1024px) {
   html {
-    font-size: 95%; /* Slightly reduce base font size */
+    font-size: 95%;
+  }
+  
+  /* Maintain cursor effects only on desktop */
+  .cursor-effect {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
   html {
     font-size: 90%;
+  }
+
+  /* Mobile-specific container padding */
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -125,10 +136,23 @@ body {
   }
 }
 
-/* Ensure proper mobile viewport height handling */
+/* Ensure proper mobile viewport height */
 .min-h-screen {
-  min-height: 100vh; /* fallback */
-  min-height: 100dvh; /* modern browsers */
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Touch-friendly interactions for mobile */
+@media (hover: none) {
+  .hover-effect {
+    display: none;
+  }
 }
 
 @layer base {
