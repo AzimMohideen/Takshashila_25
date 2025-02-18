@@ -219,3 +219,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes border-move {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
