@@ -126,6 +126,21 @@ export default function Events() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Handle hash navigation when the page loads
+    const hash = window.location.hash;
+    if (hash) {
+      // Remove the # from the hash
+      const sectionId = hash.replace('#', '');
+      const element = document.getElementById(sectionId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensure content is loaded
+      }
+    }
+  }, []);
+
   return (
     <div className="cursor-none">
       

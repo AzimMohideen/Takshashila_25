@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-900 to-green-800">
       <NavBar />
-      <div className="pt-24"> {/* Add padding top to account for fixed navbar */}
+      <div className="pt-32"> {/* Add padding top to account for fixed navbar */}
         <Cart/>
       </div>
       <Footer/>
