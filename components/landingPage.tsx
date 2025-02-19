@@ -10,7 +10,6 @@ import Contact from '@/components/contact';
 import MainSection from '@/components/mainSection';
 import EventRoller from './eventRoller';
 
-
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,33 +22,25 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <div className="cursor-none">
       <InteractiveCursor />
       <LocomotiveScrollProvider>
-      
-      <div className="relative min-h-screen overflow-hidden">
-          {/* Background with blur effect */}
-          <div 
-            className={`fixed inset-0 bg-[url('/TKback2.png')] bg-cover bg-center transition-all duration-700 ${
-              scrolled ? 'backdrop-blur-md' : ''
-            }`}
-          />
-
-          {/* Black Overlay */}
-          <div className="absolute inset-0 bg-[#050505] bg-opacity-70 z-10" />
-
+        <div className="relative min-h-screen overflow-hidden">
+          {/* Remove fixed background and blur effect */}
+          
           <div className="relative z-20">
             <NavBar />
             <div className="flex flex-col min-h-screen" data-scroll-container>
-              
-                <MainSection />
+              <MainSection />
+              <div className="bg-[#050505]"> {/* Add black background container */}
                 <AboutUs />
                 <EventRoller/>
                 <SponsorSlider />
                 <Contact />
                 <Footer />
-
+              </div>
             </div>
           </div>
         </div>

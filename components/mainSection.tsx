@@ -1,12 +1,22 @@
 "use client"
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const MainSection = () => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  const backgroundOpacity = useTransform(scrollYProgress, [0.3, 0.8], [0, 1]);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -16,9 +26,16 @@ const MainSection = () => {
   };
 
   return (
-    <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full">
+    <section 
+      ref={sectionRef}
+      className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden"
+      data-scroll-section
+    >
+      {/* Video Background with Parallax */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        style={{ opacity, scale }}
+      >
         <video
           ref={videoRef}
           autoPlay
@@ -31,7 +48,13 @@ const MainSection = () => {
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black opacity-40"></div>
-      </div>
+      </motion.div>
+
+      {/* Transitioning Black Background */}
+      <motion.div 
+        className="absolute inset-0 bg-black"
+        style={{ opacity: backgroundOpacity }}
+      />
 
       {/* Mute/Unmute Button */}
       <motion.button
@@ -80,7 +103,10 @@ const MainSection = () => {
       </motion.button>
 
       {/* Content */}
-      <div className="absolute flex items-center justify-center w-full h-full" data-scroll-section>
+      <motion.div 
+        className="relative z-10"
+        style={{ opacity }}
+      >
         <Image 
           src="/tk25-text.png" 
           alt="Takshashila Text" 
@@ -89,7 +115,7 @@ const MainSection = () => {
           priority
           className="relative z-10"
         />
-      </div>
+      </motion.div>
     </section>
   );
 };
