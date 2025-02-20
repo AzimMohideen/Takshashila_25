@@ -7,12 +7,12 @@ import InteractiveCursor from "@/components/interactiveCursor";
 import Footer from "@/components/footer";
 import NavBar from "@/components/navBar";
 import Eventsdisc from "@/components/event_selector";
-
+import MobileEventSelector from "@/components/MobileEventSelector";
 
 interface CustomEvent {
   id: number;
   title: string;
-  category: "Technical" | "Non-Technical" | "Workshops" | "All"; // Match the expected category types
+  category: "Technical" | "Non-Technical" | "Workshops" | "All";
   date: string;
   location: string;
   image: string;
@@ -28,8 +28,8 @@ const eventlist: CustomEvent[] = [
     date: "March 15, 2024",
     location: "Tech Arena",
     image: "/tech/TECHQUIZ.jpg",
-    description: `Science and Technology revolutionize our lives,but memory, tradition and myth frame
-our response.It's a perfect combination of smart and fun .You win or you learn- either
+    description: `Science and Technology revolutionize our lives, but memory, tradition and myth frame
+our response. It's a perfect combination of smart and fun. You win or you learn- either
 way it's win-win.`,
     registrationLink: "#"
   },
@@ -41,7 +41,7 @@ way it's win-win.`,
     location: "Innovation Hub",
     image: "/tech/H2OROCKETRY.png",
     description: `It all looked so easy when you did it with paper-where valves never froze, gyros never
-drifted and rocked motors did not blow up in your face.Build your own rocket and bring
+drifted and rocked motors did not blow up in your face. Build your own rocket and bring
 it on the floor that blast the sky`,
     registrationLink: "#"
   },
@@ -515,131 +515,64 @@ knowledge of Linux, networking concepts, and essential cybersecurity tools, prim
 further exploration in these domains.`,
     registrationLink: "#"
   }
-  
-// Add these category and event type definitions
-const categories = ["Technical", "Non-Technical", "Workshops"] as const;
-const eventTypes = {
-  Technical: ["Hackathon", "Coding Challenge", "Robotics", "IoT Project", "AI Competition"],
-  "Non-Technical": ["Cultural Show", "Art Exhibition", "Literary Event", "Gaming Tournament", "Quiz"],
-  Workshops: ["Web Development", "Data Science", "Cloud Computing", "Mobile App Dev", "Cybersecurity"]
-} as const;
-
-// Helper function to get random date between March 15-18, 2024
-const getRandomDate = () => {
-  const dates = ["March 15", "March 16", "March 17", "March 18"];
-  return `${dates[Math.floor(Math.random() * dates.length)]}, 2024`;
-};
-
-// Helper function to get random location
-const getRandomLocation = () => {
-  const locations = [
-    "Tech Arena",
-    "Innovation Hub",
-    "Design Studio",
-    "Workshop Lab",
-    "Main Auditorium",
-    "Seminar Hall",
-    "Creative Space",
-    "Learning Center"
-  ];
-  return locations[Math.floor(Math.random() * locations.length)];
-};
-
-// Helper function to get random image
-const getRandomImage = () => {
-  const images = ["/1.png", "/2.png", "/3.png"];
-  return images[Math.floor(Math.random() * images.length)];
-};
-
-const eventlist: CustomEvent[] = [
-  // Original events
-  {
-    id: 1,
-    title: "Codeathon",
-    date: "March 15-17, 2024",
-    location: "Tech Arena",
-    image: "/3.png",
-    description: "Showcase your technical skills through coding competitions, hackathons, and robotics challenges.",
-    registrationLink: "#",
-    category: "Technical"
-  },
-  {
-    id: 2,
-    title: "Treasure Hunt",
-    date: "March 16-18, 2024",
-    location: "Cultural Center",
-    image: "/2.png",
-    description: "Express yourself through art, music, dance, and various cultural competitions.",
-    registrationLink: "#",
-    category: "Non-Technical"
-  },
-  {
-    id: 3,
-    title: "UI/UX",
-    date: "March 15-18, 2024",
-    location: "Learning Hub",
-    image: "/1.png",
-    description: "Learn from industry experts in hands-on workshops covering cutting-edge technologies.",
-    registrationLink: "#",
-    category: "Workshops"
-  },
-  // Generate additional events
-  ...Array.from({ length: 7 }, (_, index) => {
-    const category = categories[Math.floor(Math.random() * categories.length)];
-    const eventType = eventTypes[category][Math.floor(Math.random() * eventTypes[category].length)];
-    
-    return {
-      id: index + 4,
-      title: `${eventType} ${Math.floor(Math.random() * 100 + 1)}`,
-      category: category,
-      date: getRandomDate(),
-      location: getRandomLocation(),
-      image: getRandomImage(),
-      description: `Join us for an exciting ${category.toLowerCase()} event focused on ${eventType.toLowerCase()}. This event promises to bring together enthusiasts and experts for an unforgettable experience.`,
-      registrationLink: "#"
-    };
-  })
-
 ];
 
 export default function Events() {
-  const [, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   useEffect(() => {
-    // Handle hash navigation when the page loads
     const hash = window.location.hash;
     if (hash) {
-      // Remove the # from the hash
       const sectionId = hash.replace('#', '');
       const element = document.getElementById(sectionId);
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 100); // Small delay to ensure content is loaded
+        }, 100);
       }
     }
   }, []);
 
   return (
-    <div className="cursor-none">
+    <div 
+      className="cursor-none min-h-screen"
+      style={{
+        background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
+      }}
+    >
+      {!isMobile && <InteractiveCursor />}
       
-      <div className="relative z-50">
-      <NavBar />
-      <InteractiveCursor />
-      
-      {/* Integrated Eventsdisc Component */}
-      <Eventsdisc events={eventlist} />
+      <div className="relative z-10">
+        <NavBar />
+        <div className={`relative ${isMobile ? 'pt-16' : ''}`}>
+          {isMobile ? (
+            <MobileEventSelector events={eventlist} />
+          ) : (
+            <Eventsdisc events={eventlist} />
+          )}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
