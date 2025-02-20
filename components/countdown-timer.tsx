@@ -106,9 +106,9 @@ export function CountdownTimer({ targetDateTime, className, ...props }: Countdow
 
   return (
     <div className={cn("flex flex-col items-center gap-12", className)} {...props}>
-      <h2 className="text-2xl font-semibold tracking-[0.2em] text-white">
+      {/* <h2 className="text-2xl font-semibold tracking-[0.2em] text-white">
         {isExpired ? "COUNTDOWN ENDED" : "COUNTDOWN TIMER"}
-      </h2>
+      </h2> */}
       <div className="flex flex-wrap justify-center gap-12">
         <CircleProgress value={timeLeft.days} label="days" max={365} />
         <CircleProgress value={timeLeft.hours} label="hours" max={24} />
