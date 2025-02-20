@@ -20,6 +20,14 @@ interface CustomEvent {
   registrationLink: string;
 }
 
+// Add these category and event type definitions
+const categories = ["Technical", "Non-Technical", "Workshops"] as const;
+const eventTypes = {
+  Technical: ["Hackathon", "Coding Challenge", "Robotics", "IoT Project", "AI Competition"],
+  "Non-Technical": ["Cultural Show", "Art Exhibition", "Literary Event", "Gaming Tournament", "Quiz"],
+  Workshops: ["Web Development", "Data Science", "Cloud Computing", "Mobile App Dev", "Cybersecurity"]
+} as const;
+
 // Helper function to get random date between March 15-18, 2024
 const getRandomDate = () => {
   const dates = ["March 15", "March 16", "March 17", "March 18"];
@@ -57,7 +65,7 @@ const eventlist: CustomEvent[] = [
     image: "/3.png",
     description: "Showcase your technical skills through coding competitions, hackathons, and robotics challenges.",
     registrationLink: "#",
-    category: "Technical" // Valid value
+    category: "Technical"
   },
   {
     id: 2,
@@ -67,7 +75,7 @@ const eventlist: CustomEvent[] = [
     image: "/2.png",
     description: "Express yourself through art, music, dance, and various cultural competitions.",
     registrationLink: "#",
-    category: "Non-Technical" // Valid value
+    category: "Non-Technical"
   },
   {
     id: 3,
@@ -77,9 +85,10 @@ const eventlist: CustomEvent[] = [
     image: "/1.png",
     description: "Learn from industry experts in hands-on workshops covering cutting-edge technologies.",
     registrationLink: "#",
-    category: "Workshops" // Valid value
-  }
-
+    category: "Workshops"
+  },
+  // Generate additional events
+  ...Array.from({ length: 7 }, (_, index) => {
     const category = categories[Math.floor(Math.random() * categories.length)];
     const eventType = eventTypes[category][Math.floor(Math.random() * eventTypes[category].length)];
     
@@ -93,7 +102,7 @@ const eventlist: CustomEvent[] = [
       description: `Join us for an exciting ${category.toLowerCase()} event focused on ${eventType.toLowerCase()}. This event promises to bring together enthusiasts and experts for an unforgettable experience.`,
       registrationLink: "#"
     };
-  
+  })
 ];
 
 
