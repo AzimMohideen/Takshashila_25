@@ -1,16 +1,41 @@
 import React from "react";
 import Image from "next/image";
 import teamData from "./teamData";
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 interface TeamMemberProps {
   name: string;
   role: string;
   image: string;
-  linkedin: string;
-  github: string;
+  linkedin?: string;
+  github?: string;
+  social?: {
+    platform: string;
+    link: string;
+  };
 }
 
 const Team: React.FC = () => {
+  // Define role order
+  const roleOrder = [
+    "FRONTEND DEVELOPER",
+    "BACKEND DEVELOPER",
+    "APP DEVELOPER",
+    "UI/UX DESIGNER",
+    "VIDEO EDITING",
+    "HOSTING"
+  ];
+
+  // Group members by role
+  const groupedMembers = teamData.reduce((acc, member) => {
+    const role = member.role;
+    if (!acc[role]) {
+      acc[role] = [];
+    }
+    acc[role].push(member);
+    return acc;
+  }, {} as Record<string, typeof teamData>);
+
   return (
     <section 
       className="min-h-screen py-20 relative" 
@@ -27,58 +52,89 @@ const Team: React.FC = () => {
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-semibold text-cyan-400">Our Team</h2>
-          <p className="text-lg text-gray-300 mt-2">Meet our talented team members</p>
-        </div>
+        <h2 className="text-4xl font-semibold text-cyan-400 text-center mb-16">Our Team</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {teamData.map((member, index) => (
-            <TeamMember key={index} {...member} />
-          ))}
-        </div>
+        {/* Render sections in specified order */}
+        {roleOrder.map((role) => {
+          if (!groupedMembers[role]) return null;
+          return (
+            <div key={role} className="mb-16">
+              <h3 className="text-2xl font-medium text-white mb-8 border-b border-cyan-400/30 pb-2">
+                {role}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {groupedMembers[role].map((member, index) => (
+                  <TeamMember key={index} {...member} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
 };
 
-const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, linkedin, github }) => {
+const TeamMember: React.FC<TeamMemberProps> = (props) => {
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-lg group">
-      {/* Image */}
-      <div className="w-full h-72 overflow-hidden">
-        <Image
-          src={image}
-          alt={name}
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-500 group-hover:scale-110"
-        />
+    <div className="relative group">
+      {/* Circular Image container with hover effects */}
+      <div className="aspect-square relative rounded-full overflow-hidden 
+          transform transition-all duration-300 
+          group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]">
+        {props.image ? (
+          <Image
+            src={props.image}
+            alt={props.name}
+            fill
+            className="object-cover rounded-full transition-transform duration-300 group-hover:scale-110"
+            style={{ objectPosition: 'center 20%' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gray-800 rounded-full flex items-center justify-center text-4xl text-cyan-400">
+            {props.name.split(' ').map(n => n[0]).join('')}
+          </div>
+        )}
       </div>
 
-      {/* Info Box */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 p-4 text-center transform translate-y-full transition-transform duration-500 group-hover:translate-y-0">
-        <h3 className="text-xl font-semibold text-cyan-400">{name}</h3>
-        <p className="text-gray-300 text-sm mb-3">{role}</p>
-
-        {/* Social Icons */}
-        <div className="flex justify-center space-x-4">
-          <a 
-            href={linkedin} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-gray-300 hover:text-cyan-400 transition-colors"
-          >
-            <i className="fab fa-linkedin fa-lg"></i>
-          </a>
-          <a 
-            href={github} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-gray-300 hover:text-cyan-400 transition-colors"
-          >
-            <i className="fab fa-github fa-lg"></i>
-          </a>
+      {/* Name and Role - Always visible */}
+      <div className="text-center mt-4 transform transition-all duration-300 group-hover:translate-y-1">
+        <h3 className="text-xl font-medium text-white group-hover:text-cyan-400 transition-colors">{props.name}</h3>
+        <p className="text-sm text-cyan-400 mt-1">{props.role}</p>
+        
+        {/* Social Links */}
+        <div className="flex justify-center space-x-4 mt-3 opacity-70 group-hover:opacity-100 transition-opacity">
+          {props.linkedin && (
+            <a 
+              href={props.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-cyan-400 transition-colors"
+            >
+              <FaLinkedin size={20} />
+            </a>
+          )}
+          {props.github && (
+            <a 
+              href={props.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-cyan-400 transition-colors"
+            >
+              <FaGithub size={20} />
+            </a>
+          )}
+          {props.social && (
+            <a 
+              href={props.social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-cyan-400 transition-colors"
+            >
+              {props.social.platform === 'instagram' && <FaInstagram size={20} />}
+            </a>
+          )}
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ interface ScrollInstance {
   destroy: () => void;
   scrollTo: (target: HTMLElement, options: { offset: number; duration: number }) => void;
   update: () => void;
-}
+} 
 
 export default function LocomotiveScrollProvider({ 
   children, 
