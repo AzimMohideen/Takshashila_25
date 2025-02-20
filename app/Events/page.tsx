@@ -141,7 +141,7 @@ you up for this rip-roaring race where only the fast and furious finishes first?
     location: getRandomLocation(),
     image: getRandomImage(),
     description: `Coding duos! Two participants are paired and are given a problem to solve.
-The duo should take turns to code the solution. But the catch is, they can’t be together at the
+The duo should take turns to code the solution. But the catch is, they can't be together at the
 same time. As one person codes, the other person is isolated. Swaps occur at regular
 intervals and the first duo to solve the problem wins.`,
     registrationLink: "#"
@@ -244,7 +244,7 @@ celebration meticulously crafted to awaken the dormant inner child in every atte
     location: getRandomLocation(),
     image: getRandomImage(),
     description: `Where every stroke tells a story, unlock the creativity within and unleash your vision. Sketch
-your way to glory ‘cause the canvas is calling for a creative masterpiece`,
+your way to glory 'cause the canvas is calling for a creative masterpiece`,
     registrationLink: "#"
   },
   {
@@ -301,7 +301,7 @@ enlighten their souls. After all, music is much more than just a tune.`,
     location: getRandomLocation(),
     image: getRandomImage(),
     description: `Music is a part of our everyday lives. From the hammering of our hearts to the shrieking of the
-cars, it’s within us and around us. Amidst the many catastrophic sounds, will your group’s
+cars, it's within us and around us. Amidst the many catastrophic sounds, will your group's
 crooning be crowned the best?
 Theme: open theme`,
     registrationLink: "#"
@@ -545,36 +545,58 @@ further exploration in these domains.`,
   }
 ];
 
+
 export default function Events() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth <= 768);
     };
-
-    // Check initially
+    
     checkMobile();
-    
-    // Add resize listener
     window.addEventListener("resize", checkMobile);
-    
-    // Cleanup
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  useEffect(() => {
+    // Handle hash navigation when the page loads
+    const hash = window.location.hash;
+    if (hash) {
+      // Remove the # from the hash
+      const sectionId = hash.replace('#', '');
+      const element = document.getElementById(sectionId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensure content is loaded
+      }
+    }
+  }, []);
+
   return (
-    <div className="cursor-none">
-      <NavBar />
-      <InteractiveCursor />
-      <div className="relative z-50 pt-16"> {/* Added padding-top for navbar */}
-        {isMobile ? (
-          <MobileEventSelector events={eventlist} />
-        ) : (
-          <EventsDisc events={eventlist} />
-        )}
+    <div 
+      className="cursor-none min-h-screen"
+      style={{
+        background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
+      }}
+    >
+      {/* Subtle overlay for better content visibility */}
+      <div className="absolute inset-0 bg-black/10" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <NavBar />
+        {!isMobile && <InteractiveCursor />}
+        <div className={`relative ${isMobile ? 'pt-16' : 'z-50'}`}>
+          {isMobile ? (
+            <MobileEventSelector events={eventlist} />
+          ) : (
+            <EventsDisc events={eventlist} />
+          )}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
