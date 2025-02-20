@@ -35,12 +35,12 @@
   padding: 2rem;
   padding-top: 6rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
   gap: 2rem;
   position: relative;
   z-index: 5;
   width: calc(100% - 400px);
-  max-width: 1400px;
+  max-width: 1800px;
   transition: all 0.3s ease;
 }
 
@@ -750,4 +750,17 @@
 
 .noScrollbar::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Add responsive breakpoints */
+@media (max-width: 1600px) {
+  .eventGrid {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  .eventGrid {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
 }

@@ -6,7 +6,8 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import InteractiveCursor from "@/components/interactiveCursor";
 import Footer from "@/components/footer";
 import NavBar from "@/components/navBar";
-import Eventsdisc from "@/components/event_selector";
+import EventsDisc from "@/components/event_selector";
+import MobileEventSelector from "@/components/MobileEventSelector";
 
 interface CustomEvent {
   id: number;
@@ -545,39 +546,27 @@ further exploration in these domains.`,
 ];
 
 export default function Events() {
-  const [, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Handle hash navigation when the page loads
-    const hash = window.location.hash;
-    if (hash) {
-      // Remove the # from the hash
-      const sectionId = hash.replace('#', '');
-      const element = document.getElementById(sectionId);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100); // Small delay to ensure content is loaded
-      }
-    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
     <div className="cursor-none">
+      
       <div className="relative z-50">
-        <NavBar />
-        <InteractiveCursor />
-        {/* Integrated Eventsdisc Component */}
-        <Eventsdisc events={eventlist} />
+      <NavBar />
+      <InteractiveCursor />
+      
+      {/* Integrated Eventsdisc Component */}
+      <Eventsdisc events={eventlist} />
       </div>
       <Footer />
     </div>

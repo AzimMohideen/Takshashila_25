@@ -56,10 +56,11 @@ export default function EventCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative w-full h-80 overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]"
+        className="relative w-[calc(100vw-2rem)] md:w-full h-[400px] md:h-[400px] lg:h-[400px] overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02] mx-auto"
         style={{
           zIndex: getZIndex(),
           transition: "z-index 0.3s, transform 0.3s",
+          maxWidth: "100%"
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
@@ -130,10 +131,10 @@ export default function EventCard({
           </div>
         </motion.div>
         <div
-          className="absolute top-0 left-0 p-4 w-full bg-gradient-to-b from-black/70 to-transparent"
+          className="absolute top-0 left-0 p-3 md:p-4 w-full bg-gradient-to-b from-black/70 to-transparent"
           style={{ zIndex: isVinylHovered ? 1 : 10 }}
         >
-          <h3 className="text-2xl text-white font-lexend line-clamp-2">{title}</h3>
+          <h3 className="text-xl md:text-2xl text-white font-lexend line-clamp-2">{title}</h3>
         </div>
       </motion.div>
 

@@ -228,3 +228,15 @@ body {
     transform: translateX(100%) rotate(45deg);
   }
 }
+
+/* Mobile Event Selector Styles */
+@media (max-width: 767px) {
+  .event-card {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .event-details {
+    padding: 1rem;
+  }
+}
