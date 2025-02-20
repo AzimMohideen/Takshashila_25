@@ -547,29 +547,37 @@ further exploration in these domains.`,
 
 
 export default function Events() {
+  const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   useEffect(() => {
-    // Handle hash navigation when the page loads
     const hash = window.location.hash;
     if (hash) {
-      // Remove the # from the hash
       const sectionId = hash.replace('#', '');
       const element = document.getElementById(sectionId);
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 100); // Small delay to ensure content is loaded
+        }, 100);
       }
     }
   }, []);
@@ -581,14 +589,13 @@ export default function Events() {
         background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
       }}
     >
-      {/* Subtle overlay for better content visibility */}
-      <div className="absolute inset-0 bg-black/10" />
-
+      {/* Cursor needs to be at root level */}
+      {!isMobile && <InteractiveCursor />}
+      
       {/* Content */}
       <div className="relative z-10">
         <NavBar />
-        {!isMobile && <InteractiveCursor />}
-        <div className={`relative ${isMobile ? 'pt-16' : 'z-50'}`}>
+        <div className={`relative ${isMobile ? 'pt-16' : ''}`}>
           {isMobile ? (
             <MobileEventSelector events={eventlist} />
           ) : (
