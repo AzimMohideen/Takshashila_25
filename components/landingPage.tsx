@@ -27,20 +27,28 @@ export default function Home() {
     <div className="cursor-none">
       <InteractiveCursor />
       <LocomotiveScrollProvider>
-        <div className="relative min-h-screen overflow-hidden">
-          {/* Remove fixed background and blur effect */}
-          
-          <div className="relative z-20">
+        <div 
+          className="relative min-h-screen"
+          style={{
+            background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
+            // Alternative gradients if you prefer:
+            // background: 'linear-gradient(135deg, #004225 0%, #016936 50%, #004225 100%)',
+            // background: 'linear-gradient(to bottom right, #005f35 0%, #003820 100%)',
+          }}
+        >
+          {/* Subtle overlay for better content visibility */}
+          <div className="absolute inset-0 bg-black/50" />
+
+          {/* Content */}
+          <div className="relative z-10">
             <NavBar />
-            <div className="flex flex-col min-h-screen" data-scroll-container>
+            <div className="flex flex-col" data-scroll-container>
               <MainSection />
-              <div className="bg-[#050505]"> {/* Add black background container */}
-                <AboutUs />
-                <EventRoller/>
-                <SponsorSlider />
-                <Contact />
-                <Footer />
-              </div>
+              <AboutUs />
+              <EventRoller/>
+              <SponsorSlider />
+              <Contact />
+              <Footer />
             </div>
           </div>
         </div>
