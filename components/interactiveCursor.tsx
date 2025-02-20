@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { isMobile, isTablet } from 'react-device-detect';
 
 interface TrailPoint {
   x: number;
@@ -19,15 +20,27 @@ interface Ripple {
 const musicNotes = ["♩", "♪", "♫", "♬", "♭", "♮", "𝄞", "𝄡", "𝄠", "𝄢", "𝄟"];
 
 export default function InteractiveCursor() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [trail, setTrail] = useState<TrailPoint[]>([]);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [clicked, setClicked] = useState(false);
+  
   const lastPosition = useRef({ x: 0, y: 0 });
   const lastMoveTime = useRef(Date.now());
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Check if it's desktop on component mount
+    setIsDesktop(!isMobile && !isTablet);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
+    // Only hide cursor on desktop
+    document.body.style.cursor = 'none';
+    
     const handleMouseMove = (e: MouseEvent) => {
       const newPosition = { x: e.clientX, y: e.clientY };
       setMousePosition(newPosition);
@@ -80,17 +93,22 @@ export default function InteractiveCursor() {
     document.addEventListener("dblclick", (e) => e.preventDefault());
 
     return () => {
+      document.body.style.cursor = 'auto';
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseout", handleMouseStop);
       document.removeEventListener("click", handleClick);
       document.removeEventListener("dblclick", (e) => e.preventDefault());
     };
-  }, []);
+  }, [isDesktop]);
+
+  if (!isDesktop) {
+    return null;
+  }
 
   return (
     <div 
       ref={cursorRef}
-      className="fixed pointer-events-none z-50"
+      className="fixed pointer-events-none z-50 custom-cursor"
     >
       <AnimatePresence>
         {trail.map((point) => (

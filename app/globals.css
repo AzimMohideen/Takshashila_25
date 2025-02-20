@@ -155,6 +155,28 @@ body {
   }
 }
 
+@media (hover: none) and (pointer: coarse) {
+  /* For touch devices */
+  * {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* For desktop devices */
+  body:has(.custom-cursor) {
+    cursor: none;
+  }
+  
+  .custom-cursor {
+    display: block;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
