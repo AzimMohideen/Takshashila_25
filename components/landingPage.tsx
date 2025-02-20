@@ -47,7 +47,7 @@ export default function Home() {
               <MainSection />
               <AboutUs />
               <EventRoller/>
-{/*               <SponsorSlider /> */}
+{/*             <SponsorSlider /> */}
               <Contact />
               <CountdownSection />
               <Footer />
