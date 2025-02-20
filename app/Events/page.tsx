@@ -553,20 +553,26 @@ export default function Events() {
       setIsMobile(window.innerWidth < 768);
     };
 
+    // Check initially
     checkMobile();
+    
+    // Add resize listener
     window.addEventListener("resize", checkMobile);
+    
+    // Cleanup
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
     <div className="cursor-none">
-      
-      <div className="relative z-50">
       <NavBar />
       <InteractiveCursor />
-      
-      {/* Integrated Eventsdisc Component */}
-      <Eventsdisc events={eventlist} />
+      <div className="relative z-50 pt-16"> {/* Added padding-top for navbar */}
+        {isMobile ? (
+          <MobileEventSelector events={eventlist} />
+        ) : (
+          <EventsDisc events={eventlist} />
+        )}
       </div>
       <Footer />
     </div>
