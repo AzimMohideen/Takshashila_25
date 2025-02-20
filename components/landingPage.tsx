@@ -1,7 +1,7 @@
 "use client"
 import AboutUs from '../components/aboutUs';
 import NavBar from '../components/navBar';
-// import SponsorSlider from '../components/SponsorSlider';
+import SponsorSlider from '../components/SponsorSlider';
 import Footer from '../components/footer';
 import LocomotiveScrollProvider from '@/components/locomotiveScroll';
 import InteractiveCursor from '@/components/interactiveCursor';
@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Contact from '@/components/contact';
 import MainSection from '@/components/mainSection';
 import EventRoller from './eventRoller';
+import CountdownSection from './countdownSection';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,8 +47,9 @@ export default function Home() {
               <MainSection />
               <AboutUs />
               <EventRoller/>
-              {/* <SponsorSlider /> */}
+              <SponsorSlider />
               <Contact />
+              <CountdownSection />
               <Footer />
             </div>
           </div>

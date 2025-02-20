@@ -35,12 +35,21 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
+      react-animated-cursor:
+        specifier: ^2.11.2
+        version: 2.11.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-device-detect:
+        specifier: ^2.2.3
+        version: 2.2.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       react-icons:
         specifier: ^5.4.0
         version: 5.4.0(react@19.0.0)
+      react-toastify:
+        specifier: ^11.0.3
+        version: 11.0.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -50,9 +59,6 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
-      react-toastify:
-        specifier: ^11.0.3
-        version: 11.0.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       takshashila25:
         specifier: 'link:'
         version: 'link:'
@@ -1550,6 +1556,18 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react-animated-cursor@2.11.2:
+    resolution: {integrity: sha512-LV0PtST61tdeW/chCqFt1JLp6i0d5fD9v2uradBcPAkKKCi2Iw7sAcD11ADS1TjXPPj9MOoD9YubEt++/IbZ+g==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
+  react-device-detect@2.2.3:
+    resolution: {integrity: sha512-buYY3qrCnQVlIFHrC5UcUoAj7iANs/+srdkwsnNjI7anr3Tt7UY6MqNxtMLlr0tMBied0O49UZVK8XKs3ZIiPw==}
+    peerDependencies:
+      react: '>= 0.14.0'
+      react-dom: '>= 0.14.0'
+
   react-dom@19.0.0:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
     peerDependencies:
@@ -1851,6 +1869,10 @@ packages:
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
+    hasBin: true
+
+  ua-parser-js@1.0.40:
+    resolution: {integrity: sha512-z6PJ8Lml+v3ichVojCiB8toQJBuwR42ySM4ezjXIqXK3M0HczmKQ3LF4rhU55PfD99KEEXQG6yb7iOMyvYuHew==}
     hasBin: true
 
   unbox-primitive@1.1.0:
@@ -3490,6 +3512,17 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react-animated-cursor@2.11.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+
+  react-device-detect@2.2.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      ua-parser-js: 1.0.40
+
   react-dom@19.0.0(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -3892,6 +3925,8 @@ snapshots:
       reflect.getprototypeof: 1.0.10
 
   typescript@5.7.3: {}
+
+  ua-parser-js@1.0.40: {}
 
   unbox-primitive@1.1.0:
     dependencies:
