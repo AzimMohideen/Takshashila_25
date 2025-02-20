@@ -8,12 +8,16 @@ import Link from 'next/link';
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleMobileMenu = (shouldClose = true) => {
+    if (shouldClose) {
+      setIsMobileMenuOpen(false);
+    } else {
+      setIsMobileMenuOpen(!isMobileMenuOpen);
+    }
   };
 
   return (
-    <nav className="fixed left-0 right-0 z-20 bg-opacity-50 h-20">
+    <nav className="fixed left-0 right-0 z-[100] bg-opacity-50 h-20">
       <div className="max-w-7xl mx-auto px-5 py-5  flex items-center  justify-between ">
         {/* Left Logo */}
         <div className="flex items-center space-x-2">
@@ -21,8 +25,8 @@ export default function NavBar() {
                     <Image
                       src="/tk25-logo.svg"
                       alt="Icon"
-                      width={40}
-                      height={40}
+                      width={45}
+                      height={45}
                     />
                   </div>
           
@@ -47,25 +51,27 @@ export default function NavBar() {
         </div>
 
         {/* Mobile Hamburger Icon */}
-        <button className="md:hidden text-white focus:outline-none" onClick={toggleMobileMenu}>
+        <button className="md:hidden text-white focus:outline-none" onClick={() => toggleMobileMenu(false)}>
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black bg-opacity-90 p-5" data-hoverable>
+        <div className="md:hidden bg-black bg-opacity-90 p-5 z-[100]" data-hoverable>
           <Link
             href="/"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
+            onClick={() => toggleMobileMenu()}
+            scroll={false}
           >
             Home
           </Link>
           <Link
             href="Events"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
+            onClick={() => toggleMobileMenu()}
+            scroll={false}
           >
             Events
           </Link>
@@ -79,7 +85,8 @@ export default function NavBar() {
           <Link
             href="Cart"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
+            onClick={() => toggleMobileMenu()}
+            scroll={false}
           >
             Cart
           </Link>
