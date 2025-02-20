@@ -1,7 +1,7 @@
 "use client"
 import AboutUs from '../components/aboutUs';
 import NavBar from '../components/navBar';
-// import SponsorSlider from '../components/SponsorSlider';
+import SponsorSlider from '../components/SponsorSlider';
 import Footer from '../components/footer';
 import LocomotiveScrollProvider from '@/components/locomotiveScroll';
 import InteractiveCursor from '@/components/interactiveCursor';
@@ -10,11 +10,16 @@ import Contact from '@/components/contact';
 import MainSection from '@/components/mainSection';
 import EventRoller from './eventRoller';
 import CountdownSection from './countdownSection';
+import { isMobile } from 'react-device-detect';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [videoSrc, setVideoSrc] = useState('');
 
   useEffect(() => {
+    // Set video source based on device type
+    setVideoSrc(isMobile ? '/footage/landingscreen_mob.mov' : '/footage/landingscreen_lap.mov');
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > window.innerHeight;
       setScrolled(isScrolled);
@@ -47,7 +52,7 @@ export default function Home() {
               <MainSection />
               <AboutUs />
               <EventRoller/>
-{/*             <SponsorSlider /> */}
+              <SponsorSlider />
               <Contact />
               <CountdownSection />
               <Footer />
