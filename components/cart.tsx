@@ -157,11 +157,6 @@ export default function Cart() {
                   exit={{ opacity: 0, y: -50 }}
                   className="bg-white/10 backdrop-blur-sm p-6 rounded-lg flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 relative overflow-hidden group hover:bg-white/20 transition-all duration-300"
                 >
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full sm:w-32 h-32 rounded-md object-cover"
-                  />
                   <div className="flex-grow text-center sm:text-left">
                     <h3 className="text-xl font-semibold text-white">{event.title}</h3>
                     <p className="text-white/80 mt-2">Players: {event.players.length}</p>

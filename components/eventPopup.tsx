@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef } from 'react';
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar } from "lucide-react";
 
@@ -10,6 +11,7 @@ interface EventPopupProps {
   description: string;
   category: string;
   onClose: () => void;
+  onSelect?: (id: string, playerName: string) => boolean;
 }
 
 export default function EventPopup({
@@ -19,7 +21,8 @@ export default function EventPopup({
   location,
   description,
   category,
-  onClose
+  onClose,
+  onSelect
 }: EventPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
 
