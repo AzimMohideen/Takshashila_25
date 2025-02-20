@@ -25,8 +25,8 @@ export default function NavBar() {
                     <Image
                       src="/tk25-logo.svg"
                       alt="Icon"
-                      width={45}
-                      height={45}
+                      width={35}
+                      height={35}
                     />
                   </div>
           
@@ -78,7 +78,7 @@ export default function NavBar() {
           <Link
             href="Proshows"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
-            onClick={toggleMobileMenu}
+            onClick={() => toggleMobileMenu()}
           >
             Proshows
           </Link>
