@@ -3,10 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { isMobile } from 'react-device-detect';
 
 const MainSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [progress, setProgress] = useState(0);
+  const videoSrc = isMobile ? '/footage/landingscreen_mob.mov' : '/footage/landingscreen_lap.mov';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -17,9 +19,24 @@ const MainSection = () => {
       setProgress(progress);
     };
 
+    const handleVideoEnd = () => {
+      video.pause();
+    };
+
     video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('ended', handleVideoEnd);
+    
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('ended', handleVideoEnd);
+    };
   }, []);
+
+  // Calculate final animation values
+  const finalScale = 1;
+  const finalY = 0;
+  const currentScale = progress >= 100 ? finalScale : 0.3 + (Math.min(progress, 100) / 100) * 0.7;
+  const currentY = progress >= 100 ? finalY : 100 - Math.min(progress, 100);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -31,9 +48,8 @@ const MainSection = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/footage/landingscreen_lap.mov" type="video/mp4" />
-        </video>
+          src={videoSrc}
+        />
         <div className="absolute inset-0 bg-black opacity-40"></div>
       </div>
 
@@ -46,9 +62,9 @@ const MainSection = () => {
           y: 100
         }}
         animate={{ 
-          opacity: progress / 100, 
-          scale: 0.3 + (progress / 100) * 0.7,
-          y: 100 - progress
+          opacity: Math.min(1, progress / 50),
+          scale: currentScale,
+          y: currentY
         }}
         transition={{ 
           duration: 0.5,
