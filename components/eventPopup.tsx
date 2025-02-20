@@ -1,9 +1,6 @@
-"use client"
-
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
-import { showCassetteToast } from '@/components/CassetteToast';
+import { X, Calendar } from "lucide-react";
 
 interface EventPopupProps {
   id: string;
@@ -13,74 +10,26 @@ interface EventPopupProps {
   description: string;
   category: string;
   onClose: () => void;
-  onSelect?: (id: string, playerName: string) => boolean;
 }
 
-export default function EventPopup({ 
-  id, 
-  title, 
-  date, 
-  location, 
-  description, 
+export default function EventPopup({
+  id,
+  title,
+  date,
+  location,
+  description,
   category,
-  onClose,
-  onSelect 
+  onClose
 }: EventPopupProps) {
-  const [playerName, setPlayerName] = useState("");
   const popupRef = useRef<HTMLDivElement>(null);
-  
-  // Update body overflow handling
+
   useEffect(() => {
-    // Store original overflow
     const originalOverflow = document.body.style.overflow;
-    // Set overflow to hidden when popup opens
     document.body.style.overflow = 'hidden';
-    
-    // Restore original overflow when popup closes
     return () => {
       document.body.style.overflow = originalOverflow;
     };
   }, []);
-
-  useEffect(() => {
-    const updatePosition = () => {
-      if (popupRef.current) {
-        popupRef.current.style.position = 'fixed';
-        popupRef.current.style.top = '50%';
-        popupRef.current.style.left = '50%';
-        popupRef.current.style.transform = 'translate(-50%, -50%)';
-      }
-    }
-
-    updatePosition();
-    window.addEventListener("resize", updatePosition);
-
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-    }
-  }, []);
-
-  const addToCart = () => {
-    if (!playerName.trim()) {
-      showCassetteToast('Please enter a player name', 'error');
-      return;
-    }
-
-    // Use the onSelect callback to handle cart management
-    const success = onSelect?.(id, playerName);
-    
-    if (success) {
-      setTimeout(() => {
-        onClose();
-      }, 2500);
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      addToCart();
-    }
-  };
 
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -116,53 +65,35 @@ export default function EventPopup({
   return (
     <AnimatePresence>
       <motion.div
-        ref={popupRef}
         initial="hidden"
         animate="visible"
         exit="hidden"
         variants={backdropVariants}
-        className="fixed left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm flex justify-center items-center z-40 p-4"
-        style={{ 
-          width: '100vw',
-          height: '100vh',
-          position: 'fixed',
-        }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-40 p-4"
         onClick={onClose}
       >
         <motion.div
           variants={modalVariants}
-          className="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl max-w-md w-full shadow-2xl overflow-hidden relative 
-                   [&::-webkit-scrollbar]:w-2 
-                   [&::-webkit-scrollbar-track]:bg-green-900/20 
-                   [&::-webkit-scrollbar-thumb]:bg-green-600/50
-                   [&::-webkit-scrollbar-thumb:hover]:bg-green-500/50
-                   hover:[&::-webkit-scrollbar-thumb]:bg-green-500/70
-                   [scrollbar-width:thin]
-                   [scrollbar-color:theme(colors.green.600/50)_theme(colors.green.900/20)]"
+          className="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden relative"
           style={{
-            maxHeight: '80vh',
+            maxHeight: '90vh',
             overflowY: 'auto'
           }}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+          onClick={(e) => e.stopPropagation()}
         >
           <div className="sticky top-0 left-0 right-0 bg-gradient-to-br from-green-800 to-green-900 p-8 pb-4 z-10">
             <div className="flex justify-between items-start">
               <motion.h2
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-teal-400"
+                className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-teal-400"
               >
                 {title}
               </motion.h2>
               <motion.button
                 whileHover={{ rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onClose();
-                }}
+                onClick={onClose}
                 className="text-gray-300 hover:text-gray-100 transition-colors"
               >
                 <X size={24} />
@@ -175,23 +106,28 @@ export default function EventPopup({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="space-y-4 mb-6"
+              className="space-y-6 mb-8"
             >
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-semibold text-gray-300">Date:</span>
-                <span className="text-sm text-gray-100">{date}</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="text-green-400" size={20} />
+                    <span className="text-gray-100">{date}</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm font-semibold text-gray-300">Location:</span>
+                    <span className="text-gray-100">{location}</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm font-semibold text-gray-300">Category:</span>
+                    <span className="px-3 py-1 text-sm bg-green-700 text-green-100 rounded-full">
+                      {category}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-semibold text-gray-300">Location:</span>
-                <span className="text-sm text-gray-100">{location}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-semibold text-gray-300">Category:</span>
-                <span className="px-3 py-1 text-sm bg-green-700 text-green-100 rounded-full">
-                  {category}
-                </span>
-              </div>
-              <p className="text-gray-200 leading-relaxed text-justify [text-align-last:left] hyphens-auto break-words" style={{ wordSpacing: '-0.05em' }}>
+              
+              <p className="text-gray-200 leading-relaxed text-justify [text-align-last:left] hyphens-auto break-words">
                 {description}
               </p>
             </motion.div>
@@ -200,44 +136,16 @@ export default function EventPopup({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="space-y-4"
+              className="flex justify-end"
             >
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Enter player name"
-                  value={playerName}
-                  onChange={(e) => setPlayerName(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 border-2 border-green-700 rounded-xl 
-                           focus:border-green-400 focus:ring-2 focus:ring-green-400 
-                           transition-all duration-200 outline-none bg-green-900 text-gray-100 placeholder-gray-400"
-                />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-green-600 to-teal-600 opacity-10 blur-xl rounded-xl" />
-              </div>
-
-              <div className="flex justify-end gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={onClose}
-                  className="px-6 py-2.5 rounded-xl text-gray-100 bg-green-700 
-                           hover:bg-green-600 transition-colors duration-200"
-                >
-                  Cancel
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={addToCart}
-                  className="px-6 py-2.5 rounded-xl text-white 
-                           bg-gradient-to-r from-green-600 to-teal-600
-                           hover:from-green-500 hover:to-teal-500 
-                           transition-colors duration-200"
-                >
-                  Add to Cart
-                </motion.button>
-              </div>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={onClose}
+                className="px-6 py-2.5 rounded-xl text-gray-100 bg-green-700 hover:bg-green-600 transition-colors duration-200"
+              >
+                Close
+              </motion.button>
             </motion.div>
           </div>
         </motion.div>
