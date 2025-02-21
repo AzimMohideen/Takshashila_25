@@ -7,12 +7,14 @@ import axios from "axios"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://tk-backend.vercel.app"
 
+
 // Define the available dates
 const availableDates = [
   "February 26,2025",
   "February 27,2025",
   "February 28,2025"
 ]
+
 
 export function RegistrationForm() {
   const [selectedDays, setSelectedDays] = useState<string[]>([])
@@ -42,6 +44,7 @@ export function RegistrationForm() {
 
   const calculatePrice = useCallback(() => {
     const dayCount = selectedDays.length
+
     setPrice(
       dayCount === 0
         ? 0
@@ -51,21 +54,25 @@ export function RegistrationForm() {
         ? 350
         : 300
     )
+
   }, [selectedDays.length, workshop])
 
   useEffect(() => {
     calculatePrice()
   }, [selectedDays, workshop, calculatePrice])
 
+
   // Use availableDates instead of hardcoded "day1", etc.
   const handleDayChange = (date: string) => {
     setSelectedDays((prev) =>
       prev.includes(date) ? prev.filter((d) => d !== date) : [...prev, date]
+
     )
   }
 
   const handleSaveChanges = async () => {
     try {
+
       const { data } = await axios.get(`${API_URL}/select`)
       const currentCount = data.count
       console.log("Current count:", currentCount)
@@ -93,6 +100,7 @@ export function RegistrationForm() {
 
       const userPass = [dayPass, workshopPass]
 
+
       const payload = {
         email,
         phone_no: phone,
@@ -102,6 +110,7 @@ export function RegistrationForm() {
         college_name: collegeName,
         amount: price,
         count: currentCount + 1
+
       }
 
       await axios.post(`${API_URL}/update`, payload)
@@ -123,6 +132,7 @@ export function RegistrationForm() {
     setShowModal(false)
   }
 
+
   return (
     <>
       <motion.form
@@ -134,6 +144,7 @@ export function RegistrationForm() {
         {/* Days Selection */}
         <div className="space-y-6">
           <h3 className="text-white/90 text-lg font-semibold mb-4 font-lexend">
+
             Select Dates
           </h3>
           <div className="grid grid-cols-1 gap-4">
@@ -148,6 +159,7 @@ export function RegistrationForm() {
                 />
                 <label htmlFor={`date-${index}`} className="text-white/90 text-lg">
                   {date}
+
                 </label>
               </div>
             ))}
@@ -167,7 +179,9 @@ export function RegistrationForm() {
                 checked={workshop}
                 onChange={(e) => {
                   if (selectedDays.length === 0 && e.target.checked) {
+
                     setError("Please select at least one date before choosing workshop access.")
+
                   } else {
                     setWorkshop(e.target.checked)
                     setError(null)
@@ -213,7 +227,9 @@ export function RegistrationForm() {
               setError(null)
               setShowModal(true)
             } else {
+
               setError("Please select at least one date or choose workshop access before proceeding.")
+
             }
           }}
           className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-emerald-500/25"
@@ -293,4 +309,6 @@ export function RegistrationForm() {
       )}
     </>
   )
+
 }
+
