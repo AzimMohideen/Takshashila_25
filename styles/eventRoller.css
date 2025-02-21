@@ -257,7 +257,9 @@
 
 @media all and (max-width: 767px) {
     .slider {
+        position: relative;
         height: 100vh;
+        overflow: hidden;
     }
     .slider .list .item .content {
         grid-template-columns: 100%;
@@ -291,6 +293,7 @@
         text-align: center;
     }
     .arrows {
+        position: absolute;
         bottom: 12px;
         width: 70vw;
         padding: 0 10px;
