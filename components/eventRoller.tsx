@@ -17,8 +17,8 @@ const EventRoller = () => {
             image: '/students.jpeg',
             title: 'Excellence in Education',
             content: [
-                'A prominent institution ranking amongst the top colleges in Tamil Nadu, was established with an initiative to provide pragmatic learning.',
-                'The institution has also partnered with a number of companies to set a worldwide standard by offering students a diverse range of possibilities that combine education and recreation.'
+                'A prominent institution ranking amongst the top colleges in Tamil Nadu.',
+                'Partnered with leading companies to offer diverse opportunities in education and recreation.'
             ]
         },
         {
