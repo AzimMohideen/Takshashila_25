@@ -1,7 +1,7 @@
 import type React from "react"
 import SlideShow from "../components/slideShow" 
 
-const citImages: string[] = ["/f1.png", "/f2.jpeg", "/f3.jpeg"]
+const citImages: string[] = ["/chairman.jpeg", "/f2.jpeg", "/students1.jpeg"]
 
 const takshashilaImages: string[] = ["/f4.JPG", "/5.jpg", "/f6.JPG"]
 
