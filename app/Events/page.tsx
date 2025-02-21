@@ -14,7 +14,6 @@ interface CustomEvent {
   title: string;
   category: "Technical" | "Non-Technical" | "Workshops" | "All";
   date: string;
-  location?:string;
   image: string;
   description: string;
   registrationLink: string;
@@ -119,7 +118,7 @@ intervals and the first duo to solve the problem wins.`,
     category: "Technical",
     date: "March 15, 2024",
  
-    image: "/tech/REVERSEENGINEERING.jpg",
+    image: "/nontech/reverse.jpeg",
     description: `Reverse Engineering Challenge is a thrilling tech event where participants analyze software,
 hardware, or encrypted files to decode and understand their functionality. The challenge involves
 breaking down systems, uncovering hidden logic, and ethically modifying or recreating them. It
@@ -690,7 +689,7 @@ export default function Events() {
       style={{
         background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
       }}
-    >zz
+    >
       {!isMobile && <InteractiveCursor />}
       
       <div className="relative z-10">

@@ -55,11 +55,10 @@ const MobileEventSelector = ({ events }: MobileEventSelectorProps) => {
 
       {/* Events Grid */}
       <div className="grid grid-cols-1 gap-4">
-        {filteredEvents.map((event) => (
+        {filteredEvents.map((event, index) => (
           <EventCard
-            key={event.id}
+            key={`${event.id}-${index}`}
             {...event}
-            location="CIT Campus"
             isVinylHovered={false}
           />
         ))}

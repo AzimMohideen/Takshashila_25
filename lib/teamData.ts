@@ -26,6 +26,7 @@ export interface TeamMember {
     { name: "NAFIA S", role: "VIDEO EDITING", image: "/images/nafia.jpg", social: { platform: "instagram", link: "https://www.instagram.com/naff__edits" } },
     { name: "SRIBATHRINATHAN R", role: "UI/UX DESIGNER", image: "/images/sri.jpg" },
     { name: "POONGGUNDRAAN S", role: "VIDEO EDITING", image: "/images/poo.png",  },
+    { name: "ALFRED JHON", role: "PHOTOSHOP", image: "/images/alfred.jpeg",  },
 
   ];
   
