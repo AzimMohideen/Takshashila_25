@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import AboutUs from '../components/aboutUs';
 import NavBar from '../components/navBar';
@@ -12,31 +12,25 @@ import EventRoller from './eventRoller';
 import CountdownSection from './countdownSection';
 import { isMobile } from 'react-device-detect';
 
-// Loading component
+// Enhanced loading component
 const LoadingFallback = () => (
   <div className="w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#004225] via-[#013220] to-[#002616]">
-    <div className="animate-pulse">Loading...</div>
+    <div className="text-white text-xl animate-pulse font-lexend">Loading...</div>
   </div>
 );
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showNav, setShowNav] = useState(true);
-  const [videoSrc, setVideoSrc] = useState('');
   const [isMobileView, setIsMobileView] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Set mobile detection on client side
     setIsMobileView(isMobile || window.innerWidth < 768);
     
-    // Preload critical assets
-    const preloadAssets = async () => {
-      const videoElement = new Image();
-      videoElement.src = '/TK_EDIT_ROZX.mp4';
-    };
-
-    preloadAssets();
-    setVideoSrc('/TK_EDIT_ROZX.mp4');
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -49,26 +43,26 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
+
 
   // Shared content between both mobile and desktop views
   const pageContent = (
     <>
       <div className="relative z-10">
-        <Suspense fallback={<LoadingFallback />}>
-          <MainSection />
-        </Suspense>
+        <MainSection />
       </div>
       
       <div className="relative z-20">
-        <Suspense fallback={<LoadingFallback />}>
-          <AboutUs />
-          <EventRoller/>
-          <Contact />
-          <CountdownSection />
-          <Footer />
-        </Suspense>
+        <AboutUs />
+        <EventRoller/>
+        <Contact />
+        <CountdownSection />
+        <Footer />
       </div>
     </>
   );
@@ -81,7 +75,7 @@ export default function Home() {
         className="relative min-h-screen overflow-y-auto"
         style={{
           background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
-          WebkitOverflowScrolling: 'touch', // Improve scroll on iOS
+          WebkitOverflowScrolling: 'touch',
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
