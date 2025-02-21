@@ -104,7 +104,7 @@ const Footer = () => {
       </div>
 
       {/* Meet the Team button - only show if not on team page */}
-      {!isTeamPage && (
+      {/* {!isTeamPage && (
         <div className="absolute bottom-8 right-8">
           <Link href="/team" className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-3 rounded-full transition-colors duration-300 flex items-center gap-2">
             <span>Web Dev Team</span>
@@ -113,7 +113,7 @@ const Footer = () => {
             </svg>
           </Link>
         </div>
-      )}
+      )} */}
     </section>
   );
 };

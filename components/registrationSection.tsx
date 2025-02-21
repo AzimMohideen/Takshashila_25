@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
@@ -5,6 +6,15 @@ import { motion } from "framer-motion"
 import axios from "axios"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://tk-backend.vercel.app"
+
+
+// Define the available dates
+const availableDates = [
+  "February 26,2025",
+  "February 27,2025",
+  "February 28,2025"
+]
+
 
 export function RegistrationForm() {
   const [selectedDays, setSelectedDays] = useState<string[]>([])
@@ -34,40 +44,63 @@ export function RegistrationForm() {
 
   const calculatePrice = useCallback(() => {
     const dayCount = selectedDays.length
-    setPrice(dayCount === 0 ? 0 : dayCount === 1 ? (workshop ? 250 : 200) : workshop ? 350 : 300)
+
+    setPrice(
+      dayCount === 0
+        ? 0
+        : dayCount === 1
+        ? (workshop ? 250 : 200)
+        : workshop
+        ? 350
+        : 300
+    )
+
   }, [selectedDays.length, workshop])
 
   useEffect(() => {
     calculatePrice()
   }, [selectedDays, workshop, calculatePrice])
 
-  const handleDayChange = (day: string) => {
+
+  // Use availableDates instead of hardcoded "day1", etc.
+  const handleDayChange = (date: string) => {
     setSelectedDays((prev) =>
-      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+      prev.includes(date) ? prev.filter((d) => d !== date) : [...prev, date]
+
     )
   }
 
   const handleSaveChanges = async () => {
     try {
-      const { data } = await axios.get(`${API_URL}/select`);
-      const currentCount = data.count;
-      console.log("Current count:", currentCount);
+
+      const { data } = await axios.get(`${API_URL}/select`)
+      const currentCount = data.count
+      console.log("Current count:", currentCount)
       if (currentCount >= 3) {
-        setError("You have reached the maximum number of registrations for today (3).");
-        return;
+        setError("You have reached the maximum number of registrations for today (3).")
+        return
       }
-  
+
       if (workshop && selectedDays.length === 0) {
-        setError("Please select at least one day when choosing a workshop.");
-        return;
+        setError("Please select at least one date when choosing a workshop.")
+        return
       }
-  
-      setError(null);
-      const userPass = [
-        ...selectedDays.map((day) => [day.replace("day", "")]),
-        ...(workshop ? [["w"]] : []) 
-      ];
-  
+
+      setError(null)
+      // Build a fixed-size day pass array.
+      // For each available date, we use its value if selected, else an empty string.
+      const dayPass = availableDates.map(date =>
+        selectedDays.includes(date) ? date : ""
+      )
+      // Build the workshop pass array – fixed-length of 3.
+      // If workshop is selected, we mark the first slot with "w"; otherwise keep empty.
+      const workshopPass = workshop
+        ? availableDates.map((_, index) => (index === 0 ? "w" : ""))
+        : availableDates.map(() => "")
+
+      const userPass = [dayPass, workshopPass]
+
+
       const payload = {
         email,
         phone_no: phone,
@@ -77,27 +110,29 @@ export function RegistrationForm() {
         college_name: collegeName,
         amount: price,
         count: currentCount + 1
-      };
-  
-      await axios.post(`${API_URL}/update`, payload);
-      alert(`Registration successful! You have ${3 - (currentCount + 1)} registrations remaining today.`);
-      setDbCount(currentCount + 1);
+
+      }
+
+      await axios.post(`${API_URL}/update`, payload)
+      alert(`Registration successful! You have ${3 - (currentCount + 1)} registrations remaining today.`)
+      setDbCount(currentCount + 1)
     } catch (err) {
-      console.error("Error:", err);
-      setError("An error occurred while processing your registration. Please try again.");
+      console.error("Error:", err)
+      setError("An error occurred while processing your registration. Please try again.")
     }
-  
-    setSelectedDays([]);
-    setWorkshop(false);
-    setPrice(0);
-    setEmail("");
-    setPhone("");
-    setUsername("");
-    setPassword("");
-    setCollegeName("");
-    setShowModal(false);
-  };
-  
+
+    setSelectedDays([])
+    setWorkshop(false)
+    setPrice(0)
+    setEmail("")
+    setPhone("")
+    setUsername("")
+    setPassword("")
+    setCollegeName("")
+    setShowModal(false)
+  }
+
+
   return (
     <>
       <motion.form
@@ -109,20 +144,22 @@ export function RegistrationForm() {
         {/* Days Selection */}
         <div className="space-y-6">
           <h3 className="text-white/90 text-lg font-semibold mb-4 font-lexend">
-            Select Days
+
+            Select Dates
           </h3>
           <div className="grid grid-cols-1 gap-4">
-            {["day1", "day2", "day3"].map((day) => (
-              <div key={day} className="flex items-center space-x-3 bg-white/5 p-4 rounded-lg">
+            {availableDates.map((date, index) => (
+              <div key={index} className="flex items-center space-x-3 bg-white/5 p-4 rounded-lg">
                 <input
                   type="checkbox"
-                  id={day}
-                  checked={selectedDays.includes(day)}
-                  onChange={() => handleDayChange(day)}
+                  id={`date-${index}`}
+                  checked={selectedDays.includes(date)}
+                  onChange={() => handleDayChange(date)}
                   className="form-checkbox h-5 w-5 text-emerald-500 rounded"
                 />
-                <label htmlFor={day} className="text-white/90 text-lg">
-                  Day {day.slice(-1)}
+                <label htmlFor={`date-${index}`} className="text-white/90 text-lg">
+                  {date}
+
                 </label>
               </div>
             ))}
@@ -142,7 +179,9 @@ export function RegistrationForm() {
                 checked={workshop}
                 onChange={(e) => {
                   if (selectedDays.length === 0 && e.target.checked) {
-                    setError("Please select at least one day before choosing workshop access.")
+
+                    setError("Please select at least one date before choosing workshop access.")
+
                   } else {
                     setWorkshop(e.target.checked)
                     setError(null)
@@ -188,7 +227,9 @@ export function RegistrationForm() {
               setError(null)
               setShowModal(true)
             } else {
-              setError("Please select at least one day or choose workshop access before proceeding.")
+
+              setError("Please select at least one date or choose workshop access before proceeding.")
+
             }
           }}
           className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-emerald-500/25"
@@ -268,4 +309,6 @@ export function RegistrationForm() {
       )}
     </>
   )
+
 }
+
