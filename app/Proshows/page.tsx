@@ -21,7 +21,7 @@ interface ProShow {
 const proshows: ProShow[] = [
   {
     id: 1,
-    title: "CIT Digital Awards",
+    title: "CIT Icons Digital Awards - Edition 2",
     artist: "CIDA",
     date: "Day 1",
     time: "7:00 PM",
@@ -31,7 +31,7 @@ const proshows: ProShow[] = [
   },
   {
     id: 2,
-    title: "Music Concert",
+    title: "U1 Musical Night",
     artist: "Yuvan Shankar Raja",
     date: "Day 2",
     time: "7:00 PM",
