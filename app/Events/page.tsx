@@ -24,7 +24,7 @@ const eventlist: CustomEvent[] = [
     id: 1,
     title: "Tech Quest",
     category: "Technical",
-    date: "March 15, 2024",
+    date: "Day 2",
     image: "/tech/TECHQUIZ.jpg",
     description: `Science and Technology revolutionize our lives, but memory, tradition and myth frame
 our response. It's a perfect combination of smart and fun. You win or you learn- either
@@ -35,7 +35,7 @@ way it's win-win.`,
     id: 2,
     title: "H2O Rocketry",
     category: "Technical",
-    date: "March 16, 2024",
+    date: "Day 1",
     image: "/tech/H2OROCKETRY.png",
     description: `It all looked so easy when you did it with paper-where valves never froze, gyros never
 drifted and rocked motors did not blow up in your face. Build your own rocket and bring
@@ -46,7 +46,7 @@ it on the floor that blast the sky`,
     id: 3,
     title: "Paper Presentation",
     category: "Technical",
-    date: "March 17, 2024",
+    date: "Day 2",
     image: "/tech/PAPERPRESENTATION.jpg",
     description: `Paper presentation is a two-member competition where each team is required to provide a
 written representation of your idea in English, about a given theme and present it with a
@@ -57,7 +57,7 @@ presentation (PowerPoint) in front of the judges.`,
     id: 4,
     title: "Brand Marketing",
     category: "Technical",
-    date: "March 18, 2024",
+    date: "Day 1",
     image: "/tech/BRANDMARKET.png",
     description: `Business Marketing is an event similar to Shark Tank . Topics or Products will be given on the
 spot and students should present the business talk on the given topic like providing quotations
@@ -68,7 +68,7 @@ and handling the business of the product given topics`,
     id: 5,
     title: "Radio Wheels (RC Racing)",
     category: "Technical",
-    date: "March 15, 2024",
+    date: "Day 3",
     image: "/tech/RADIOWHEELS.jpg",
     description: `Competition is what makes us work harder. Crash tests, pit stops and obstacle courses. Race to
 the finish line while revving your engines. Creativity and strategy packs a punch in this RC race!`,
@@ -78,7 +78,7 @@ the finish line while revving your engines. Creativity and strategy packs a punc
     id: 6,
     title: "Robo Wars",
     category: "Technical",
-    date: "March 16, 2024",
+    date: "Day 1",
    
     image: "/tech/RCRACING.jpg",
     description: `Are you looking for an exhilarating challenge? Then come join us and race your drone through
@@ -91,7 +91,7 @@ come by often.`,
     id: 7,
     title: "Trial Tracks (Line Follower)",
     category: "Technical",
-    date: "March 17, 2024",
+    date: "Day 1",
    
     image: "/tech/TRIAL TRACKS.png",
     description: `Where precision meets speed, steer your way to the end-line. Stay on track and you'll stay in the
@@ -103,7 +103,7 @@ you up for this rip-roaring race where only the fast and furious finishes first?
     id: 8,
     title: "Binary Symphony (Duo Code)",
     category: "Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
     
     image: "/tech/BINARYSYMPHONY.png",
     description: `Coding duos! Two participants are paired and are given a problem to solve.
@@ -116,7 +116,7 @@ intervals and the first duo to solve the problem wins.`,
     id: 9,
     title: "Reverse Engineering Challenge",
     category: "Technical",
-    date: "March 15, 2024",
+    date: "Day 2",
  
     image: "/nontech/reverse.jpeg",
     description: `Reverse Engineering Challenge is a thrilling tech event where participants analyze software,
@@ -130,7 +130,7 @@ Are you ready to unlock the secrets within the code?`,
     id: 10,
     title: "Dark Web Treasure Hunt",
     category: "Technical",
-    date: "March 16, 2024",
+    date: "Day 3",
 
     image: "/tech/DARKWEBTH.jpg",
     description: `Dark Web Treasure Hunt is a cybersecurity, ethical hacking, and OSINT challenge where
@@ -144,7 +144,7 @@ analytical thinking and cyber skills. Are you ready to crack the code?`,
     id: 11,
     title: "UI/UX",
     category: "Technical",
-    date: "March 16, 2024",
+    date: "Day 1",
 
     image: "/tech/DARKWEBTH.jpg",
     description: `Dark Web Treasure Hunt is a cybersecurity, ethical hacking, and OSINT challenge where
@@ -158,7 +158,7 @@ analytical thinking and cyber skills. Are you ready to crack the code?`,
     id: 12,
     title: "Designers Onboard",
     category: "Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
     
     image: "/tech/BRANDMARKET.png",
     description: `Business Marketing is an event similar to Shark Tank . Topics or Products will be given on the
@@ -173,7 +173,7 @@ and handling the business of the product given topics`,
     id: 13,
     title: "Solo Dance - Dance Till Dawn",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 1",
 
     image: "/nontech/solodance (2).png",
     description: `Do you have what it takes to put on a one-man show? On the dance floor, you are in control of
@@ -185,7 +185,7 @@ hearts!.`,
     id: 14,
     title: "Dual Dance - Dynamic Duo",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 1",
    
     image: "/nontech/DUODANCE.jpg",
     description: `Step up, show off, and electrify the stage with double the moves, double the grace and
@@ -196,7 +196,7 @@ double the excitement.`,
     id: 15,
     title: "Behind the Yellow Tapes",
     category: "Non-Technical",
-    date: "March 15, 2024",
+    date: "Day 1",
     
     image: "/nontech/BEHINDTHEYT.png",
     description: `Do you have what it takes to solve the case and bring justice to the departed? Test your wits to
@@ -208,7 +208,7 @@ the clues to uncover the killer. Are you up for the challenge?`,
     id: 16,
     title: "Cypher",
     category: "Non-Technical",
-    date: "March 16, 2024",
+    date: "Day 1",
 
     image: "/nontech/CYPHER2.png",
     description: `Calling out all high-octane hip-hop dancers! Once you step in, there's no going back. Diss your
@@ -220,7 +220,7 @@ steps.`,
     id: 17,
     title: "Fun Zone",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 1",
    
     image: "/nontech/FUNZONE.png",
     description: `Buckle up for an exhilarating escapade at our much-anticipated FunZone event – an
@@ -233,7 +233,7 @@ celebration meticulously crafted to awaken the dormant inner child in every atte
     id: 18,
     title: "Graphite-ty",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 1",
    
     image: "/nontech/Graphitely.jpeg",
     description: `Where every stroke tells a story, unlock the creativity within and unleash your vision. Sketch
@@ -244,7 +244,7 @@ your way to glory 'cause the canvas is calling for a creative masterpiece`,
     id: 19,
     title: "Load the Lyrics",
     category: "Non-Technical",
-    date: "March 15, 2024",
+    date: "Day 1",
     
     image: "/nontech/LOADTHELYRICS.jpg",
     description: `Watch as the lyrics vanish whilst you warble. Fill in the missing tunes and fix the broken beat.
@@ -256,7 +256,7 @@ Load the Lyrics!`,
     id: 20,
     title: "IPL Auction",
     category: "Non-Technical",
-    date: "March 16, 2024",
+    date: "Day 1",
    
     image: "/nontech/IPLAUCTION.png",
     description: `What would you do if we said you could auction your way to assemble your dream team? Craft
@@ -266,9 +266,9 @@ a bombarding bonanza!`,
   },
   {
     id: 21,
-    title: "Film Fnatics",
+    title: "Film Fanatics",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 1",
    
     image: "/nontech/FILMFANATICS.jpg",
     description: `Show off your unique ideas and perspectives through the power of movies. Craft a captivating
@@ -279,7 +279,7 @@ short film that will enthrall the audience and leave them in awe of your creativ
     id: 22,
     title: "Solo Singing - One Voice Magic",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 2",
    
     image: "/nontech/solo singing.jpg",
     description: `Music is felt rather than heard. With your beguiling voice, you can touch people's hearts and
@@ -290,7 +290,7 @@ enlighten their souls. After all, music is much more than just a tune.`,
     id: 23,
     title: "Group Singing - Acapella",
     category: "Non-Technical",
-    date: "March 15, 2024",
+    date: "Day 2",
 
     image: "/nontech/group singing.jpg",
     description: `Music is a part of our everyday lives. From the hammering of our hearts to the shrieking of the
@@ -303,7 +303,7 @@ Theme: open theme`,
     id: 24,
     title: "TK TV",
     category: "Non-Technical",
-    date: "March 16, 2024",
+    date: "Day 2",
     
     image: "/nontech/TK TV.jpg",
     description: `Do you have a dream of appearing on TV? Ever wished you could be the star of your own
@@ -315,7 +315,7 @@ your fantasies and steal the show, thanks to TK TV!`,
     id: 25,
     title: "On-Air - RJ Hunt",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 2",
     
     image: "/nontech/ONAIR.jpg",
     description: `Radio affects most intimately, person to person, offering a world of unspoken communication
@@ -327,7 +327,7 @@ Step into the spotlight, grab the microphone, take a moment, and be a part of th
     id: 26,
     title: "Reel Making - Real to Reel",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 2",
    
     image: "/nontech/Reel to Real.png",
     description: `Videograph your views on our college and capture clips to project your perspective. Summarize
@@ -338,7 +338,7 @@ the fervor and magnificence that are rife in our campus!`,
     id: 27,
     title: "Street Music-Jam",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
     
     image: "/nontech/Reel to Real.png",
     description: `Videograph your views on our college and capture clips to project your perspective. Summarize
@@ -349,7 +349,7 @@ the fervor and magnificence that are rife in our campus!`,
     id: 28,
     title: "World whiz",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/Reel to Real.png",
     description: `Videograph your views on our college and capture clips to project your perspective. Summarize
@@ -360,7 +360,7 @@ the fervor and magnificence that are rife in our campus!`,
     id: 29,
     title: "Stress Interview",
     category: "Non-Technical",
-    date: "March 15, 2024",
+    date: "Day 2",
    
     image: "/nontech/stress interview (1).jpg",
     description: `Just like mentally strong people, we must be able to thrive regardless of any added tension. We
@@ -372,7 +372,7 @@ of our achievements`,
     id: 30,
     title: "Treasure Hunt",
     category: "Non-Technical",
-    date: "March 16, 2024",
+    date: "Day 2",
 
     image: "/nontech/FREEFIRE.jpg",
     description:`No thief, however skillful, can rob one of knowledge, and that is why knowledge is the best and
@@ -383,7 +383,7 @@ desirable treasure to acquire. Treasure Hunt makes better stories when there's t
     id: 31,
     title: "Surprise Event",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 2",
 
     image: "/nontech/suprise.png",
     description: `Whether you're an adventure seeker or just looking for a unique and exciting experience, our
@@ -396,7 +396,7 @@ that you'll be treated to a day of excitement!`,
     id: 32,
     title: "Free Fire",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/FREEFIRE.jpg",
     description: `Is gaming your domain? Amateur or professional gaming sees no discrimination, only skills,
@@ -407,7 +407,7 @@ strategy and rules. So gear up for the battle, prepare and clash in the ultimate
     id: 33,
     title: "World of Weebs",
     category: "Non-Technical",
-    date: "March 15, 2024",
+    date: "Day 3",
 
     image: "/nontech/world.jpg",
     description: `Prove your anime prowess in this epic anime quiz! From Naruto's hidden jutsus to the heroic
@@ -420,7 +420,7 @@ victor in the World of Weebs! Dattebayo!`,
     id: 34,
     title: "Talking Head",
     category: "Non-Technical",
-    date: "March 16, 2024",
+    date: "Day 3",
   
     image: "/nontech/TALKINGHEAD.png",
     description: `Do you like to document day-to-day activities? Do you think you can handle a massive event like
@@ -431,7 +431,7 @@ Takshashila and document the happenings of this hustling event?`,
     id: 35,
     title: "Rap Battle - Rap-a-thon",
     category: "Non-Technical",
-    date: "March 17, 2024",
+    date: "Day 3",
 
     image: "/nontech/RAPATHON.png",
     description: `Just get on the mic and spit those rhymes and better go capture this moment and hope it doesn't
@@ -444,7 +444,7 @@ the real slim shady in you.`,
     id: 36,
     title: "Battlegrounds Mobile India",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/PUBG.png",
     description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
@@ -455,7 +455,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 37,
     title: "Ship Wreck",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/LIFEBOAT.png",
     description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
@@ -466,7 +466,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 38,
     title: "Music Quiz",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 3",
   
     image: "/nontech/MUSICQUIZ.jpg",
     description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
@@ -488,7 +488,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 40,
     title: "Frame Spot",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 1",
 
     image: "/nontech/FRAMESPOT.jpg",
     description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
@@ -499,7 +499,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 41,
     title: "Connection Music",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "Day 2",
 
     image: "/nontech/CONNECTIONMUSIC.jpg",
     description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
@@ -510,7 +510,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 42,
     title: "Aeromodelling",
     category: "Workshops",
-    date: "March 15, 2024",
+    date: "Day 1",
  
     image: "/nontech/1.jpeg",
     description: "Aeromodelling is an exciting and dynamic field that offers a unique opportunity for students to develop a diverse range of skills across multiple disciplines. Through interactive sessions, this workshop provides a comprehensive understanding of the principles of aerodynamics, electrical engineering, and control systems. Students will learn how to design and build a fully functioning radio-controlled aircraft, gaining valuable experience in problem-solving and critical thinking. It's an exciting and rewarding experience that can inspire the next generation of engineers, designers, and innovators.",
@@ -520,7 +520,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 43,
     title: "IoT and Embedded Systems",
     category: "Workshops",
-    date: "March 16, 2024",
+    date: "Day 1",
    
     image: "/nontech/iot.jpeg",
     description: "In this workshop, you will learn about designing and applying IoT systems. You will work on real-world projects and gain hands-on experience in industries like healthcare, agriculture, and transportation. By the end of the workshop, you will have gained valuable knowledge and skills that can be applied to your own projects and career development. Join us to explore the world of IoT and its endless possibilities!",
@@ -530,7 +530,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 44,
     title: "Cybersecurity",
     category: "Workshops",
-    date: "March 17, 2024",
+    date: "Day 2",
    
     image: "/nontech/iot.jpeg",
     description: "In today's interconnected digital world, the need for robust cybersecurity measures has never been greater. Whether you're an individual seeking to protect your personal information or a business professional responsible for safeguarding sensitive data, understanding cybersecurity fundamentals is paramount. Join us for an engaging and informative workshop designed to equi participants with the knowledge and skills necessary to navigate the cyber landscape securely.",
@@ -540,7 +540,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 45,
     title: "Drone Technology",
     category: "Workshops",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/tech/RCRACING.jpg",
     description: `Have you ever thought about building and controlling your own miniature aircraft? If so, this
@@ -554,7 +554,7 @@ participants to engage and gain practical knowledge about drone technology.`,
     id: 46,
     title: "Full Stack Web Development",
     category: "Workshops",
-    date: "March 15, 2024",
+    date: "Day 2",
 
     image: "/tech/BRANDMARKET.png",
     description: `A website and a server designed by a single person, is that even possible? Well, if you know
@@ -570,7 +570,7 @@ scratch.`,
     id: 47,
     title: "CITIL - Idea to Impact",
     category: "Workshops",
-    date: "March 16, 2024",
+    date: "Day 2",
  
     image: "/tech/BINARYSYMPHONY.png",
     description: `In this dynamic workshop, we invite you to unlock the doors to innovation, where creative
@@ -587,7 +587,7 @@ success is not just a destination but a continuous and exhilarating journey.`,
     id: 48,
     title: "World of Open Source with GitHub",
     category: "Workshops",
-    date: "March 17, 2024",
+    date: "Day 1",
  
     image: "/nontech/github.jpeg",
     description: `This insightful workshop aims to provide students with practical knowledge of open-source
@@ -601,7 +601,7 @@ industry-relevant practices.`,
     id: 49,
     title: "Networking with Linux",
     category: "Workshops",
-    date: "March 18, 2024",
+    date: "Day 3",
   
     image: "/nontech/linux.jpeg",
     description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
@@ -617,7 +617,7 @@ further exploration in these domains.`,
     id: 50,
     title: "AI-ML",
     category: "Workshops",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/aiml.jpeg",
     description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
@@ -633,7 +633,7 @@ further exploration in these domains.`,
     id: 51,
     title: "Music Production",
     category: "Workshops",
-    date: "March 18, 2024",
+    date: "Day 3",
 
     image: "/nontech/linux.jpeg",
     description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
