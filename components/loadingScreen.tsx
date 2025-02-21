@@ -17,7 +17,7 @@ const LoadScreen: React.FC = () => {
   }, [])
 
   return (
-    <div className="svg-container">
+    <div className="svg-container w-full h-full">
       {/* White Stroke SVG (Background) */}
       <svg
         className="svg-background"
