@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar } from "lucide-react";
+import { useRouter } from 'next/navigation';
 
 interface EventPopupProps {
   id: string;
@@ -25,6 +26,7 @@ export default function EventPopup({
   onSelect
 }: EventPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -63,6 +65,11 @@ export default function EventPopup({
         duration: 0.2
       }
     }
+  };
+
+  const handleRegister = () => {
+    onClose();
+    router.push('/register');
   };
 
   return (
@@ -141,10 +148,10 @@ export default function EventPopup({
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={onClose}
+                onClick={handleRegister}
                 className="px-6 py-2.5 rounded-xl text-gray-100 bg-green-700 hover:bg-green-600 transition-colors duration-200"
               >
-                Close
+                Register Now
               </motion.button>
             </motion.div>
           </div>
