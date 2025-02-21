@@ -65,7 +65,15 @@ export default function RegisterPage() {
                         <li>Workshop registration requires at least one day selection</li>
                         <li>Prices include all taxes and materials</li>
                         <li>Registration confirmation will be sent via email</li>
+                        
                       </ul>
+                    </div>
+
+                    <div className="space-y-2 text-red-500">
+                      <h3 className="text-xl font-semibold">NOTE</h3>
+                      <p>ALL THE REGISTRATIONS ARE ONSITE(NOT ONLINE)</p>
+                      <p>THIS REGISTRATION PROCESS IS JUST ON DUTY PROOF GENERATION(THIS IS NOT FINAL)</p>
+                      <p>PLEASE BRING IN-HAND CASH FOR REGISTRATIONS</p>
                     </div>
                   </div>
                 </div>
