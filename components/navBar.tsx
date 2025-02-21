@@ -95,12 +95,12 @@ export default function NavBar() {
             Proshows
           </Link>
           <Link
-            href="Cart"
+            href="register"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
             onClick={() => toggleMobileMenu()}
             scroll={false}
           >
-            Cart
+            Register
           </Link>
         </div>
       )}
