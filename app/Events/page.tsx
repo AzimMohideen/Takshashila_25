@@ -22,50 +22,44 @@ interface CustomEvent {
 const eventlist: CustomEvent[] = [
   {
     id: 1,
-    title: "Tech Quest",
+    title: "Binary Symphony (Duo Code)",
     category: "Technical",
-    date: "Day 2",
-    image: "/tech/TECHQUIZ.jpg",
-    description: `Science and Technology revolutionize our lives, but memory, tradition and myth frame
-our response. It's a perfect combination of smart and fun. You win or you learn- either
-way it's win-win.`,
+    date: "Day 3",
+    
+    image: "/tech/BINARYSYMPHONY.png",
+    description: `Coding duos! Two participants are paired and are given a problem to solve.
+    The duo should take turns to code the solution. But the catch is, they can't be together at the
+    same time. As one person codes, the other person is isolated. Swaps occur at regular
+    intervals and the first duo to solve the problem wins.`,
     registrationLink: "#"
   },
   {
     id: 2,
-    title: "H2O Rocketry",
-    category: "Technical",
-    date: "Day 1",
-    image: "/tech/H2OROCKETRY.png",
-    description: `It all looked so easy when you did it with paper-where valves never froze, gyros never
-drifted and rocked motors did not blow up in your face. Build your own rocket and bring
-it on the floor that blast the sky`,
-    registrationLink: "#"
-  },
-  {
-    id: 3,
-    title: "Paper Presentation",
-    category: "Technical",
-    date: "Day 2",
-    image: "/tech/PAPERPRESENTATION.jpg",
-    description: `Paper presentation is a two-member competition where each team is required to provide a
-written representation of your idea in English, about a given theme and present it with a
-presentation (PowerPoint) in front of the judges.`,
-    registrationLink: "#"
-  },
-  {
-    id: 4,
     title: "Brand Marketing",
     category: "Technical",
     date: "Day 1",
     image: "/tech/BRANDMARKET.png",
     description: `Business Marketing is an event similar to Shark Tank . Topics or Products will be given on the
-spot and students should present the business talk on the given topic like providing quotations
-and handling the business of the product given topics`,
+    spot and students should present the business talk on the given topic like providing quotations
+    and handling the business of the product given topics`,
     registrationLink: "#"
   },
   {
-    id: 5,
+    id: 3,
+    title: "Reverse Engineering Challenge",
+    category: "Technical",
+    date: "Day 2",
+ 
+    image: "/nontech/reverse.jpeg",
+    description: `Reverse Engineering Challenge is a thrilling tech event where participants analyze software,
+hardware, or encrypted files to decode and understand their functionality. The challenge involves
+breaking down systems, uncovering hidden logic, and ethically modifying or recreating them. It
+tests problem-solving, analytical thinking, and cybersecurity skills in a controlled environment.
+Are you ready to unlock the secrets within the code?`,
+    registrationLink: "#"
+  },
+  {
+    id: 4,
     title: "Radio Wheels (RC Racing)",
     category: "Technical",
     date: "Day 3",
@@ -74,6 +68,19 @@ and handling the business of the product given topics`,
 the finish line while revving your engines. Creativity and strategy packs a punch in this RC race!`,
     registrationLink: "#"
   },
+  
+{
+  id: 5,
+  title: "Paper Presentation",
+  category: "Technical",
+  date: "Day 2",
+  image: "/tech/PAPERPRESENTATION.jpg",
+  description: `Paper presentation is a two-member competition where each team is required to provide a
+written representation of your idea in English, about a given theme and present it with a
+presentation (PowerPoint) in front of the judges.`,
+  registrationLink: "#"
+}
+  ,
   {
     id: 6,
     title: "Robo Wars",
@@ -95,37 +102,33 @@ come by often.`,
    
     image: "/tech/TRIAL TRACKS.png",
     description: `Where precision meets speed, steer your way to the end-line. Stay on track and you'll stay in the
-game. Wander off track and you'll have to walk out. Gather your courage and components! Are
-you up for this rip-roaring race where only the fast and furious finishes first?`,
+    game. Wander off track and you'll have to walk out. Gather your courage and components! Are
+    you up for this rip-roaring race where only the fast and furious finishes first?`,
     registrationLink: "#"
   },
   {
     id: 8,
-    title: "Binary Symphony (Duo Code)",
+    title: "Tech Quest",
     category: "Technical",
-    date: "Day 3",
-    
-    image: "/tech/BINARYSYMPHONY.png",
-    description: `Coding duos! Two participants are paired and are given a problem to solve.
-The duo should take turns to code the solution. But the catch is, they can't be together at the
-same time. As one person codes, the other person is isolated. Swaps occur at regular
-intervals and the first duo to solve the problem wins.`,
+    date: "Day 2",
+    image: "/tech/TECHQUIZ.jpg",
+    description: `Science and Technology revolutionize our lives, but memory, tradition and myth frame
+    our response. It's a perfect combination of smart and fun. You win or you learn- either
+    way it's win-win.`,
     registrationLink: "#"
   },
   {
     id: 9,
-    title: "Reverse Engineering Challenge",
+    title: "H2O Rocketry",
     category: "Technical",
-    date: "Day 2",
- 
-    image: "/nontech/reverse.jpeg",
-    description: `Reverse Engineering Challenge is a thrilling tech event where participants analyze software,
-hardware, or encrypted files to decode and understand their functionality. The challenge involves
-breaking down systems, uncovering hidden logic, and ethically modifying or recreating them. It
-tests problem-solving, analytical thinking, and cybersecurity skills in a controlled environment.
-Are you ready to unlock the secrets within the code?`,
-    registrationLink: "#"
-  },
+    date: "Day 1",
+    image: "/tech/H2OROCKETRY.png",
+    description: `It all looked so easy when you did it with paper-where valves never froze, gyros never
+drifted and rocked motors did not blow up in your face. Build your own rocket and bring
+it on the floor that blast the sky`,
+    registrationLink: "#"
+  }
+  ,
   {
     id: 10,
     title: "Dark Web Treasure Hunt",
@@ -183,13 +186,14 @@ hearts!.`,
   },
   {
     id: 14,
-    title: "Dual Dance - Dynamic Duo",
+    title: "IPL Auction",
     category: "Non-Technical",
     date: "Day 1",
    
-    image: "/nontech/DUODANCE.jpg",
-    description: `Step up, show off, and electrify the stage with double the moves, double the grace and
-double the excitement.`,
+    image: "/nontech/IPLAUCTION.png",
+    description: `What would you do if we said you could auction your way to assemble your dream team? Craft
+the most capable cricket team that is a sure sixer squad. Bid, build and dominate the race to boast
+a bombarding bonanza!`,
     registrationLink: "#"
   },
   {
@@ -254,14 +258,13 @@ Load the Lyrics!`,
   },
   {
     id: 20,
-    title: "IPL Auction",
+    title: "Dual Dance - Dynamic Duo",
     category: "Non-Technical",
     date: "Day 1",
    
-    image: "/nontech/IPLAUCTION.png",
-    description: `What would you do if we said you could auction your way to assemble your dream team? Craft
-the most capable cricket team that is a sure sixer squad. Bid, build and dominate the race to boast
-a bombarding bonanza!`,
+    image: "/nontech/DUODANCE.jpg",
+    description: `Step up, show off, and electrify the stage with double the moves, double the grace and
+double the excitement.`,
     registrationLink: "#"
   },
   {
@@ -506,14 +509,21 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
 conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     registrationLink: "#"
   },
+  
   {
     id: 42,
-    title: "Aeromodelling",
+    title: "Full Stack Web Development",
     category: "Workshops",
-    date: "Day 1",
- 
-    image: "/nontech/1.jpeg",
-    description: "Aeromodelling is an exciting and dynamic field that offers a unique opportunity for students to develop a diverse range of skills across multiple disciplines. Through interactive sessions, this workshop provides a comprehensive understanding of the principles of aerodynamics, electrical engineering, and control systems. Students will learn how to design and build a fully functioning radio-controlled aircraft, gaining valuable experience in problem-solving and critical thinking. It's an exciting and rewarding experience that can inspire the next generation of engineers, designers, and innovators.",
+    date: "Day 2",
+
+    image: "/tech/BRANDMARKET.png",
+    description: `A website and a server designed by a single person, is that even possible? Well, if you know
+about full-stack development, it is! In this workshop learn how to program a website and also
+gain knowledge on creating exclusive databases and servers for the website that you designed.
+The workshop will also focus on best practices for software development, such as version
+control, testing, and debugging. By the end of the workshop, participants will have a solid
+understanding of full-stack development and be able to build their own web applications from
+scratch.`,
     registrationLink: "#"
   },
   {
@@ -552,20 +562,15 @@ participants to engage and gain practical knowledge about drone technology.`,
   },
   {
     id: 46,
-    title: "Full Stack Web Development",
+    title: "Aeromodelling",
     category: "Workshops",
-    date: "Day 2",
-
-    image: "/tech/BRANDMARKET.png",
-    description: `A website and a server designed by a single person, is that even possible? Well, if you know
-about full-stack development, it is! In this workshop learn how to program a website and also
-gain knowledge on creating exclusive databases and servers for the website that you designed.
-The workshop will also focus on best practices for software development, such as version
-control, testing, and debugging. By the end of the workshop, participants will have a solid
-understanding of full-stack development and be able to build their own web applications from
-scratch.`,
+    date: "Day 1",
+ 
+    image: "/nontech/1.jpeg",
+    description: "Aeromodelling is an exciting and dynamic field that offers a unique opportunity for students to develop a diverse range of skills across multiple disciplines. Through interactive sessions, this workshop provides a comprehensive understanding of the principles of aerodynamics, electrical engineering, and control systems. Students will learn how to design and build a fully functioning radio-controlled aircraft, gaining valuable experience in problem-solving and critical thinking. It's an exciting and rewarding experience that can inspire the next generation of engineers, designers, and innovators.",
     registrationLink: "#"
-  },
+  }
+  ,
   {
     id: 47,
     title: "CITIL - Idea to Impact",
