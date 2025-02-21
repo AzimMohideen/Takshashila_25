@@ -16,7 +16,7 @@ const MainSection = () => {
 
     const handleTimeUpdate = () => {
       if (isMobile) {
-        // On mobile, set progress to 100 immediately
+        // On mobile, set progress to 100 immediately after video starts
         setProgress(100);
       } else {
         const progress = (video.currentTime / video.duration) * 100;
