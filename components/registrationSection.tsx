@@ -8,6 +8,26 @@ export function RegistrationForm() {
   const [workshop, setWorkshop] = useState(false)
   const [price, setPrice] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [registrationsToday, setRegistrationsToday] = useState(0)
+
+  // Load registrations count on component mount
+  useEffect(() => {
+    const today = new Date().toDateString()
+    const storedData = localStorage.getItem('registrationData')
+    
+    if (storedData) {
+      const data = JSON.parse(storedData)
+      if (data.date === today) {
+        setRegistrationsToday(data.count)
+      } else {
+        // Reset count for new day
+        localStorage.setItem('registrationData', JSON.stringify({ date: today, count: 0 }))
+        setRegistrationsToday(0)
+      }
+    } else {
+      localStorage.setItem('registrationData', JSON.stringify({ date: today, count: 0 }))
+    }
+  }, [])
 
   const calculatePrice = useCallback(() => {
     const dayCount = selectedDays.length
@@ -29,15 +49,31 @@ export function RegistrationForm() {
   }
 
   const handleSaveChanges = () => {
+    if (registrationsToday >= 3) {
+      setError("You have reached the maximum number of registrations for today (3).")
+      return
+    }
+
     if (workshop && selectedDays.length === 0) {
       setError("Please select at least one day when choosing a workshop.")
       return
     }
 
+    // Update registration count in local storage
+    const today = new Date().toDateString()
+    const newCount = registrationsToday + 1
+    localStorage.setItem('registrationData', JSON.stringify({ date: today, count: newCount }))
+    setRegistrationsToday(newCount)
+
     setError(null)
     const userPass = [...selectedDays.map((day) => day.replace("day", "")), ...(workshop ? ["w"] : [])]
     console.log("Saving changes:", userPass)
-    alert("Changes saved successfully!")
+    alert("Registration successful! You have " + (3 - newCount) + " registrations remaining today.")
+
+    // Reset form
+    setSelectedDays([])
+    setWorkshop(false)
+    setPrice(0)
   }
 
   return (
@@ -47,6 +83,11 @@ export function RegistrationForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Registrations remaining indicator */}
+      <div className="text-white/80 text-sm text-center mb-4">
+        Registrations saves today: {3 - registrationsToday}
+      </div>
+
       {/* Days Selection */}
       <div className="space-y-6">
         <h3 className="text-white/90 text-lg font-semibold mb-4 font-lexend">Select Days</h3>

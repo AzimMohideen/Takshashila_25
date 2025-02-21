@@ -32,9 +32,9 @@ const EventRoller = () => {
         {
             image: '/tedx.jpeg',
             title: 'Our Vision',
-            content: [
-                'The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements. This is delivered by CIT through professional ethics which is sated by frequent guest lectures by professionals.',
-                'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu. Our college has made dreams of thousands of students come true.'
+            content: ['The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements.',
+                'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu.'
+                      
             ]
         }
     ];

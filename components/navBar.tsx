@@ -49,10 +49,10 @@ export default function NavBar() {
             Proshows
           </Link>
           <Link
-            href="Cart"
+            href="register"
             className="text-white hover:text-gray-300 text-lg font-lexend"
           >
-            Cart
+            Register
           </Link>
         </div>
 

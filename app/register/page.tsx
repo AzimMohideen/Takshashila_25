@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <div 
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: "url('/TKback2.png')",
+          backgroundImage: "url('/u1back.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"
@@ -30,21 +30,52 @@ export default function RegisterPage() {
         {/* Main content with padding for navbar */}
         <main className="flex-grow pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl font-bold mb-6 text-white text-center font-lexend">
+            <h1 className="text-4xl font-bold mb-6 text-white text-center font-lexend md:text-left">
               Event Registration
             </h1>
             
-            <div className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 text-white/90 p-4 mb-6 rounded-lg max-w-md mx-auto">
-              <p className="font-bold mb-2">Registration Instructions:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Select the days you wish to attend</li>
-                <li>Choose if you want to participate in the workshop</li>
-                <li>Review the calculated price based on your selections</li>
-                <li>Click <q>Save Changes</q> to confirm your registration</li>
-              </ul>
-            </div>
+            <div className="flex flex-col md:flex-row gap-8">
+              {/* Instructions Section - 3/5 width on desktop */}
+              <div className="md:w-3/5">
+                <div className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 text-white/90 p-8 rounded-lg h-full">
+                  <h2 className="text-2xl font-bold mb-6 font-lexend">Registration Instructions</h2>
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Step 1: Select Days</h3>
+                      <p>Choose which days you&apos;d like to attend. You can select multiple days for a discounted price.</p>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Step 2: Workshop Selection</h3>
+                      <p>Decide if you want to participate in our exclusive workshops. Adding a workshop gives you access to specialized training and hands-on experience.</p>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Pricing Structure</h3>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>Single Day: ₹200</li>
+                        <li>Multiple Days: ₹300</li>
+                        <li>Workshop Addition: +₹50 (per registration)</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Important Notes</h3>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>Workshop registration requires at least one day selection</li>
+                        <li>Prices include all taxes and materials</li>
+                        <li>Registration confirmation will be sent via email</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-            <RegistrationForm />
+              {/* Form Section - 2/5 width on desktop */}
+              <div className="md:w-2/5">
+                <RegistrationForm />
+              </div>
+            </div>
           </div>
         </main>
 

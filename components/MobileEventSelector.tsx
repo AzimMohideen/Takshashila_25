@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import EventCard from './eventCard'
+import { useRouter } from 'next/navigation'
 
 // Make all properties optional to handle any data structure
 interface Event {
@@ -25,8 +26,17 @@ interface MobileEventSelectorProps {
 const MobileEventSelector = ({ events }: MobileEventSelectorProps) => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedEvent, setSelectedEvent] = useState(events[0])
+  const router = useRouter()
 
   const categories = ['All', 'Technical', 'Non-Technical', 'Workshops', 'Pro Shows']
+
+  const handleCategoryClick = (category: string) => {
+    if (category === 'Pro Shows') {
+      router.push('/Proshows')
+    } else {
+      setSelectedCategory(category)
+    }
+  }
 
   const filteredEvents = selectedCategory === 'All' 
     ? events 
@@ -40,7 +50,7 @@ const MobileEventSelector = ({ events }: MobileEventSelectorProps) => {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryClick(category)}
               className={`px-4 py-2 rounded-full whitespace-nowrap transition-all text-white ${
                 selectedCategory === category
                   ? 'bg-emerald-500'
