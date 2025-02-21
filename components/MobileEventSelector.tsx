@@ -4,16 +4,18 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import EventCard from './eventCard'
 
+// Make all properties optional to handle any data structure
 interface Event {
-  id: number
+  id: number | string
   title: string
+  name?: string
   description: string
   date: string
   time?: string
-  location: string
   registrationLink: string
   category: string
   image: string
+  price?: number
 }
 
 interface MobileEventSelectorProps {
@@ -57,6 +59,7 @@ const MobileEventSelector = ({ events }: MobileEventSelectorProps) => {
           <EventCard
             key={event.id}
             {...event}
+            location="CIT Campus"
             isVinylHovered={false}
           />
         ))}

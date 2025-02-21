@@ -14,7 +14,7 @@ interface CustomEvent {
   title: string;
   category: "Technical" | "Non-Technical" | "Workshops" | "All";
   date: string;
-  
+  location?:string;
   image: string;
   description: string;
   registrationLink: string;
@@ -533,7 +533,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     category: "Workshops",
     date: "March 17, 2024",
    
-    image: "/events/workshops/3.png",
+    image: "/nontech/iot.jpeg",
     description: "In today's interconnected digital world, the need for robust cybersecurity measures has never been greater. Whether you're an individual seeking to protect your personal information or a business professional responsible for safeguarding sensitive data, understanding cybersecurity fundamentals is paramount. Join us for an engaging and informative workshop designed to equi participants with the knowledge and skills necessary to navigate the cyber landscape securely.",
     registrationLink: "#"
   },
@@ -690,7 +690,7 @@ export default function Events() {
       style={{
         background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
       }}
-    >
+    >zz
       {!isMobile && <InteractiveCursor />}
       
       <div className="relative z-10">
