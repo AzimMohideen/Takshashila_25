@@ -8,7 +8,7 @@ import EventPopup from "./eventPopup"
 interface EventCardProps {
   title: string
   date: string
-  location: string
+  
   image: string
   description: string
   registrationLink: string
@@ -20,7 +20,6 @@ interface EventCardProps {
 export default function EventCard({
   title,
   date,
-  location,
   image,
   description,
   category,
@@ -92,7 +91,7 @@ export default function EventCard({
 
           <div className="flex flex-col gap-2">
             <p className="text-white">{date}</p>
-            <p className="text-white">{location}</p>
+           
             <p className="text-white mt-2 line-clamp-3">{description}</p>
             {description.length > 150 && (
               <p className="text-gray-400 text-sm italic">Click to read more...</p>
@@ -143,7 +142,7 @@ export default function EventCard({
           id={title}
           title={title}
           date={date}
-          location={location}
+         
           description={description}
           category={category}
           onClose={() => setShowPopup(false)}

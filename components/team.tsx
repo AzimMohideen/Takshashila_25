@@ -23,7 +23,8 @@ const Team: React.FC = () => {
     "APP DEVELOPER",
     "UI/UX DESIGNER",
     "VIDEO EDITING",
-    "HOSTING"
+    "HOSTING",
+    "PHOTOSHOP"
   ];
 
   // Group members by role
@@ -52,7 +53,14 @@ const Team: React.FC = () => {
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 max-w-7xl">
-        <h2 className="text-4xl font-semibold text-cyan-400 text-center mb-16">Our Team</h2>
+        <a 
+          href="https://cit-celestius.vercel.app/"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block text-yellow-400 text-3xl font-semibold text-center mb-16 hover:text-yellow-300 transition-colors"
+        >
+          Proudly developed by Celestius
+        </a>
 
         {/* Render sections in specified order */}
         {roleOrder.map((role) => {

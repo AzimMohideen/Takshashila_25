@@ -7,7 +7,7 @@ interface EventPopupProps {
   id: string;
   title: string;
   date: string;
-  location: string;
+
   description: string;
   category: string;
   onClose: () => void;
@@ -18,7 +18,7 @@ export default function EventPopup({
   id,
   title,
   date,
-  location,
+
   description,
   category,
   onClose,
@@ -117,10 +117,7 @@ export default function EventPopup({
                     <Calendar className="text-green-400" size={20} />
                     <span className="text-gray-100">{date}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-semibold text-gray-300">Location:</span>
-                    <span className="text-gray-100">{location}</span>
-                  </div>
+                 
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-semibold text-gray-300">Category:</span>
                     <span className="px-3 py-1 text-sm bg-green-700 text-green-100 rounded-full">

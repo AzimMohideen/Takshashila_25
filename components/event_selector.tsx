@@ -275,7 +275,7 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
             isVinylHovered={isVinylHovered}
             title={event.title}
             date={event.date}
-            location={event.venue || 'TBA'}
+           
             image={event.image}
             description={event.description}
             registrationLink={event.registerLink || 'TBA' }

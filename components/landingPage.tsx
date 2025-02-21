@@ -1,7 +1,7 @@
 "use client"
 import AboutUs from '../components/aboutUs';
 import NavBar from '../components/navBar';
-// import SponsorSlider from '../components/SponsorSlider';
+// import  SponsorSlider from '../components/SponsorSlider';
 import Footer from '../components/footer';
 import LocomotiveScrollProvider from '@/components/locomotiveScroll';
 import InteractiveCursor from '@/components/interactiveCursor';
