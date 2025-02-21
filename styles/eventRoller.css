@@ -10,11 +10,13 @@
 
 .slider {
     color: #eee;
-    width: 100vw;
-    height: 100vh;
+    width: 80vw;
+    height: 95vh;
     position: relative;
     overflow: hidden;
     margin-top: -70px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .slider .list .item {
@@ -41,16 +43,17 @@
     width: max-content;
     max-width: 100%;
     display: grid;
-    grid-template-columns: 350px 400px;
-    gap: 200px;
+    grid-template-columns: 300px 350px;
+    gap: 150px;
     font-size: 0.85em;
     text-transform: uppercase;
     font-family: Poppins;
     text-shadow: 0 0 80px #000;
+    z-index: 3;
 }
 
 .slider .list .item .content h2 {
-    font-size: 7em;
+    font-size: 6em;
     font-family: 'Bebas Neue', sans-serif;
     line-height: 0.9em;
     transform: translateY(-100%);
@@ -58,28 +61,35 @@
     grid-row-start: 1;
     grid-row-end: 3;
     text-align: left;
-    margin-left: -50px;
+    margin-left: -30px;
     padding-right: 20px;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7),
+                 0 0 30px rgba(255, 255, 255, 0.3),
+                 0 2px 5px rgba(0, 0, 0, 0.9),
+                 0 15px 25px rgba(0, 0, 0, 0.8),
+                 0 -2px 4px rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
 }
 
 .slider .list .item .content div.paragraphs {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
     gap: 20px;
     text-align: right;
-    margin-right: -150px;
-    max-width: 350px;
+    margin-right: -100px;
+    max-width: 300px;
     margin-top: 120px;
     position: relative;
-    right: -50px;
+    right: -30px;
 }
 
 .slider .list .item .content p {
@@ -95,80 +105,81 @@
     font-weight: 300;
 }
 
-/* Image styles */
+/* Base image container */
 .slider .list .item .image {
     flex-shrink: 0;
     width: var(--diameter);
     height: var(--diameter);
+    position: relative;
+    transition: 1s;
+    z-index: 1;
+}
+
+/* Outer blurred circle */
+.slider .list .item .image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-image: var(--url);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transform: rotate(-60deg);
-    position: relative;
     transition: 1s;
-    filter: blur(30px);
-    mask-image: radial-gradient(circle at center, black 40%, transparent 65%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 65%);
-    opacity: 0.9;
+    filter: blur(10px) brightness(0.9);
+    opacity: 0.8;
+    z-index: 1;
 }
 
-.slider .item.active .image {
-    filter: blur(0px);
-    transform: rotate(0deg);
-    opacity: 1;
-}
-
-/* Image effects */
-.slider .list .item .image::before, 
-.slider .list .item .image::after {
-    position: absolute;
-    width: 70%;
-    height: 70%;
+/* Inner sharp circle */
+.slider .list .item .image::before {
     content: '';
+    position: absolute;
+    width: 45%;
+    height: 45%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-120deg);
-    background-image: 
-        linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-        var(--url);
+    background-image: var(--url);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
     transition: 1s;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 65%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 65%);
+    z-index: 2;
 }
 
-.slider .list .item .image::after {
-    width: 30%;
-    height: 30%;
-    background-image: var(--url);
-    transform: translate(-50%, -50%) rotate(-170deg);
-    background-size: cover;
-    background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
-        var(--url);
-}
-
-/* Active state transitions */
-.slider .item.active .image::before,
+/* Active states */
 .slider .item.active .image::after {
+    transform: rotate(0deg);
+}
+
+.slider .item.active .image::before {
     transform: translate(-50%, -50%) rotate(0deg);
 }
 
-.slider .list .item.active .content h2 {
-    transform: translateY(0);
+/* Hover effects */
+.slider .item.active:hover .image::after {
+    filter: blur(10px) brightness(1.1);
+}
+
+.slider .item.active:hover .image::before {
+    filter: brightness(1.2);
 }
 
 /* Navigation arrows */
 .arrows {
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 30px;
-    width: min(1200px, 90vw);
+    bottom: 40px;
+    width: min(1000px, 80vw);
     display: flex;
     justify-content: space-between;
+    z-index: 100;
+    pointer-events: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .arrows button {
@@ -176,31 +187,55 @@
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
     color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+}
+
+.arrows button svg {
+    width: 35px;
+    height: 35px;
+    stroke-width: 3;
+    stroke: white;
+}
+
+.arrows button:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Fix for hiding inactive arrows */
+.arrows button.dNone {
+    display: none;
 }
 
 /* Hover effects */
 .slider .list .item.active .content h2:hover {
-    color: #fff;
-    text-shadow: 0 0 15px rgba(255,255,255,0.5);
+    color: #ffffff;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7),
+                 0 0 40px rgba(255, 255, 255, 0.5),
+                 0 2px 5px rgba(0, 0, 0, 0.9),
+                 0 15px 25px rgba(0, 0, 0, 0.8),
+                 0 -2px 4px rgba(255, 255, 255, 0.3),
+                 0 0 60px rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
 }
 
 .slider .list .item.active .content div.paragraphs:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.7);
     transform: translateY(-5px);
     transition: all 0.3s ease;
 }
 
 .slider .list .item.active .content div.paragraphs:hover p {
     opacity: 0.9;
-}
-
-.arrows button:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
-}
-
-.slider .item.active:hover .image {
-    filter: blur(0px) brightness(1.1);
 }
 
 /* Responsive design */
@@ -221,30 +256,63 @@
 }
 
 @media all and (max-width: 767px) {
+    .slider {
+        height: 100vh;
+    }
     .slider .list .item .content {
-        grid-template-columns: 90%;
+        grid-template-columns: 100%;
         gap: 15px;
-        top: 10%;
+        top: auto;
+        bottom: 10%;
+        width: 95%;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
     .slider .list .item .content h2 {
-        font-size: 2.5em;
-        margin-left: 0;
+        font-size: 2.8em;
+        margin: 0;
         text-align: center;
-        padding-right: 0;
+        padding: 0;
+        margin-bottom: 20px;
     }
     .slider .list .item .content div.paragraphs {
-        margin-top: 50px;
-        padding-right: 0;
+        margin: 0;
+        padding: 25px;
         right: 0;
-        margin: 50px auto 0;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.75);
     }
     .slider .list .item .content p {
-        font-size: 0.8em;
-        line-height: 1.6;
+        font-size: 0.85em;
+        line-height: 1.7;
+        padding: 0;
+        text-align: center;
+    }
+    .arrows {
+        bottom: 12px;
+        width: 70vw;
+        padding: 0 10px;
+    }
+
+    /* Smaller arrows for mobile */
+    .arrows button {
+        padding: 10px;  /* Reduced from 15px */
+    }
+
+    .arrows button svg {
+        width: 24px;  /* Reduced from 35px */
+        height: 24px;  /* Reduced from 35px */
+        stroke-width: 2.5;  /* Slightly thinner lines */
     }
 }
 
-.d-none {
+.dNone {
     opacity: 0;
     pointer-events: none;
+}
+
+.slider .list .item.active .content h2 {
+    transform: translateY(0);
 }
