@@ -26,7 +26,7 @@ const proshows: ProShow[] = [
     date: "Day 1",
     time: "7:00 PM",
     venue: "Main Ground",
-    image: "/1.png",
+    image: "/cida.png",
     description: "Get ready for an electrifying night of music and dance with our spectacular DJ performance."
   },
   {

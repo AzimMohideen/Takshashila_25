@@ -14,7 +14,7 @@ const EventRoller = () => {
 
     const items: SlideItem[] = [
         {
-            image: '/1.png',
+            image: '/students.jpeg',
             title: 'Excellence in Education',
             content: [
                 'A prominent institution ranking amongst the top colleges in Tamil Nadu, was established with an initiative to provide pragmatic learning.',
@@ -22,19 +22,19 @@ const EventRoller = () => {
             ]
         },
         {
-            image: '/2.png',
+            image: '/industryready.jpeg',
             title: 'Industry Ready',
-            content: [
-                'The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements. This is delivered by CIT through professional ethics which is sated by frequent guest lectures by professionals.',
-                'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu. Our college has made dreams of thousands of students come true.'
-            ]
-        },
-        {
-            image: '/3.png',
-            title: 'Our Vision',
             content: [
                 'Our objective for establishing CIT is to transfer our knowledge to you, so that you can transform into a proper engineer',
                 '~Shri Sriram Parthasarathy'
+              ]
+        },
+        {
+            image: '/tedx.jpeg',
+            title: 'Our Vision',
+            content: ['The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements. This is delivered by CIT through professional ethics which is sated by frequent guest lectures by professionals.',
+                'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu. Our college has made dreams of thousands of students come true.'
+                
             ]
         }
     ];
