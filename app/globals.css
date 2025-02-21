@@ -252,19 +252,58 @@ body {
   }
 }
 
-/* Mobile Event Selector Styles */
+/* Add these to your global.css */
+
+/* Mobile scrolling fixes */
+html.has-scroll-smooth {
+  overflow: auto;
+}
+
 @media (max-width: 767px) {
-  .event-card {
-    width: 100%;
-    margin: 0;
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
-  .event-details {
-    padding: 1rem;
+  html.has-scroll-smooth {
+    overflow: auto;
+  }
+  
+  [data-scroll-container] {
+    min-height: 100vh;
+    transform: none !important;
+  }
+  
+  body {
+    overflow-y: auto !important;
+  }
+  
+  .scroll-container {
+    transform: none !important;
   }
 }
 
-.progress-circle {
-  stroke: var(--primary);
-  filter: drop-shadow(0 0 12px var(--primary));
+/* Ensure proper touch scrolling */
+@media (hover: none) and (pointer: coarse) {
+  html.has-scroll-smooth {
+    overflow: auto;
+  }
+  
+  html, body, [data-scroll-container] {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    transform: none !important;
+  }
+  
+  .c-scrollbar {
+    display: none !important;
+  }
+}
+
+/* Force native scrolling when Locomotive fails */
+body:not(.is-locomotive-initialized) {
+  overflow-y: auto !important;
+  height: auto !important;
 }

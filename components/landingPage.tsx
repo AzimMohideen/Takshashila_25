@@ -23,16 +23,20 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [videoSrc, setVideoSrc] = useState('');
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
+    // Set mobile detection on client side
+    setIsMobileView(isMobile || window.innerWidth < 768);
+    
     // Preload critical assets
     const preloadAssets = async () => {
       const videoElement = new Image();
-      videoElement.src = isMobile ? '/TK_EDIT_ROZX.mp4' : '/TK_EDIT_ROZX.mp4';
+      videoElement.src = '/TK_EDIT_ROZX.mp4';
     };
 
     preloadAssets();
-    setVideoSrc(isMobile ? '/TK_EDIT_ROZX.mp4' : '/TK_EDIT_ROZX.mp4');
+    setVideoSrc('/TK_EDIT_ROZX.mp4');
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -48,51 +52,60 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const content = (
-    <div 
-      className="relative min-h-screen"
-      style={{
-        background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
-      }}
-    >
-      <div className="absolute inset-0 bg-black/50" />
-
-      <div className="relative">
-        <div className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-          showNav ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-        }`}>
-          <NavBar />
-        </div>
-
-        <div className="flex flex-col" data-scroll-container>
-          <div className="relative z-10">
-            <Suspense fallback={<LoadingFallback />}>
-              <MainSection />
-            </Suspense>
-          </div>
-          
-          <div className="relative z-20">
-            <Suspense fallback={<LoadingFallback />}>
-              <AboutUs />
-              <EventRoller/>
-              <Contact />
-              <CountdownSection />
-              <Footer />
-            </Suspense>
-          </div>
-        </div>
+  // Shared content between both mobile and desktop views
+  const pageContent = (
+    <>
+      <div className="relative z-10">
+        <Suspense fallback={<LoadingFallback />}>
+          <MainSection />
+        </Suspense>
       </div>
-    </div>
+      
+      <div className="relative z-20">
+        <Suspense fallback={<LoadingFallback />}>
+          <AboutUs />
+          <EventRoller/>
+          <Contact />
+          <CountdownSection />
+          <Footer />
+        </Suspense>
+      </div>
+    </>
   );
 
   return (
-    <div className="cursor-none">
-      {!isMobile && <InteractiveCursor />}
-      {isMobile ? content : (
-        <LocomotiveScrollProvider>
-          {content}
-        </LocomotiveScrollProvider>
-      )}
+    <div className={isMobileView ? "" : "cursor-none"}>
+      {!isMobileView && <InteractiveCursor />}
+      
+      <div 
+        className="relative min-h-screen overflow-y-auto"
+        style={{
+          background: 'linear-gradient(to bottom, #004225 0%, #013220 50%, #002616 100%)',
+          WebkitOverflowScrolling: 'touch', // Improve scroll on iOS
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative">
+          <div className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+            showNav ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+          }`}>
+            <NavBar />
+          </div>
+
+          {isMobileView ? (
+            <div className="flex flex-col">
+              {pageContent}
+            </div>
+          ) : (
+            <LocomotiveScrollProvider>
+              <div className="flex flex-col" data-scroll-container>
+                {pageContent}
+              </div>
+            </LocomotiveScrollProvider>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

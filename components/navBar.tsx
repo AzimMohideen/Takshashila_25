@@ -22,43 +22,55 @@ export default function NavBar() {
         {/* Left Logo */}
         <div className="flex items-center space-x-2">
           <div className="absolute left-10 top-3">
-                    <Image
-                      src="/tk25-logo.svg"
-                      alt="Icon"
-                      width={35}
-                      height={35}
-                    />
-                  </div>
-          
+            <Link href="/">
+              <Image src="/tk25-logo.svg" alt="Icon" width={35} height={35} />
+            </Link>{" "}
+          </div>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-10 ">
-          
-          <Link href="/" className="text-white hover:text-gray-300 text-lg font-lexend">
+          <Link
+            href="/"
+            className="text-white hover:text-gray-300 text-lg font-lexend"
+          >
             Home
           </Link>
-          <Link href="Events" className="text-white hover:text-gray-300 text-lg font-lexend">
+          <Link
+            href="Events"
+            className="text-white hover:text-gray-300 text-lg font-lexend"
+          >
             Events
           </Link>
-          <Link href="/Proshows" className="text-white hover:text-gray-300 text-lg font-lexend">
+          <Link
+            href="/Proshows"
+            className="text-white hover:text-gray-300 text-lg font-lexend"
+          >
             Proshows
           </Link>
-          <Link href="Cart" className="text-white hover:text-gray-300 text-lg font-lexend">
+          <Link
+            href="Cart"
+            className="text-white hover:text-gray-300 text-lg font-lexend"
+          >
             Cart
           </Link>
-          
         </div>
 
         {/* Mobile Hamburger Icon */}
-        <button className="md:hidden text-white focus:outline-none" onClick={() => toggleMobileMenu(false)}>
+        <button
+          className="md:hidden text-white focus:outline-none"
+          onClick={() => toggleMobileMenu(false)}
+        >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black bg-opacity-90 p-5 z-[100]" data-hoverable>
+        <div
+          className="md:hidden bg-black bg-opacity-90 p-5 z-[100]"
+          data-hoverable
+        >
           <Link
             href="/"
             className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
@@ -90,7 +102,6 @@ export default function NavBar() {
           >
             Cart
           </Link>
-          
         </div>
       )}
     </nav>

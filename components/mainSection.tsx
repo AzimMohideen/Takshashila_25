@@ -49,7 +49,7 @@ const MainSection = () => {
   const currentY = isMobile ? finalY : (progress >= 100 ? finalY : 100 - Math.min(progress, 100));
 
   return (
-    <section className={`relative h-screen flex items-center justify-center overflow-hidden ${isMobile ? 'touch-none' : ''}`}>
+    <section className={`relative h-screen flex items-center justify-center overflow-hidden ${isMobile ? 'touch-auto' : ''}`}>
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
         <video
