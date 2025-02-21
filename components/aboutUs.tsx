@@ -1,9 +1,9 @@
 import type React from "react"
 import SlideShow from "../components/slideShow" 
 
-const citImages: string[] = ["/1.png", "/2.png", "/3.png"]
+const citImages: string[] = ["/f1.png", "/f2.jpeg", "/f3.jpeg"]
 
-const takshashilaImages: string[] = ["/1.png", "/2.png", "/3.png"]
+const takshashilaImages: string[] = ["/f4.JPG", "/5.jpg", "/f6.JPG"]
 
 const AboutSection: React.FC = () => {
   return (
