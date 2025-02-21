@@ -21,8 +21,8 @@ interface ProShow {
 const proshows: ProShow[] = [
   {
     id: 1,
-    title: "DJ Night",
-    artist: "DJ Artist Name",
+    title: "CIT Digital Awards",
+    artist: "CIDA",
     date: "Day 1",
     time: "7:00 PM",
     venue: "Main Ground",
@@ -31,22 +31,22 @@ const proshows: ProShow[] = [
   },
   {
     id: 2,
-    title: "Band Performance",
-    artist: "Band Name",
+    title: "Music Concert",
+    artist: "Yuvan Shankar Raja",
     date: "Day 2",
-    time: "6:30 PM",
-    venue: "Auditorium",
-    image: "/1.png",
-    description: "Experience the magic of live music with an amazing performance by one of India's top bands."
+    time: "7:00 PM",
+    venue: "Main Ground",
+    image: "/u1back.png",
+    description: "Get ready for an electrifying night of music with Yuvan Shankar Raja."
   },
   {
     id: 3,
-    title: "Cultural Night",
-    artist: "Various Artists",
+    title: "DJ Night",
+    artist: "Various Singers",
     date: "Day 3",
-    time: "6:00 PM",
-    venue: "Open Air Theatre",
-    image: "/1.png",
+    time: "7:00 PM",
+    venue: "Main Ground",
+    image: "/tkbg3.jpg",
     description: "A celebration of culture and tradition through music, dance, and performances."
   }
 ]
