@@ -19,8 +19,8 @@ export default function RegisterPage() {
         }}
       />
       
-      {/* Black Overlay */}
-      <div className="fixed inset-0 bg-black/60 z-10" />
+      {/* Black Overlay with increased opacity */}
+      <div className="fixed inset-0 bg-black/80 z-10" />
       
       {/* Content */}
       <div className="relative z-20 flex flex-col min-h-screen">
