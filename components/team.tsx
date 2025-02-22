@@ -61,7 +61,7 @@ const Team: React.FC = () => {
           rel="noopener noreferrer"
           className="block text-yellow-400 text-3xl font-semibold text-center mb-16 hover:text-yellow-300 transition-colors"
         >
-          Proudly Developed by Celestius
+          {/* Proudly Developed by Celestius */}
         </a>
 
         {/* Render sections in specified order */}

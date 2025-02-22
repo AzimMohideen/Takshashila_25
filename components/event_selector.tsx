@@ -275,10 +275,10 @@ const Eventsdisc: React.FC<EventsdiscProps> = ({ events }) => {
             isVinylHovered={isVinylHovered}
             title={event.title}
             date={event.date}
-           
             image={event.image}
-            description={event.description}
-            registrationLink={event.registerLink || 'TBA' }
+            description={<div className={styles.eventDescription} dangerouslySetInnerHTML={{ __html: event.description }} />}
+            rawDescription={event.description}
+            registrationLink={event.registerLink || 'TBA'}
             category={event.category}
             onSelect={(id, playerName) => handleEventSelection(id, playerName)}
           />
