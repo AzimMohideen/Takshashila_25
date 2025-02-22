@@ -329,7 +329,7 @@ the fervor and magnificence that are rife in our campus!`,
     category: "Non-Technical",
     date: "February 28,2025",
     
-    image: "/nontech/Reel to Real.png",
+    image: "/nontech/Street music.jpg",
     description: `Videograph your views on our college and capture clips to project your perspective. Summarize
 the fervor and magnificence that are rife in our campus!`,
     registrationLink: "#"
@@ -340,7 +340,7 @@ the fervor and magnificence that are rife in our campus!`,
     category: "Non-Technical",
     date: "February 28,2025",
 
-    image: "/nontech/Reel to Real.png",
+    image: "/nontech/word whiz.png",
     description: `Videograph your views on our college and capture clips to project your perspective. Summarize
 the fervor and magnificence that are rife in our campus!`,
     registrationLink: "#"
@@ -518,7 +518,7 @@ scratch.`,
     category: "Workshops",
     date: "February 28,2025",
 
-    image: "/nontech/aiml.jpeg",
+    image: "/workshops/aiml.jpeg",
     description: `AI/ML Workshop
 Explore the basics of AI and machine learning with hands-on projects using Python frameworks such as TensorFlow and Scikit-Learn.`,
     registrationLink: "#"
@@ -529,7 +529,7 @@ Explore the basics of AI and machine learning with hands-on projects using Pytho
     category: "Workshops",
     date: "February 27,2025",
    
-    image: "/nontech/cyber.jpeg",
+    image: "/workshops/cyber.jpeg",
     description: "In today's interconnected digital world, the need for robust cybersecurity measures has never been greater. Whether you're an individual seeking to protect your personal information or a business professional responsible for safeguarding sensitive data, understanding cybersecurity fundamentals is paramount. Join us for an engaging and informative workshop designed to equi participants with the knowledge and skills necessary to navigate the cyber landscape securely.",
     registrationLink: "#"
   },
@@ -539,7 +539,7 @@ Explore the basics of AI and machine learning with hands-on projects using Pytho
     category: "Workshops",
     date: "February 28,2025",
 
-    image: "/tech/RCRACING.jpg",
+    image: "/workshops/drone.jpg",
     description: `Have you ever thought about building and controlling your own miniature aircraft? If so, this
 drone technology workshop is perfect for you! You'll learn the basic science behind drones and
 design a fully functional drone that you can fly one day. Drones have a wide range of potential
@@ -553,7 +553,7 @@ participants to engage and gain practical knowledge about drone technology.`,
     category: "Workshops",
     date: "February 26,2025",
  
-    image: "/nontech/1.jpeg",
+    image: "/workshops/Aeromodelling.jpeg",
     description: "Aeromodelling is an exciting and dynamic field that offers a unique opportunity for students to develop a diverse range of skills across multiple disciplines. Through interactive sessions, this workshop provides a comprehensive understanding of the principles of aerodynamics, electrical engineering, and control systems. Students will learn how to design and build a fully functioning radio-controlled aircraft, gaining valuable experience in problem-solving and critical thinking. It's an exciting and rewarding experience that can inspire the next generation of engineers, designers, and innovators.",
     registrationLink: "#"
   }
@@ -564,7 +564,7 @@ participants to engage and gain practical knowledge about drone technology.`,
     category: "Workshops",
     date: "February 27,2025",
  
-    image: "/tech/BINARYSYMPHONY.png",
+    image: "/workshops/idea to impact.jpg",
     description: `In this dynamic workshop, we invite you to unlock the doors to innovation, where creative
 thinking is not just encouraged but celebrated. Through hands-on activities, interactive sessions,
 and real-world case studies, we aim to ignite the spark of ingenuity within you, empowering you
@@ -581,7 +581,7 @@ success is not just a destination but a continuous and exhilarating journey.`,
     category: "Workshops",
     date: "February 26,2025",
  
-    image: "/nontech/github.jpeg",
+    image: "/workshops/github.jpeg",
     description: `This insightful workshop aims to provide students with practical knowledge of open-source
 collaboration, version control using Git and GitHub, and hands-on experience in building
 full-stack applications. By fostering a culture of open-source development and introducing
@@ -595,7 +595,7 @@ industry-relevant practices.`,
     category: "Workshops",
     date: "February 28,2025",
   
-    image: "/nontech/linux.jpeg",
+    image: "/workshops/linux.jpeg",
     description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
 command-line usage, networking essentials encompassing TCP/IP, subnetting, and routing, as
 well as practical networking commands. Participants engage with live booting, virtualization
@@ -611,7 +611,7 @@ further exploration in these domains.`,
     category: "Workshops",
     date: "February 26,2025",
    
-    image: "/nontech/iot.jpeg",
+    image: "/workshops/iot.jpeg",
     description: "In this workshop, you will learn about designing and applying IoT systems. You will work on real-world projects and gain hands-on experience in industries like healthcare, agriculture, and transportation. By the end of the workshop, you will have gained valuable knowledge and skills that can be applied to your own projects and career development. Join us to explore the world of IoT and its endless possibilities!",
     registrationLink: "#"
   },
@@ -621,7 +621,7 @@ further exploration in these domains.`,
     category: "Workshops",
     date: "February 28,2025",
 
-    image: "/nontech/linux.jpeg",
+    image: "/workshops/music production.jpg",
     description: `Music Production Workshop
 Dive into digital music production, mastering DAWs like FL Studio and Ableton Live to create, mix, and enhance your own tracks.`,
     registrationLink: "#"
