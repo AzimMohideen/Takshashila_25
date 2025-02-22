@@ -501,7 +501,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     category: "Workshops",
     date: "February 27,2025",
 
-    image: "/tech/BRANDMARKET.png",
+    image: "/nontech/fullstack.jpeg",
     description: `A website and a server designed by a single person, is that even possible? Well, if you know
 about full-stack development, it is! In this workshop learn how to program a website and also
 gain knowledge on creating exclusive databases and servers for the website that you designed.
@@ -511,14 +511,16 @@ understanding of full-stack development and be able to build their own web appli
 scratch.`,
     registrationLink: "#"
   },
+
   {
     id: 43,
-    title: "IoT and Embedded Systems",
+    title: "AI-ML",
     category: "Workshops",
-    date: "February 26,2025",
-   
-    image: "/nontech/iot.jpeg",
-    description: "In this workshop, you will learn about designing and applying IoT systems. You will work on real-world projects and gain hands-on experience in industries like healthcare, agriculture, and transportation. By the end of the workshop, you will have gained valuable knowledge and skills that can be applied to your own projects and career development. Join us to explore the world of IoT and its endless possibilities!",
+    date: "February 28,2025",
+
+    image: "/nontech/aiml.jpeg",
+    description: `AI/ML Workshop
+Explore the basics of AI and machine learning with hands-on projects using Python frameworks such as TensorFlow and Scikit-Learn.`,
     registrationLink: "#"
   },
   {
@@ -527,7 +529,7 @@ scratch.`,
     category: "Workshops",
     date: "February 27,2025",
    
-    image: "/nontech/iot.jpeg",
+    image: "/nontech/cyber.jpeg",
     description: "In today's interconnected digital world, the need for robust cybersecurity measures has never been greater. Whether you're an individual seeking to protect your personal information or a business professional responsible for safeguarding sensitive data, understanding cybersecurity fundamentals is paramount. Join us for an engaging and informative workshop designed to equi participants with the knowledge and skills necessary to navigate the cyber landscape securely.",
     registrationLink: "#"
   },
@@ -605,18 +607,12 @@ further exploration in these domains.`,
   },
   {
     id: 50,
-    title: "AI-ML",
+    title: "IoT and Embedded Systems",
     category: "Workshops",
-    date: "February 28,2025",
-
-    image: "/nontech/aiml.jpeg",
-    description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
-command-line usage, networking essentials encompassing TCP/IP, subnetting, and routing, as
-well as practical networking commands. Participants engage with live booting, virtualization
-using VMware, and gain exposure to Wireshark for network traffic analysis. The workshop also
-introduces Nmap for network scanning. Overall, attendees emerge equipped with fundamental
-knowledge of Linux, networking concepts, and essential cybersecurity tools, priming them for
-further exploration in these domains.`,
+    date: "February 26,2025",
+   
+    image: "/nontech/iot.jpeg",
+    description: "In this workshop, you will learn about designing and applying IoT systems. You will work on real-world projects and gain hands-on experience in industries like healthcare, agriculture, and transportation. By the end of the workshop, you will have gained valuable knowledge and skills that can be applied to your own projects and career development. Join us to explore the world of IoT and its endless possibilities!",
     registrationLink: "#"
   },
   {
@@ -626,13 +622,8 @@ further exploration in these domains.`,
     date: "February 28,2025",
 
     image: "/nontech/linux.jpeg",
-    description: `This Workshop offers participants a thorough understanding of Linux operating systems, basic
-command-line usage, networking essentials encompassing TCP/IP, subnetting, and routing, as
-well as practical networking commands. Participants engage with live booting, virtualization
-using VMware, and gain exposure to Wireshark for network traffic analysis. The workshop also
-introduces Nmap for network scanning. Overall, attendees emerge equipped with fundamental
-knowledge of Linux, networking concepts, and essential cybersecurity tools, priming them for
-further exploration in these domains.`,
+    description: `Music Production Workshop
+Dive into digital music production, mastering DAWs like FL Studio and Ableton Live to create, mix, and enhance your own tracks.`,
     registrationLink: "#"
   }
 ];
