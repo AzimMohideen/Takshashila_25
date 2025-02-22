@@ -5,7 +5,7 @@ import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 interface TeamMemberProps {
   name: string;
-  role: string;
+  role: string | string[];
   image: string;
   linkedin?: string;
   github?: string;
@@ -27,13 +27,15 @@ const Team: React.FC = () => {
     "PHOTOSHOP"
   ];
 
-  // Group members by role
+  // Modified grouping logic to handle multiple roles
   const groupedMembers = teamData.reduce((acc, member) => {
-    const role = member.role;
-    if (!acc[role]) {
-      acc[role] = [];
-    }
-    acc[role].push(member);
+    const roles = Array.isArray(member.role) ? member.role : [member.role];
+    roles.forEach(role => {
+      if (!acc[role]) {
+        acc[role] = [];
+      }
+      acc[role].push({...member, role}); // Add member to each role group
+    });
     return acc;
   }, {} as Record<string, typeof teamData>);
 
@@ -84,6 +86,9 @@ const Team: React.FC = () => {
 };
 
 const TeamMember: React.FC<TeamMemberProps> = (props) => {
+  // Convert role to string for display
+  const displayRole = Array.isArray(props.role) ? props.role.join(" & ") : props.role;
+
   return (
     <div className="relative group">
       {/* Circular Image container with hover effects */}
@@ -109,7 +114,7 @@ const TeamMember: React.FC<TeamMemberProps> = (props) => {
       {/* Name and Role - Always visible */}
       <div className="text-center mt-4 transform transition-all duration-300 group-hover:translate-y-1">
         <h3 className="text-xl font-medium text-white group-hover:text-cyan-400 transition-colors">{props.name}</h3>
-        <p className="text-sm text-cyan-400 mt-1">{props.role}</p>
+        <p className="text-sm text-cyan-400 mt-1">{displayRole}</p>
         
         {/* Social Links */}
         <div className="flex justify-center space-x-4 mt-3 opacity-70 group-hover:opacity-100 transition-opacity">
