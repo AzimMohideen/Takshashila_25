@@ -57,13 +57,16 @@ const Footer = () => {
               <Link href="/" className="text-white/70 hover:text-white transition-colors">Home</Link>
             </li>
             <li>
-              <Link href="About" className="text-white/70 hover:text-white transition-colors">About</Link>
+              <Link href="https://www.citchennai.edu.in/" target="_blank" className="text-white/70 hover:text-white transition-colors">About</Link>
             </li>
             <li>
-              <Link href="#sponsors" className="text-white/70 hover:text-white transition-colors">Sponsors</Link>
-            </li>
-            <li>
-              <Link href="Contact" className="text-white/70 hover:text-white transition-colors">Contact</Link>
+              <div className="text-white/70">
+                Contact:
+                <div className="ml-2 mt-1">
+                  <p>+91 81489 17472 (Mohan Kumar)</p>
+                  <p>+91 8807088905 (Tharun Kumar)</p>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
