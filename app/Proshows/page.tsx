@@ -42,7 +42,7 @@ const proshows: ProShow[] = [
   {
     id: 3,
     title: "DJ Night",
-    artist: "Various Singers",
+    artist: "DJ Suman",
     date: "February 28,2025",
     time: "7:00 PM",
     venue: "Main Ground",
@@ -118,12 +118,12 @@ export default function ProShows() {
         animate={{ opacity: 1, y: 0 }}
         className="absolute top-24 left-0 right-0 z-10 text-center px-4"
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
           Pro Shows
         </h1>
-        <div className="inline-block bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full">
-          <p className="text-white/90 text-lg">
-            Exclusive Entertainment for CITians
+        <div className="inline-block bg-black/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-lg">
+          <p className="text-white text-xl font-semibold tracking-wide">
+            Exclusive Entertainment only for CITians!! 
           </p>
         </div>
       </motion.div>
