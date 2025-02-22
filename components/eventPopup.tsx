@@ -134,9 +134,9 @@ export default function EventPopup({
                 </div>
               </div>
               
-              <p className="text-gray-200 leading-relaxed text-justify [text-align-last:left] hyphens-auto break-words">
-                {description}
-              </p>
+              <div className="description-container">
+                <div dangerouslySetInnerHTML={{ __html: description }} />
+              </div>
             </motion.div>
 
             <motion.div

@@ -24,7 +24,6 @@ export interface TeamMember {
     { name: "RAHUL R", role: "VIDEO EDITING", image: "/images/Rahul.jpg", social: { platform: "instagram", link: "https://www.instagram.com/rahul.r_27" } },
     { name: "ARJUN SV", role: "APP DEVELOPER", image: "/images/arjun.jpg", linkedin: "https://www.linkedin.com/in/arjun-s-v-6657a027a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"},
     { name: "NAFIA S", role: "VIDEO EDITING", image: "/images/nafia.jpg", social: { platform: "instagram", link: "https://www.instagram.com/naff__edits" } },
-    { name: "SRIBATHRINATHAN R", role: "UI/UX DESIGNER", image: "/images/sri.jpg" },
     { name: "POONGGUNDRAAN S", role: "VIDEO EDITING", image: "/images/poo.png",  },
     { name: "ALFRED JHON", role: "PHOTOSHOP", image: "/images/alfred.jpeg",  },
 

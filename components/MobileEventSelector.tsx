@@ -17,6 +17,7 @@ interface Event {
   category: string
   image: string
   price?: number
+  rawDescription?: string
 }
 
 interface MobileEventSelectorProps {
@@ -69,6 +70,7 @@ const MobileEventSelector = ({ events }: MobileEventSelectorProps) => {
           <EventCard
             key={`${event.id}-${index}`}
             {...event}
+            rawDescription={event.rawDescription || event.description}
             isVinylHovered={false}
           />
         ))}
