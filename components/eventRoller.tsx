@@ -30,7 +30,7 @@ const EventRoller = () => {
             ]
         },
         {
-            image: '/tedx.jpeg',
+            image: '/tk1.jpg',
             title: 'Our Vision',
             content: ['The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements.',
                 'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu.'
