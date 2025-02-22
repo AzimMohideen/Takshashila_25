@@ -321,7 +321,7 @@ of our achievements`,
     title: "Treasure Hunt",
     category: "Non-Technical" as const,
     date: "Feb 26,27,28 2025",
-    image: "/nontech/FREEFIRE.jpg",
+    image: "/nontech/treasure hunt.jpg",
     description:`No thief, however skillful, can rob one of knowledge, and that is why knowledge is the best and
 desirable treasure to acquire. Treasure Hunt makes better stories when there's treasure at the end.`,
     registrationLink: "#"
