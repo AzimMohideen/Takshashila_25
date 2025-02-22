@@ -81,19 +81,7 @@ presentation (PowerPoint) in front of the judges.`,
   registrationLink: "#"
 }
   ,
-  {
-    id: 6,
-    title: "Robo Wars",
-    category: "Technical",
-    date: "February 26,2025",
-   
-    image: "/tech/RCRACING.jpg",
-    description: `Are you looking for an exhilarating challenge? Then come join us and race your drone through
-an insane first-person course! Compete with other daring pilots and soak in the thrilling
-atmosphere as you fight for the top spot. Don't miss out, it's an enthralling event that does not
-come by often.`,
-    registrationLink: "#"
-  },
+//
   {
     id: 7,
     title: "Trial Tracks (Line Follower)",
@@ -143,20 +131,20 @@ break encryptions to uncover clues. The event simulates the thrill of navigating
 analytical thinking and cyber skills. Are you ready to crack the code?`,
     registrationLink: "#"
   },
-  {
-    id: 11,
-    title: "UI/UX",
-    category: "Technical",
-    date: "February 26,2025",
+//   {
+//     id: 11,
+//     title: "UI/UX",
+//     category: "Technical",
+//     date: "February 26,2025",
 
-    image: "/tech/DARKWEBTH.jpg",
-    description: `Dark Web Treasure Hunt is a cybersecurity, ethical hacking, and OSINT challenge where
-participants become cyber-detectives. They decode hidden messages, trace digital footprints, and
-break encryptions to uncover clues. The event simulates the thrill of navigating the "Dark Web"
-(without actual access) to solve mysteries. The ultimate goal is to reach the final treasure using
-analytical thinking and cyber skills. Are you ready to crack the code?`,
-    registrationLink: "#"
-  },
+//     image: "/tech/DARKWEBTH.jpg",
+//     description: `Dark Web Treasure Hunt is a cybersecurity, ethical hacking, and OSINT challenge where
+// participants become cyber-detectives. They decode hidden messages, trace digital footprints, and
+// break encryptions to uncover clues. The event simulates the thrill of navigating the "Dark Web"
+// (without actual access) to solve mysteries. The ultimate goal is to reach the final treasure using
+// analytical thinking and cyber skills. Are you ready to crack the code?`,
+//     registrationLink: "#"
+//   },
   {
     id: 12,
     title: "Designers Onboard",
@@ -164,9 +152,7 @@ analytical thinking and cyber skills. Are you ready to crack the code?`,
     date: "February 28,2025",
     
     image: "/tech/BRANDMARKET.png",
-    description: `Business Marketing is an event similar to Shark Tank . Topics or Products will be given on the
-spot and students should present the business talk on the given topic like providing quotations
-and handling the business of the product given topics`,
+    description: `A live art challenge where creativity meets speed! Get a surprise theme, sketch directly on the board, and showcase your artistic skills under time pressure. No pre-made designs—just pure imagination!`,
     registrationLink: "#"
   },
 
@@ -375,7 +361,7 @@ of our achievements`,
     id: 30,
     title: "Treasure Hunt",
     category: "Non-Technical",
-    date: "February 27,2025",
+    date: "Feb 26,27,28 2025",
 
     image: "/nontech/FREEFIRE.jpg",
     description:`No thief, however skillful, can rob one of knowledge, and that is why knowledge is the best and
@@ -395,30 +381,30 @@ promises to be an experience like no other. We can't reveal too much just yet, b
 that you'll be treated to a day of excitement!`,
     registrationLink: "#"
   },
-  {
-    id: 32,
-    title: "Free Fire",
-    category: "Non-Technical",
-    date: "February 28,2025",
+//   {
+//     id: 32,
+//     title: "Free Fire",
+//     category: "Non-Technical",
+//     date: "February 28,2025",
 
-    image: "/nontech/FREEFIRE.jpg",
-    description: `Is gaming your domain? Amateur or professional gaming sees no discrimination, only skills,
-strategy and rules. So gear up for the battle, prepare and clash in the ultimate showdown`,
-    registrationLink: "#"
-  },
-  {
-    id: 33,
-    title: "World of Weebs",
-    category: "Non-Technical",
-    date: "February 28,2025",
+//     image: "/nontech/FREEFIRE.jpg",
+//     description: `Is gaming your domain? Amateur or professional gaming sees no discrimination, only skills,
+// strategy and rules. So gear up for the battle, prepare and clash in the ultimate showdown`,
+//     registrationLink: "#"
+//   },
+//   {
+//     id: 33,
+//     title: "World of Weebs",
+//     category: "Non-Technical",
+//     date: "February 28,2025",
 
-    image: "/nontech/world.jpg",
-    description: `Prove your anime prowess in this epic anime quiz! From Naruto's hidden jutsus to the heroic
-quirks of My Hero Academia, cover everything you need to prove yourself as a true anime fan.
-Gather your nakama, channel your inner anime protagonist, and let's see who will emerge as the
-victor in the World of Weebs! Dattebayo!`,
-    registrationLink: "#"
-  },
+//     image: "/nontech/world.jpg",
+//     description: `Prove your anime prowess in this epic anime quiz! From Naruto's hidden jutsus to the heroic
+// quirks of My Hero Academia, cover everything you need to prove yourself as a true anime fan.
+// Gather your nakama, channel your inner anime protagonist, and let's see who will emerge as the
+// victor in the World of Weebs! Dattebayo!`,
+//     registrationLink: "#"
+//   },
   {
     id: 34,
     title: "Talking Head",
@@ -480,11 +466,10 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     id: 39,
     title: "Anime Guantlet",
     category: "Non-Technical",
-    date: "March 18, 2024",
+    date: "February 28,2025",
    
     image: "/nontech/ANIMEGAUNLET.png",
-    description: `Navigate the battlegrounds of BGMI, where every pixel holds the weight of victory. Adapt,
-conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
+    description: `Are you ready to battle it out in the ultimate test of anime knowledge and skills? Anime Gauntlet is the ultimate showdown where anime lovers compete in a series of exciting challenges, ranging from trivia, character identification, and theme-based quizzes `,
     registrationLink: "#"
   },
   {
