@@ -25,7 +25,20 @@ const Footer = () => {
               className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
               <FaLinkedinIn size={20} />
             </a>
-            
+          </div>
+          
+          <div className="mt-70 -ml-10">
+            <a 
+              href="https://cit-celestius.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img 
+                src="/TK FOOTER.svg" 
+                alt="Takshashila Footer Logo" 
+                className="w-64 h-auto opacity-70 hover:opacity-100 transition-opacity"
+              />
+            </a>
           </div>
         </div>
 
@@ -59,7 +72,7 @@ const Footer = () => {
             <li>
               <Link href="https://www.citchennai.edu.in/" target="_blank" className="text-white/70 hover:text-white transition-colors">About</Link>
             </li>
-            <li>
+            {/* <li>
               <div className="text-white/70">
                 Contact:
                 <div className="ml-2 mt-1">
@@ -67,7 +80,7 @@ const Footer = () => {
                   <p>+91 8807088905 (Tharun Kumar)</p>
                 </div>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -107,7 +120,7 @@ const Footer = () => {
       </div>
 
       {/* Meet the Team button - only show if not on team page */}
-      {/* {!isTeamPage && (
+      {!isTeamPage && (
         <div className="absolute bottom-8 right-8">
           <Link href="/team" className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-3 rounded-full transition-colors duration-300 flex items-center gap-2">
             <span>Web Dev Team</span>
@@ -116,7 +129,7 @@ const Footer = () => {
             </svg>
           </Link>
         </div>
-      )} */}
+      )}
     </section>
   );
 };

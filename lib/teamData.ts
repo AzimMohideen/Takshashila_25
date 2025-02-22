@@ -1,6 +1,6 @@
 export interface TeamMember {
     name: string;
-    role: string;
+    role: string | string[];
     image: string;
     linkedin?: string;
     github?: string;
@@ -18,7 +18,7 @@ export interface TeamMember {
     { name: "ARUNKUMAR M", role: "BACKEND DEVELOPER", image: "/images/arun.jpg", linkedin: "https://www.linkedin.com/in/arunkumar2645s/", github: "https://github.com/arun-kumar-24" },
     { name: "MANISH BARATH", role: "BACKEND DEVELOPER", image: "/images/manish.jpeg", linkedin: "https://www.linkedin.com/in/manish-barath/", github: "https://github.com/ManishBarath" },
     { name: "AZIM MOHIDEEN N", role: "FRONTEND DEVELOPER", image: "/images/azim.jpg", linkedin: "https://www.linkedin.com/in/azim-mohideen-4a95b0293/", github: "https://github.com/AzimMohideen" },
-    { name: "CHORKO C", role: "FRONTEND DEVELOPER", image: "/images/chorko.jpg", linkedin: "https://www.linkedin.com/in/chorko/", github: "https://github.com/Chorko" },
+    { name: "CHORKO C", role: ["FRONTEND DEVELOPER", "UI/UX DESIGNER"], image: "/images/chorko.jpg", linkedin: "https://www.linkedin.com/in/chorko/", github: "https://github.com/Chorko" },
     { name: "GOKUL V", role: "APP DEVELOPER", image: "/images/gokul.jpg", linkedin: "https://www.linkedin.com/in/gokul-v-47878a311/",   },
     { name: "DHARUN PRAKASH S", role: "UI/UX DESIGNER", image: "/images/dharun1.png", linkedin: "https://www.linkedin.com/in/dharun-prakash-5ab7012a0/", github: "https://github.com/DUCTOU" },
     { name: "RAHUL R", role: "VIDEO EDITING", image: "/images/Rahul.jpg", social: { platform: "instagram", link: "https://www.instagram.com/rahul.r_27" } },

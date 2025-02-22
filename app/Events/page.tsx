@@ -412,8 +412,35 @@ that you'll be treated to a day of excitement!`,
     date: "February 28,2025",
   
     image: "/nontech/TALKINGHEAD.png",
-    description: `Do you like to document day-to-day activities? Do you think you can handle a massive event like
-Takshashila and document the happenings of this hustling event?`,
+    description: `Do you like to Roast the Event activities? Do you think you can handle a massive event like Takshashila the happenings of this hustling event?
+
+REGISTRATION:
+• College ID is mandatory
+• This event comes under general registration
+
+RULES:
+• Language & Respect
+  - Only English is allowed
+  - No hate speech or personal attacks
+  - Light-hearted humour only
+
+• Format & Timing
+  - Contestants get 2-3 minutes per round
+  - 30-second rebuttals allowed
+  - Turns are decided randomly
+
+• Originality & Uniqueness
+  - Jokes must be original
+  - No plagiarism or repeated jokes/topics
+  - Each round has a unique topic
+
+• Audience & Conduct
+  - Audience can cheer but not interrupt
+  - No physical gestures or interruptions from contestants
+
+• Judging & Penalties
+  - Winners are judged on creativity, humour, and delivery
+  - Rule violations lead to warnings, deductions, or disqualification`,
     registrationLink: "#"
   },
   {
@@ -611,7 +638,7 @@ further exploration in these domains.`,
     category: "Workshops",
     date: "February 26,2025",
    
-    image: "/workshops/iot.jpeg",
+    image: "/workshops/iot.jpg",
     description: "In this workshop, you will learn about designing and applying IoT systems. You will work on real-world projects and gain hands-on experience in industries like healthcare, agriculture, and transportation. By the end of the workshop, you will have gained valuable knowledge and skills that can be applied to your own projects and career development. Join us to explore the world of IoT and its endless possibilities!",
     registrationLink: "#"
   },

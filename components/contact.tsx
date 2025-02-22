@@ -2,7 +2,8 @@ import { FaInstagram, FaFacebookF, FaLinkedinIn, FaEnvelope, FaPhone, FaMapMarke
 
 const contactInfo = {
   email: "info@citchennai.net",
-  phone: "+91 44-2628 9999",
+  phone: "+91 8807088905 (Tharun Kumar)",
+  phone2: "+91 6374808472 (Mohan Kumar)",
   address: {
     line1: "Sarathy Nagar,",
     line2: "Kundrathur,",
@@ -41,6 +42,14 @@ const Contact = () => {
                   <FaPhone className="text-xl" />
                 </div>
                 <span className="text-lg">{contactInfo.phone}</span>
+              </a>
+              
+              <a href={`tel:${contactInfo.phone2}`} 
+                className="flex items-center space-x-4 text-white hover:text-blue-400 transition-colors group">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                  <FaPhone className="text-xl" />
+                </div>
+                <span className="text-lg">{contactInfo.phone2}</span>
               </a>
               
               <div className="flex items-start space-x-4 text-white">
