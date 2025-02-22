@@ -1,6 +1,7 @@
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const Footer = () => {
   const pathname = usePathname();
@@ -33,10 +34,12 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img 
+              <Image 
                 src="/TK FOOTER.svg" 
                 alt="Takshashila Footer Logo" 
-                className="w-64 h-auto opacity-70 hover:opacity-100 transition-opacity"
+                width={256}
+                height={100}
+                className="opacity-70 hover:opacity-100 transition-opacity"
               />
             </a>
           </div>

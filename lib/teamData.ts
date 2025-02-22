@@ -15,7 +15,7 @@ export interface TeamMember {
     { name: "BHRAHMESH A", role: "FRONTEND DEVELOPER", image: "/images/bhrahmi.jpeg", linkedin: "https://www.linkedin.com/in/bhrahmesh-a-8a4766290/", github: "https://github.com/bhrahmesh/" },
     { name: "ADITHYA S", role: "BACKEND DEVELOPER", image: "/images/adithya.jpg", linkedin: "https://www.linkedin.com/in/adithyaa-saravanam/", github: "https://github.com/adithyaa-s" },
     { name: "AJAY BALAJI P", role: "HOSTING", image: "/images/ajay.jpeg", linkedin: "https://www.linkedin.com/in/ajay002/", github: "https://github.com/Ajaybalajiprasad" },
-    { name: "ARUNKUMAR M", role: "BACKEND DEVELOPER", image: "/images/arun.jpg", linkedin: "https://www.linkedin.com/in/arunkumar2645s/", github: "https://github.com/arun-kumar-24" },
+    { name: "ARUNKUMAR M", role: "FRONTEND DEVELOPER", image: "/images/arun.jpg", linkedin: "https://www.linkedin.com/in/arunkumar2645s/", github: "https://github.com/arun-kumar-24" },
     { name: "MANISH BARATH", role: "BACKEND DEVELOPER", image: "/images/manish.jpeg", linkedin: "https://www.linkedin.com/in/manish-barath/", github: "https://github.com/ManishBarath" },
     { name: "AZIM MOHIDEEN N", role: "FRONTEND DEVELOPER", image: "/images/azim.jpg", linkedin: "https://www.linkedin.com/in/azim-mohideen-4a95b0293/", github: "https://github.com/AzimMohideen" },
     { name: "CHORKO C", role: ["FRONTEND DEVELOPER", "UI/UX DESIGNER"], image: "/images/chorko.jpg", linkedin: "https://www.linkedin.com/in/chorko/", github: "https://github.com/Chorko" },
