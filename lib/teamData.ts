@@ -22,6 +22,7 @@ export interface TeamMember {
     { name: "GOKUL V", role: "APP DEVELOPER", image: "/images/gokul.jpg", linkedin: "https://www.linkedin.com/in/gokul-v-47878a311/",   },
     { name: "DHARUN PRAKASH S", role: "UI/UX DESIGNER", image: "/images/dharun1.png", linkedin: "https://www.linkedin.com/in/dharun-prakash-5ab7012a0/", github: "https://github.com/DUCTOU" },
     { name: "RAHUL R", role: "VIDEO EDITING", image: "/images/Rahul.jpg", social: { platform: "instagram", link: "https://www.instagram.com/rahul.r_27" } },
+    { name: "SRIBATHRINATHAN R", role: "UI/UX DESIGNER", image: "/images/sri.png" },
     { name: "ARJUN SV", role: "APP DEVELOPER", image: "/images/arjun.jpg", linkedin: "https://www.linkedin.com/in/arjun-s-v-6657a027a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"},
     { name: "NAFIA S", role: "VIDEO EDITING", image: "/images/nafia.jpg", social: { platform: "instagram", link: "https://www.instagram.com/naff__edits" } },
     { name: "POONGGUNDRAAN S", role: "VIDEO EDITING", image: "/images/poo.png",  },
