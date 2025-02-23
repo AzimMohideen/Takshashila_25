@@ -4,6 +4,13 @@ import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import EventPopup from "./eventPopup"
+import { Lobster } from "next/font/google"
+
+// Initialize the Lobster font
+const lobster = Lobster({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 interface EventCardProps {
   title: string
@@ -152,7 +159,14 @@ export default function EventCard({
           className="absolute top-0 left-0 p-3 md:p-4 w-full bg-gradient-to-b from-black/70 to-transparent"
           style={{ zIndex: isVinylHovered ? 1 : 10 }}
         >
-          <h3 className="text-xl md:text-2xl text-white font-lexend line-clamp-2">{title}</h3>
+          <h3 className={`text-xl md:text-2xl font-bold line-clamp-2 ${lobster.className}`}
+              style={{
+                color: '#10b981', // emerald-500 color
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)' // adds a subtle shadow for better readability
+              }}
+          >
+            {title}
+          </h3>
         </div>
       </motion.div>
 
@@ -165,6 +179,11 @@ export default function EventCard({
           category={category}
           onClose={() => setShowPopup(false)}
           onSelect={onSelect}
+          titleClassName={`${lobster.className} font-bold`}
+          titleStyle={{
+            color: '#10b981',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+          }}
         />
       )}
     </>
