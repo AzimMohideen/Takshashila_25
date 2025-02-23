@@ -161,8 +161,8 @@ export default function EventCard({
         >
           <h3 className={`text-xl md:text-2xl font-bold line-clamp-2 ${lobster.className}`}
               style={{
-                color: '#10b981', // emerald-500 color
-                textShadow: '2px 2px 4px rgba(0,0,0,0.5)' // adds a subtle shadow for better readability
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}
           >
             {title}

@@ -144,7 +144,9 @@ export const CassetteToast = ({ message, type, closeToast }: CassetteToastProps)
         <motion.button
           whileHover={{ rotate: 90 }}
           whileTap={{ scale: 0.9 }}
-          onClick={closeToast}
+          onClick={() => {
+            toast.dismiss();
+          }}
           className="text-[#444] hover:text-[#ff4040] transition-colors duration-200"
         >
           <FastForward size={12} />
@@ -156,16 +158,22 @@ export const CassetteToast = ({ message, type, closeToast }: CassetteToastProps)
 
 // Custom toast function
 export const showCassetteToast = (message: string, type: 'success' | 'warning' | 'error') => {
-  toast(<CassetteToast message={message} type={type} />, {
-    position: "top-right",
-    autoClose: 2500,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: false,
-    progress: undefined,
-    className: "cassette-toast-container",
-  });
+  // Close all existing toasts first
+  toast.dismiss();
+  
+  // Wait a tiny bit before showing new toast to ensure cleanup
+  setTimeout(() => {
+    toast(<CassetteToast message={message} type={type} />, {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      className: "cassette-toast-container",
+    });
+  }, 100);
 };
 
 // Custom ToastContainer with styled notifications
@@ -174,7 +182,7 @@ export const StyledToastContainer = () => (
     position="top-right"
     autoClose={2500}
     hideProgressBar
-    newestOnTop
+    newestOnTop={false}
     closeOnClick={true}
     rtl={false}
     pauseOnFocusLoss={false}
@@ -182,5 +190,6 @@ export const StyledToastContainer = () => (
     draggable={false}
     theme="dark"
     className="cassette-toast-root"
+    limit={1}
   />
 ); 

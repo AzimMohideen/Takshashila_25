@@ -17,6 +17,7 @@ interface ProShow {
   time: string
   venue: string
   image: string
+  mobileImage: string
   description: string
 }
 
@@ -29,6 +30,7 @@ const proshows: ProShow[] = [
     time: "7:00 PM",
     venue: "Main Ground",
     image: "/cida.png",
+    mobileImage: "/cida.png",
     description: "Get ready for an electrifying night of music and dance with our spectacular DJ performance."
   },
   {
@@ -39,6 +41,7 @@ const proshows: ProShow[] = [
     time: "7:00 PM",
     venue: "Main Ground",
     image: "/u1back.png",
+    mobileImage: "/u1back.png",
     description: "Get ready for an electrifying night of music with Yuvan Shankar Raja."
   },
   {
@@ -48,7 +51,8 @@ const proshows: ProShow[] = [
     date: "February 28,2025",
     time: "7:00 PM",
     venue: "Main Ground",
-    image: "/IEDMF FEST.jpg",
+    image: "/IEDMF.jpg",
+    mobileImage: "/DJ.jpg",
     description: "A celebration of culture and tradition through music, dance, and performances."
   },
   {
@@ -59,6 +63,7 @@ const proshows: ProShow[] = [
     time: "7:00 PM",
     venue: "Main Ground",
     image: "/Euphonic Originals.png",
+    mobileImage: "/Euphonic Originals.png",
     description: "Experience the musical talent of CIT as our own students take the stage for an unforgettable live performance. Featuring original compositions and creative renditions by CIT's finest singers and musicians."
   }
 ]
@@ -141,8 +146,8 @@ export default function ProShows() {
         className="absolute top-24 left-0 right-0 z-10 text-center px-4"
       >
         <h1 className={`text-5xl md:text-6xl font-bold text-white mb-4 ${notable.className} 
-          drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] 
-          [text-shadow:0_4px_8px_rgba(0,0,0,0.8),0_2px_2px_rgba(0,0,0,0.6),0_-1px_3px_rgba(255,255,255,0.15)]`}>
+          drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] 
+          [text-shadow:0_2px_4px_rgba(0,0,0,0.6),0_1px_2px_rgba(0,0,0,0.4),0_-1px_2px_rgba(255,255,255,0.1)]`}>
           Pro Shows
         </h1>
         <div className="inline-block bg-black/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-lg">
@@ -182,10 +187,17 @@ export default function ProShows() {
             {/* Background Image */}
             <div className="relative w-full h-full">
               <Image
+                src={currentShow.mobileImage}
+                alt={currentShow.title}
+                fill
+                className="object-cover md:hidden"
+                priority
+              />
+              <Image
                 src={currentShow.image}
                 alt={currentShow.title}
                 fill
-                className="object-cover"
+                className="hidden md:block object-cover"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />

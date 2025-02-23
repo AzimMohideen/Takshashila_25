@@ -1,9 +1,9 @@
-
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import axios from "axios"
+import { showCassetteToast, StyledToastContainer } from "./CassetteToast"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://tk-backend.vercel.app"
 
@@ -72,23 +72,20 @@ export function RegistrationForm() {
 
   const handleSaveChanges = async () => {
     try {
-
       const { data } = await axios.get(`${API_URL}/select`)
       const currentCount = data.count
       console.log("Current count:", currentCount)
+      
       if (currentCount >= 3) {
-        setError("You have reached the maximum number of registrations for today (3).")
+        showCassetteToast("Maximum registrations reached for today", "error")
         return
       }
 
       if (workshop && selectedDays.length === 0) {
-        setError("Please select at least one date when choosing a workshop.")
+        showCassetteToast("Please select at least one date for workshop", "warning")
         return
       }
 
-      setError(null)
-      // Build a fixed-size day pass array.
-      // For each available date, we use its value if selected, else an empty string.
       const dayPass = availableDates.map(date =>
         selectedDays.includes(date) ? date : ""
       )
@@ -114,11 +111,11 @@ export function RegistrationForm() {
       }
 
       await axios.post(`${API_URL}/update`, payload)
-      alert(`Registration successful! You have ${3 - (currentCount + 1)} registrations remaining today.`)
+      showCassetteToast(`Registration successful! ${3 - (currentCount + 1)} registrations remaining today.`, "success")
       setDbCount(currentCount + 1)
     } catch (err) {
       console.error("Error:", err)
-      setError("An error occurred while processing your registration. Please try again.")
+      showCassetteToast("Registration failed. Please try again.", "error")
     }
 
     setSelectedDays([])
@@ -135,6 +132,7 @@ export function RegistrationForm() {
 
   return (
     <>
+      <StyledToastContainer />
       <motion.form
         className="space-y-8 bg-black/70 backdrop-blur-md p-8 rounded-xl shadow-2xl max-w-md mx-auto border border-white/20"
         initial={{ opacity: 0, y: 20 }}
@@ -179,12 +177,9 @@ export function RegistrationForm() {
                 checked={workshop}
                 onChange={(e) => {
                   if (selectedDays.length === 0 && e.target.checked) {
-
-                    setError("Please select at least one date before choosing workshop access.")
-
+                    showCassetteToast("Please select at least one date before choosing workshop access", "warning");
                   } else {
-                    setWorkshop(e.target.checked)
-                    setError(null)
+                    setWorkshop(e.target.checked);
                   }
                 }}
                 className="form-checkbox h-5 w-5 text-emerald-500 rounded"
@@ -208,28 +203,13 @@ export function RegistrationForm() {
           </div>
         </div>
 
-        {/* Error Message */}
-        {error && (
-          <motion.p
-            className="text-red-400 p-3 bg-red-900/20 rounded-lg border border-red-500/20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {error}
-          </motion.p>
-        )}
-
-        {/* Button to open modal */}
         <button
           type="button"
           onClick={() => {
             if (selectedDays.length > 0 || workshop) {
-              setError(null)
               setShowModal(true)
             } else {
-
-              setError("Please select at least one date or choose workshop access before proceeding.")
-
+              showCassetteToast("Please select at least one date or workshop", "warning")
             }
           }}
           className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-emerald-500/25"
