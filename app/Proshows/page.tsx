@@ -46,8 +46,18 @@ const proshows: ProShow[] = [
     date: "February 28,2025",
     time: "7:00 PM",
     venue: "Main Ground",
-    image: "/tkbg3.jpg",
+    image: "/IEDMF FEST.jpg",
     description: "A celebration of culture and tradition through music, dance, and performances."
+  },
+  {
+    id: 4,
+    title: "Euphonic Originals",
+    artist: "Various Artists from CIT",
+    date: "February 28,2025",
+    time: "7:00 PM",
+    venue: "Main Ground",
+    image: "/Euphonic Originals.png",
+    description: "Experience the musical talent of CIT as our own students take the stage for an unforgettable live performance. Featuring original compositions and creative renditions by CIT's finest singers and musicians."
   }
 ]
 

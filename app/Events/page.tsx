@@ -491,7 +491,7 @@ conquer, and carve your legend in the pulse-pounding chaos of mobile warfare.`,
     title: "Full Stack Web Development",
     category: "Workshops" as const,
     date: "February 27,2025",
-    image: "/nontech/fullstack.jpeg",
+    image: "/workshops/fullstack.jpg",
     description: `A website and a server designed by a single person, is that even possible? Well, if you know
 about full-stack development, it is! In this workshop learn how to program a website and also
 gain knowledge on creating exclusive databases and servers for the website that you designed.
@@ -563,7 +563,7 @@ success is not just a destination but a continuous and exhilarating journey.`,
     title: "World of Open Source with GitHub",
     category: "Workshops" as const,
     date: "February 26,2025",
-    image: "/workshops/github.jpeg",
+    image: "/workshops/github.jpg",
     description: `This insightful workshop aims to provide students with practical knowledge of open-source
 collaboration, version control using Git and GitHub, and hands-on experience in building
 full-stack applications. By fostering a culture of open-source development and introducing
