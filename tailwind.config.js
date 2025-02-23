@@ -22,7 +22,7 @@ module.exports = {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-      }
+      },
     },
   },
   plugins: [],

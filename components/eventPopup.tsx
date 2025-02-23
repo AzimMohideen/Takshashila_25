@@ -13,6 +13,8 @@ interface EventPopupProps {
   category: string;
   onClose: () => void;
   onSelect?: (id: string, playerName: string) => boolean;
+  titleClassName?: string;
+  titleStyle?: React.CSSProperties;
 }
 
 export default function EventPopup({
@@ -23,7 +25,9 @@ export default function EventPopup({
   description,
   category,
   onClose,
-  onSelect
+  onSelect,
+  titleClassName,
+  titleStyle
 }: EventPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -96,7 +100,8 @@ export default function EventPopup({
               <motion.h2
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-teal-400"
+                className={`text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-teal-400 ${titleClassName}`}
+                style={titleStyle}
               >
                 {title}
               </motion.h2>

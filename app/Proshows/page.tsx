@@ -6,6 +6,8 @@ import NavBar from '@/components/navBar'
 import { motion, AnimatePresence } from 'framer-motion'
 import InteractiveCursor from '@/components/interactiveCursor'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Notable } from "next/font/google"
+import { Oleo_Script } from "next/font/google"
 
 interface ProShow {
   id: number
@@ -60,6 +62,16 @@ const proshows: ProShow[] = [
     description: "Experience the musical talent of CIT as our own students take the stage for an unforgettable live performance. Featuring original compositions and creative renditions by CIT's finest singers and musicians."
   }
 ]
+
+const notable = Notable({
+  weight: '400',
+  subsets: ['latin'],
+})
+
+const oleoScript = Oleo_Script({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export default function ProShows() {
   const [[currentIndex, direction], setCurrentIndex] = useState([0, 0])
@@ -128,12 +140,14 @@ export default function ProShows() {
         animate={{ opacity: 1, y: 0 }}
         className="absolute top-24 left-0 right-0 z-10 text-center px-4"
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+        <h1 className={`text-5xl md:text-6xl font-bold text-white mb-4 ${notable.className} 
+          drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] 
+          [text-shadow:0_4px_8px_rgba(0,0,0,0.8),0_2px_2px_rgba(0,0,0,0.6),0_-1px_3px_rgba(255,255,255,0.15)]`}>
           Pro Shows
         </h1>
         <div className="inline-block bg-black/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-lg">
           <p className="text-white text-xl font-semibold tracking-wide">
-            Exclusive Entertainment only for CITians!! 
+            Exclusive Entertainment only for CITians!! <span className="text-red-500 font-bold">Other college students are not allowed.</span>
           </p>
         </div>
       </motion.div>
@@ -185,7 +199,7 @@ export default function ProShows() {
                 transition={{ delay: 0.2 }}
                 className="max-w-4xl"
               >
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 ${oleoScript.className}`}>
                   {currentShow.title}
                 </h1>
                 <h2 className="text-2xl md:text-3xl text-white/80 mb-6">

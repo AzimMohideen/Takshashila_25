@@ -23,7 +23,6 @@ const Team: React.FC = () => {
     "APP DEVELOPER",
     "UI/UX DESIGNER",
     "VIDEO EDITING",
-    "HOSTING",
     "PHOTOSHOP"
   ];
 
@@ -41,18 +40,9 @@ const Team: React.FC = () => {
 
   return (
     <section 
-      className="min-h-screen py-20 relative" 
+      className="min-h-screen py-20 relative bg-black" 
       data-scroll-section
-      style={{
-        backgroundImage: 'url("/Tkback2.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
     >
-      {/* Add an overlay */}
-      <div className="absolute inset-0 bg-black/70"></div>
-      
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 max-w-7xl">
         <a 
