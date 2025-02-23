@@ -4,9 +4,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = (shouldClose = true) => {
     if (shouldClose) {
@@ -14,6 +16,13 @@ export default function NavBar() {
     } else {
       setIsMobileMenuOpen(!isMobileMenuOpen);
     }
+  };
+
+  const getLinkClassName = (href: string) => {
+    const isActive = pathname === href;
+    return `text-white hover:text-gray-300 text-xl font-kompot font-bold relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-green-500 after:left-0 after:bottom-[-4px] ${
+      isActive ? 'after:scale-x-100' : 'after:scale-x-0'
+    } hover:after:scale-x-100 after:transition-transform after:duration-300 group-hover:after:scale-x-0 hover:group-hover:after:scale-x-100`;
   };
 
   return (
@@ -29,29 +38,17 @@ export default function NavBar() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-10 ">
-          <Link
-            href="/"
-            className="text-white hover:text-gray-300 text-lg font-lexend"
-          >
+        <div className="hidden md:flex space-x-10 group">
+          <Link href="/" className={getLinkClassName('/')}>
             Home
           </Link>
-          <Link
-            href="Events"
-            className="text-white hover:text-gray-300 text-lg font-lexend"
-          >
+          <Link href="/Events" className={getLinkClassName('/Events')}>
             Events
           </Link>
-          <Link
-            href="/Proshows"
-            className="text-white hover:text-gray-300 text-lg font-lexend"
-          >
+          <Link href="/Proshows" className={getLinkClassName('/Proshows')}>
             Proshows
           </Link>
-          <Link
-            href="register"
-            className="text-white hover:text-gray-300 text-lg font-lexend"
-          >
+          <Link href="/register" className={getLinkClassName('/register')}>
             Register
           </Link>
         </div>
@@ -73,30 +70,30 @@ export default function NavBar() {
         >
           <Link
             href="/"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
+            className={`block py-2 ${getLinkClassName('/')}`}
             onClick={() => toggleMobileMenu()}
             scroll={false}
           >
             Home
           </Link>
           <Link
-            href="Events"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
+            href="/Events"
+            className={`block py-2 ${getLinkClassName('/Events')}`}
             onClick={() => toggleMobileMenu()}
             scroll={false}
           >
             Events
           </Link>
           <Link
-            href="Proshows"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
+            href="/Proshows"
+            className={`block py-2 ${getLinkClassName('/Proshows')}`}
             onClick={() => toggleMobileMenu()}
           >
             Proshows
           </Link>
           <Link
-            href="register"
-            className="block text-white text-lg font-lexend py-2 hover:text-gray-300"
+            href="/register"
+            className={`block py-2 ${getLinkClassName('/register')}`}
             onClick={() => toggleMobileMenu()}
             scroll={false}
           >
