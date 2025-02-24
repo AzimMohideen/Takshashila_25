@@ -15,7 +15,7 @@ const CountdownSection = () => {
                       after:w-16 after:h-1 after:bg-green-600 font-lexend text-center">
             DIVE INTO THE RHYTHM OF LIFE
           </h2>
-          <div className="w-full backdrop-blur-sm bg-black/30 rounded-xl p-8 md:p-12">
+          <div className="w-full backdrop-blur-sm bg-black/10 rounded-xl p-8 md:p-12">
             <CountdownTimer targetDateTime="2025-02-26T08:00:00" />
           </div>
         </div>
