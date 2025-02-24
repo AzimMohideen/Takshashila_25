@@ -34,7 +34,6 @@ const EventRoller = () => {
             title: 'Our Vision',
             content: ['The students\' appetite for knowledge makes them thrive to prepare for the ready-to-serve industrial requirements.',
                 'Chennai Institute of Technology has been awarded the National Award of Excellence for Best Placements & has been ranked Second in Tamil Nadu.'
-                      
             ]
         }
     ];
@@ -42,10 +41,6 @@ const EventRoller = () => {
     const nextSlide = useCallback(() => {
         setActive(prev => (prev + 1) % items.length);
     }, [items.length]);
-
-    const prevSlide = () => {
-        setActive(prev => prev === 0 ? items.length - 1 : prev - 1);
-    };
 
     const startAutoSlide = useCallback(() => {
         if (slideInterval.current) {
@@ -111,26 +106,6 @@ const EventRoller = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-                <div className="arrows">
-                    <button 
-                        onClick={prevSlide} 
-                        className={active === 0 ? 'dNone' : ''}
-                        aria-label="Previous slide"
-                    >
-                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4l4 4"/>
-                        </svg>
-                    </button>
-                    <button 
-                        onClick={nextSlide}
-                        className={active === items.length - 1 ? 'dNone' : ''}
-                        aria-label="Next slide"
-                    >
-                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
-                        </svg>
-                    </button>
                 </div>
             </section>
         </div>

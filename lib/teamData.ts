@@ -13,8 +13,8 @@ export interface TeamMember {
   const teamData: TeamMember[] = [
     { name: "E KRISHNA SAKTHI ESWAR", role: "FRONTEND DEVELOPER", image: "/images/krishna.jpg", linkedin: "https://www.linkedin.com/in/krishna-s-4403b1290/", github: "https://github.com/KRISHNASAKTHIESWAR" },
     { name: "BHRAHMESH A", role: "FRONTEND DEVELOPER", image: "/images/bhrahmi.jpeg", linkedin: "https://www.linkedin.com/in/bhrahmesh-a-8a4766290/", github: "https://github.com/bhrahmesh/" },
-    { name: "ADITHYA S", role: "BACKEND DEVELOPER", image: "/images/adithya.jpg", linkedin: "https://www.linkedin.com/in/adithyaa-saravanam/", github: "https://github.com/adithyaa-s" },
-    { name: "AJAY BALAJI P", role: "BACKEND DEVELOPER", image: "/images/ajay.jpeg", linkedin: "https://www.linkedin.com/in/ajay002/", github: "https://github.com/Ajaybalajiprasad" },
+    { name: "ADITHYAA S", role: "BACKEND DEVELOPER", image: "/images/adithya.jpg", linkedin: "https://www.linkedin.com/in/adithyaa-saravanam/", github: "https://github.com/adithyaa-s" },
+    { name: "AJAY B", role: "BACKEND DEVELOPER", image: "/images/ajay.jpeg", linkedin: "https://www.linkedin.com/in/ajay002/", github: "https://github.com/Ajaybalajiprasad" },
     { name: "ARUNKUMAR M", role: "FRONTEND DEVELOPER", image: "/images/arun.jpg", linkedin: "https://www.linkedin.com/in/arunkumar2645s/", github: "https://github.com/arun-kumar-24" },
     { name: "MANISH BARATH", role: "BACKEND DEVELOPER", image: "/images/manish.jpeg", linkedin: "https://www.linkedin.com/in/manish-barath/", github: "https://github.com/ManishBarath" },
     { name: "AZIM MOHIDEEN N", role: "FRONTEND DEVELOPER", image: "/images/azim.jpg", linkedin: "https://www.linkedin.com/in/azim-mohideen-4a95b0293/", github: "https://github.com/AzimMohideen" },
