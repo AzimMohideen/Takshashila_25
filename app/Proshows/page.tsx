@@ -41,7 +41,7 @@ const proshows: ProShow[] = [
     time: "7:00 PM",
     venue: "Main Ground",
     image: "/u1back.png",
-    mobileImage: "/u1back.png",
+    mobileImage: "/u1-bg-mob.png",
     description: "Get ready for an electrifying night of music with Yuvan Shankar Raja."
   },
   {
@@ -145,14 +145,20 @@ export default function ProShows() {
         animate={{ opacity: 1, y: 0 }}
         className="absolute top-24 left-0 right-0 z-10 text-center px-4"
       >
-        <h1 className={`text-5xl md:text-6xl font-bold text-white mb-4 ${notable.className} 
-          drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] 
-          [text-shadow:0_2px_4px_rgba(0,0,0,0.6),0_1px_2px_rgba(0,0,0,0.4),0_-1px_2px_rgba(255,255,255,0.1)]`}>
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 
+    ${notable.className} break-words leading-tight
+    drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] 
+    [text-shadow:0_2px_4px_rgba(0,0,0,0.6),0_1px_2px_rgba(0,0,0,0.4),0_-1px_2px_rgba(255,255,255,0.1)]`}>
           Pro Shows
         </h1>
-        <div className="inline-block bg-black/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-lg">
-          <p className="text-white text-xl font-semibold tracking-wide">
-            Exclusive Entertainment only for CITians!! <span className="text-red-500 font-bold">Other college students are not allowed.</span>
+        <div className="inline-block bg-black/50 backdrop-blur-md px-4 sm:px-8 py-2 sm:py-3 
+    rounded-full border border-white/20 shadow-lg">
+          <p className="text-white text-sm sm:text-base md:text-xl font-semibold tracking-wide 
+      break-words leading-relaxed">
+            Exclusive Entertainment only for CITians!! 
+      <span className="text-red-500 font-bold block sm:inline">
+        Other college students are not allowed.
+      </span>
           </p>
         </div>
       </motion.div>
@@ -204,31 +210,37 @@ export default function ProShows() {
             </div>
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 lg:p-24">
+            <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 md:p-16 lg:p-24">
               <motion.div
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="max-w-4xl"
+                className="max-w-4xl space-y-4"
               >
-                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 ${oleoScript.className}`}>
+                <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white 
+      ${oleoScript.className} break-words leading-tight`}>
                   {currentShow.title}
                 </h1>
-                <h2 className="text-2xl md:text-3xl text-white/80 mb-6">
+                <h2 className="text-xl sm:text-2xl md:text-3xl text-white/80 leading-relaxed">
                   {currentShow.artist}
                 </h2>
-                <div className="flex flex-wrap gap-6 text-white/90 text-lg mb-8">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 text-white/90 
+      text-base sm:text-lg my-4">
                   <p className="flex items-center gap-2">
-                    <span className="w-5 h-5">📅</span> {currentShow.date}
+                    <span className="w-4 h-4 sm:w-5 sm:h-5">📅</span> 
+        <span className="break-words">{currentShow.date}</span>
                   </p>
                   <p className="flex items-center gap-2">
-                    <span className="w-5 h-5">⏰</span> {currentShow.time}
+                    <span className="w-4 h-4 sm:w-5 sm:h-5">⏰</span> 
+        <span className="break-words">{currentShow.time}</span>
                   </p>
                   <p className="flex items-center gap-2">
-                    <span className="w-5 h-5">📍</span> {currentShow.venue}
+                    <span className="w-4 h-4 sm:w-5 sm:h-5">📍</span> 
+        <span className="break-words">{currentShow.venue}</span>
                   </p>
                 </div>
-                <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+                <p className="text-white/70 text-base sm:text-lg max-w-2xl leading-relaxed 
+      break-words overflow-hidden">
                   {currentShow.description}
                 </p>
               </motion.div>

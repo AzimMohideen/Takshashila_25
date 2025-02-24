@@ -297,12 +297,14 @@ the fervor and magnificence that are rife in our campus!`,
   },
   {
     id: 28,
-    title: "World whiz",
+    title: "Word whiz",
     category: "Non-Technical" as const,
     date: "February 28,2025",
     image: "/nontech/word whiz.png",
-    description: `Videograph your views on our college and capture clips to project your perspective. Summarize
-the fervor and magnificence that are rife in our campus!`,
+    description: `Just A Minute—that’s all you get. One topic, one shot, no second chances. 
+Think fast, speak sharp, and let the words flow. But can you keep your cool when the clock is ticking? 
+No pauses, no stumbles—just you, your thoughts, and the ultimate challenge. The pressure is real, 
+the stakes are high, and every second counts. Ready to take the mic and own the moment?`,
     registrationLink: "#"
   },
   {
