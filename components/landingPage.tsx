@@ -10,6 +10,7 @@ import Contact from '@/components/contact';
 import MainSection from '@/components/mainSection';
 import EventRoller from './eventRoller';
 import CountdownSection from './countdownSection';
+import SponsorSlider from './SponsorSlider';
 import { isMobile } from 'react-device-detect';
 
 // Enhanced loading component
@@ -60,6 +61,7 @@ export default function Home() {
       <div className="relative z-20">
         <AboutUs />
         <EventRoller/>
+        <SponsorSlider />
         <Contact />
         <CountdownSection />
         <Footer />
