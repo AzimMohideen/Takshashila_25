@@ -29,8 +29,8 @@ const proshows: ProShow[] = [
     date: "February 26,2025",
     time: "7:00 PM",
     venue: "Main Ground",
-    image: "/cida.png",
-    mobileImage: "/cida.png",
+    image: "/web cida.png",
+    mobileImage: "/web cida mobile.png",
     description: "Get ready for an electrifying night of music and dance with our spectacular DJ performance."
   },
   {
@@ -156,9 +156,9 @@ export default function ProShows() {
           <p className="text-white text-sm sm:text-base md:text-xl font-semibold tracking-wide 
       break-words leading-relaxed">
             Exclusive Entertainment only for CITians!! 
-      <span className="text-red-500 font-bold block sm:inline">
+      {/* <span className="text-red-500 font-bold block sm:inline">
         Other college students are not allowed.
-      </span>
+      </span> */}
           </p>
         </div>
       </motion.div>

@@ -149,7 +149,7 @@ hearts!.`,
     id: 14,
     title: "IPL Auction",
     category: "Non-Technical" as const,
-    date: "February 26,2025",
+    date: "February 26,28,2025",
     image: "/nontech/IPLAUCTION.png",
     description: `What would you do if we said you could auction your way to assemble your dream team? Craft
 the most capable cricket team that is a sure sixer squad. Bid, build and dominate the race to boast

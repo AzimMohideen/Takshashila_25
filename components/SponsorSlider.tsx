@@ -30,7 +30,8 @@ const sponsors: Sponsor[] = [
   { name: "Prithvi Prints", image: "/Sponsors/Prithvi Prints_.png" },
   { name: "Provoke", image: "/Sponsors/Provoke.png" },
   { name: "V-Care", image: "/Sponsors/V - care.png" },
-  { name: "Vikatan", image: "/Sponsors/Vikatan.png" }
+  { name: "Vikatan", image: "/Sponsors/Vikatan.png" },
+  // { name: "Chennai symposiums", image: "/Sponsors/Chennai symposiums.png" }
 ];
 
 interface SponsorSliderProps {
