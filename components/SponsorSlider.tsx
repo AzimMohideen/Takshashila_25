@@ -13,13 +13,14 @@ const sponsors: Sponsor[] = [
   { name: "Aswins", image: "/Sponsors/Aswins.png" },
   { name: "Balaji Photo Frames", image: "/Sponsors/Balaji photo frames.png" },
   { name: "BIG FM", image: "/Sponsors/BIG fm_.png" },
-  { name: "Coldmok", image: "/Sponsors/Coldmok.png" },
+  // { name: "Coldmok", image: "/Sponsors/Coldmok.png" },
+  { name: "Jan Enterprises", image: "/Sponsors/Jan Enterprizes.png" },
   { name: "DB Productions", image: "/Sponsors/DB productions.png" },
   { name: "Deyga", image: "/Sponsors/Deyga.png" },
   { name: "Gamestry", image: "/Sponsors/Gamestry.png" },
   { name: "K CLICKS STUDIO", image: "/Sponsors/K CLICKS STUDIO.png" },
   { name: "Krafton", image: "/Sponsors/Krafton.png" },
-  { name: "Kyn", image: "/Sponsors/Kyn.png" },
+  // { name: "Kyn", image: "/Sponsors/Kyn.png" },
   { name: "Maker's Cafe", image: "/Sponsors/Maker_s Cafe.png" },
   { name: "Medimix", image: "/Sponsors/Medimix.png" },
   { name: "MGM Healthcare", image: "/Sponsors/MGM health care.png" },
@@ -31,7 +32,7 @@ const sponsors: Sponsor[] = [
   { name: "Provoke", image: "/Sponsors/Provoke.png" },
   { name: "V-Care", image: "/Sponsors/V - care.png" },
   { name: "Vikatan", image: "/Sponsors/Vikatan.png" },
-  // { name: "Chennai symposiums", image: "/Sponsors/Chennai symposiums.png" }
+  { name: "Chennai symposiums", image: "/Sponsors/chennai symposiums.png" }
 ];
 
 interface SponsorSliderProps {
