@@ -2,9 +2,10 @@
 import { useState, useEffect, useMemo } from "react"
 import { Search, Download, RefreshCw, Filter } from "lucide-react"
 import axios from "axios"
+import * as XLSX from "xlsx"
 
 const ADMIN_PASSWORD = "therilaiye"
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 const ITEMS_PER_PAGE = 10
 
 type Registration = {
@@ -12,13 +13,16 @@ type Registration = {
   phone_no: string
   username: string
   college_name: string
-  pass: (string[])[]
+  pass: string[][]
   amount: number
   count: number
+  paid: boolean
 }
 
 type FilterOptions = {
   college: string
+  workshop: string
+  day: string
   minAmount: string
   maxAmount: string
 }
@@ -33,6 +37,8 @@ export default function AdminPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [filters, setFilters] = useState<FilterOptions>({
     college: "all",
+    workshop: "all",
+    day: "all",
     minAmount: "",
     maxAmount: "",
   })
@@ -40,6 +46,8 @@ export default function AdminPage() {
     key: "amount",
     direction: "desc",
   })
+  // State for editing the pass (maps user email to JSON string)
+  const [editingPass, setEditingPass] = useState<Record<string, string>>({})
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -79,24 +87,68 @@ export default function AdminPage() {
     })
   }
 
+  // Generate unique values for the new "day" filter from pass[0]
+  const uniqueDays = useMemo(() => {
+    const days = registrations.flatMap((reg) => (reg.pass ? reg.pass[0] : []))
+    return Array.from(new Set(days.filter((day) => day && day.trim() !== "")))
+  }, [registrations])
+
+  // Generate unique workshop options as before (from pass[1][0])
+  const uniqueWorkshops = useMemo(() => {
+    return Array.from(
+      new Set(
+        registrations
+          .map((reg) => (reg.pass && reg.pass[1] ? reg.pass[1][0] : ""))
+          .filter((workshop) => workshop && workshop.trim() !== "")
+      )
+    )
+  }, [registrations])
+
+  const uniqueColleges = useMemo(() => {
+    return Array.from(new Set(registrations.map((reg) => reg.college_name)))
+  }, [registrations])
+
   const filteredAndSortedData = useMemo(() => {
     return registrations
       .filter((reg) => {
+        const lowerSearch = searchTerm.toLowerCase()
         const matchesSearch =
-          reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          reg.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          reg.college_name.toLowerCase().includes(searchTerm.toLowerCase())
+          reg.email.toLowerCase().includes(lowerSearch) ||
+          reg.username.toLowerCase().includes(lowerSearch) ||
+          reg.college_name.toLowerCase().includes(lowerSearch) ||
+          reg.phone_no.toLowerCase().includes(lowerSearch)
 
         const matchesCollege =
           filters.college === "all" ||
           (filters.college &&
-            new RegExp(filters.college, 'i').test(reg.college_name))
+            new RegExp(filters.college, "i").test(reg.college_name))
+
+        // Workshop is stored in reg.pass[1][0]
+        const workshopName = reg.pass && reg.pass[1] ? reg.pass[1][0] : ""
+        const matchesWorkshop =
+          filters.workshop === "all" ||
+          (filters.workshop &&
+            workshopName.toLowerCase().includes(filters.workshop.toLowerCase()))
+
+        // Day filter: check if the first row of pass contains the selected day
+        const dayList = reg.pass ? reg.pass[0] : []
+        const matchesDay =
+          filters.day === "all" ||
+          dayList.some((day) =>
+            day.toLowerCase().includes(filters.day.toLowerCase())
+          )
 
         const matchesAmount =
           (!filters.minAmount || reg.amount >= parseInt(filters.minAmount)) &&
           (!filters.maxAmount || reg.amount <= parseInt(filters.maxAmount))
 
-        return matchesSearch && matchesCollege && matchesAmount
+        return (
+          matchesSearch &&
+          matchesCollege &&
+          matchesWorkshop &&
+          matchesDay &&
+          matchesAmount
+        )
       })
       .sort((a, b) => {
         const key = sortConfig.key as keyof Registration
@@ -113,38 +165,84 @@ export default function AdminPage() {
 
   const totalPages = Math.ceil(filteredAndSortedData.length / ITEMS_PER_PAGE)
 
-  const uniqueColleges = useMemo(() => {
-    return Array.from(new Set(registrations.map((reg) => reg.college_name)))
-  }, [registrations])
-
   const exportToCSV = () => {
-    const headers = [
-      "Email",
-      "Phone",
-      "Username",
-      "College",
-      "Pass",
-      "Amount",
-      "Count",
-    ]
-    const csvData = filteredAndSortedData.map((reg) => [
-      reg.email,
-      reg.phone_no,
-      reg.username,
-      reg.college_name,
-      JSON.stringify(reg.pass),
-      reg.amount,
-      reg.count,
-    ])
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers, ...csvData].map((row) => row.join(",")).join("\n")
-    const link = document.createElement("a")
-    link.href = encodeURI(csvContent)
-    link.download = "registrations.csv"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    const exportData = filteredAndSortedData.map((reg) => ({
+      Email: reg.email,
+      Phone: reg.phone_no,
+      Username: reg.username,
+      College: reg.college_name,
+      Pass: JSON.stringify(reg.pass),
+      Amount: reg.amount,
+      Paid: reg.paid ? "Yes" : "No"
+    }))
+    const ws = XLSX.utils.json_to_sheet(exportData)
+    const wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, "Registrations")
+    XLSX.writeFile(wb, "registrations.csv", { bookType: "csv", type: "string" })
+  }
+
+  const handleTogglePaid = async (email: string) => {
+    const reg = registrations.find((r) => r.email === email)
+    if (!reg) return
+    const newPaidStatus = !reg.paid
+    try {
+      await axios.put(`${API_URL}/update-paid-status`, {
+        phone_no: reg.phone_no,
+        paid: newPaidStatus
+      })
+      setRegistrations((prev) =>
+        prev.map((r) =>
+          r.email === email ? { ...r, paid: newPaidStatus } : r
+        )
+      )
+      setError(null)
+    } catch (err) {
+      console.error("Error updating paid status:", err)
+      setError("Error updating paid status.")
+    }
+  }
+
+  // Functions to handle inline editing of the pass field
+  const startEditPass = (email: string, currentPass: string[][]) => {
+    setEditingPass((prev) => ({ ...prev, [email]: JSON.stringify(currentPass) }))
+  }
+
+  const cancelEditPass = (email: string) => {
+    setEditingPass((prev) => {
+      const newEditing = { ...prev }
+      delete newEditing[email]
+      return newEditing
+    })
+  }
+
+  const saveEditPass = async (email: string) => {
+    const reg = registrations.find((r) => r.email === email)
+    if (!reg) return
+    let parsedPass: string[][]
+    try {
+      parsedPass = JSON.parse(editingPass[email])
+    } catch (error) {
+      setError("Invalid JSON format for pass.")
+      return
+    }
+    try {
+      // Call the endpoint /update-apss to update the pass
+      await axios.put(`${API_URL}/update-apss`, {
+        phone_no: reg.phone_no,
+        pass: parsedPass
+      })
+      // Update local state with new pass
+      setRegistrations((prev) =>
+        prev.map((r) =>
+          r.email === email ? { ...r, pass: parsedPass } : r
+        )
+      )
+      cancelEditPass(email)
+      setError(null)
+    } catch (err) {
+      console.error("Error updating pass:", err)
+      setError("Error updating pass.")
+    }
   }
 
   if (!authenticated) {
@@ -161,7 +259,10 @@ export default function AdminPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border p-2 mb-4 rounded"
             />
-            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
               Login
             </button>
           </form>
@@ -204,7 +305,7 @@ export default function AdminPage() {
             <div className="flex-1 relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
               <input
-                placeholder="Search by email, username, or college..."
+                placeholder="Search by email, phone no, username, or college..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full border p-2 pl-8 rounded"
@@ -213,7 +314,9 @@ export default function AdminPage() {
             <div className="flex gap-2">
               <select
                 value={filters.college}
-                onChange={(e) => setFilters({ ...filters, college: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, college: e.target.value })
+                }
                 className="border p-2 rounded w-48"
               >
                 <option value="all">All Colleges</option>
@@ -223,27 +326,55 @@ export default function AdminPage() {
                     <option key={college} value={college}>
                       {college}
                     </option>
+                  ))}
+              </select>
+              <select
+                value={filters.workshop}
+                onChange={(e) =>
+                  setFilters({ ...filters, workshop: e.target.value })
+                }
+                className="border p-2 rounded w-48"
+              >
+                <option value="all">All Workshops</option>
+                {uniqueWorkshops.map((workshop) => (
+                  <option key={workshop} value={workshop}>
+                    {workshop}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={filters.day}
+                onChange={(e) => setFilters({ ...filters, day: e.target.value })}
+                className="border p-2 rounded w-48"
+              >
+                <option value="all">All Days</option>
+                {uniqueDays.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
                 ))}
               </select>
               <input
                 type="number"
                 placeholder="Min Amount"
                 value={filters.minAmount}
-                onChange={(e) => setFilters({ ...filters, minAmount: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, minAmount: e.target.value })
+                }
                 className="border p-2 rounded w-32"
               />
               <input
                 type="number"
                 placeholder="Max Amount"
                 value={filters.maxAmount}
-                onChange={(e) => setFilters({ ...filters, maxAmount: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, maxAmount: e.target.value })
+                }
                 className="border p-2 rounded w-32"
               />
             </div>
           </div>
-
           {error && <p className="text-red-500 mb-4">{error}</p>}
-
           {loading ? (
             <div className="text-center py-8">Loading...</div>
           ) : filteredAndSortedData.length === 0 ? (
@@ -261,18 +392,19 @@ export default function AdminPage() {
                         "College",
                         "Pass",
                         "Amount",
-                        "Count",
+                        "Paid"
                       ].map((header) => (
                         <th
                           key={header}
                           className="px-4 py-2 border cursor-pointer hover:bg-gray-50"
                           onClick={() =>
+                            header !== "Paid" &&
                             handleSort(header.toLowerCase() as keyof Registration)
                           }
                         >
                           <div className="flex items-center justify-between">
                             {header}
-                            {sortConfig.key === header.toLowerCase() && (
+                            {sortConfig.key === header.toLowerCase() && header !== "Paid" && (
                               <Filter
                                 className={`h-4 w-4 ${
                                   sortConfig.direction === "asc" ? "transform rotate-180" : ""
@@ -291,9 +423,55 @@ export default function AdminPage() {
                         <td className="px-4 py-2 border">{reg.phone_no}</td>
                         <td className="px-4 py-2 border">{reg.username}</td>
                         <td className="px-4 py-2 border">{reg.college_name}</td>
-                        <td className="px-4 py-2 border">{JSON.stringify(reg.pass)}</td>
+                        <td className="px-4 py-2 border">
+                          {editingPass[reg.email] !== undefined ? (
+                            <>
+                              <input
+                                type="text"
+                                value={editingPass[reg.email]}
+                                onChange={(e) =>
+                                  setEditingPass((prev) => ({
+                                    ...prev,
+                                    [reg.email]: e.target.value,
+                                  }))
+                                }
+                                className="w-full border p-1 rounded"
+                              />
+                              <div className="mt-1 flex gap-1">
+                                <button
+                                  onClick={() => saveEditPass(reg.email)}
+                                  className="px-2 py-1 text-sm bg-green-500 text-white rounded"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={() => cancelEditPass(reg.email)}
+                                  className="px-2 py-1 text-sm bg-gray-500 text-white rounded"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </>
+                          ) : (
+                            <div className="flex items-center justify-between">
+                              <span>{JSON.stringify(reg.pass)}</span>
+                              <button
+                                onClick={() => startEditPass(reg.email, reg.pass)}
+                                className="ml-2 text-sm text-blue-600 underline"
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          )}
+                        </td>
                         <td className="px-4 py-2 border">{reg.amount}</td>
-                        <td className="px-4 py-2 border">{reg.count}</td>
+                        <td className="px-4 py-2 border text-center">
+                          <input
+                            type="checkbox"
+                            checked={reg.paid}
+                            onChange={() => handleTogglePaid(reg.email)}
+                          />
+                        </td>
                       </tr>
                     ))}
                   </tbody>
