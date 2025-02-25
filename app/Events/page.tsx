@@ -95,7 +95,7 @@ presentation (PowerPoint) in front of the judges.`,
     title: "Tech Quest",
     category: "Technical" as const,
     date: "February 27,2025",
-    image: "/tech/TECHQUIZ.jpg",
+    image: "/tech/tech quest.jpg",
     description: `Science and Technology revolutionize our lives, but memory, tradition and myth frame
     our response. It's a perfect combination of smart and fun. You win or you learn- either
     way it's win-win.`,
@@ -117,7 +117,7 @@ it on the floor that blast the sky`,
     title: "Dark Web Treasure Hunt",
     category: "Technical" as const,
     date: "February 28,2025",
-    image: "/tech/DARKWEBTH.jpg",
+    image: "/tech/dark web.png",
     description: `Dark Web Treasure Hunt is a cybersecurity, ethical hacking, and OSINT challenge where
 participants become cyber-detectives. They decode hidden messages, trace digital footprints, and
 break encryptions to uncover clues. The event simulates the thrill of navigating the "Dark Web"
@@ -130,7 +130,7 @@ analytical thinking and cyber skills. Are you ready to crack the code?`,
     title: "Designers Onboard",
     category: "Technical" as const,
     date: "February 28,2025",
-    image: "/tech/BRANDMARKET.png",
+    image: "/tech/designers onboard.jpg",
     description: `A live art challenge where creativity meets speed! Get a surprise theme, sketch directly on the board, and showcase your artistic skills under time pressure. No pre-made designs—just pure imagination!`,
     registrationLink: "#"
   },
