@@ -65,6 +65,8 @@ export default function RegisterPage() {
                         <li>Workshop registration requires at least one day selection</li>
                         <li>Prices include all taxes and materials</li>
                         <li>Registration confirmation will be sent via email</li>
+                        <li>Onsite registration is available for all days</li>
+                        <li>Make sure to bring your laptops for Workshops and Technical events</li>
                         
                       </ul>
                     </div>
