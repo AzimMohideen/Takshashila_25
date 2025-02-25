@@ -40,7 +40,7 @@ const proshows: ProShow[] = [
     date: "February 27,2025",
     time: "7:00 PM",
     venue: "Main Ground",
-    image: "/u1back.png",
+    image: "/u1-bg-lap.png",
     mobileImage: "/u1-bg-mob.png",
     description: "Get ready for an electrifying night of music with Yuvan Shankar Raja."
   },
