@@ -11,7 +11,7 @@ const MainSection = () => {
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [hasPlayed, setHasPlayed] = useState(false);
-  const videoSrc = isMobile ? "/footage/landingscreen_mob.mov" : "/footage/tklife1.mp4";
+  const videoSrc = isMobile ? "/footage/landingscreen_mob.mov" : "https://TEAMCELESTIUS.github.io/Takshashila_25/public/footage/tklife1.mp4";
 
   useEffect(() => {
     const video = videoRef.current;
