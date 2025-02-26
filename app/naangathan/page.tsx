@@ -35,6 +35,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
+  const [editingAmount, setEditingAmount] = useState<Record<string, string>>({});
   const [filters, setFilters] = useState<FilterOptions>({
     college: "all",
     workshop: "all",
@@ -165,6 +166,48 @@ export default function AdminPage() {
 
   const totalPages = Math.ceil(filteredAndSortedData.length / ITEMS_PER_PAGE)
 
+  const startEditAmount = (email: string, currentAmount: number) => {
+    setEditingAmount((prev) => ({ ...prev, [email]: currentAmount.toString() }));
+  };
+  
+  const cancelEditAmount = (email: string) => {
+    setEditingAmount((prev) => {
+      const newEditing = { ...prev };
+      delete newEditing[email];
+      return newEditing;
+    });
+  };
+  
+  const saveEditAmount = async (email: string) => {
+    const reg = registrations.find((r) => r.email === email);
+    if (!reg) return;
+  
+    const newAmount = parseFloat(editingAmount[email]);
+    if (isNaN(newAmount)) {
+      setError("Invalid amount format.");
+      return;
+    }
+  
+    try {
+      await axios.put(`${API_URL}/update-amount`, {
+        phone_no: reg.phone_no,
+        amount: newAmount,
+      });
+  
+      // Update local state with new amount
+      setRegistrations((prev) =>
+        prev.map((r) => (r.email === email ? { ...r, amount: newAmount } : r))
+      );
+  
+      cancelEditAmount(email);
+      setError(null);
+    } catch (err) {
+      console.error("Error updating amount:", err);
+      setError("Error updating amount.");
+    }
+  };
+  
+
   const exportToCSV = () => {
     const exportData = filteredAndSortedData.map((reg) => ({
       Email: reg.email,
@@ -278,7 +321,8 @@ export default function AdminPage() {
           <div>
             <h2 className="text-2xl font-bold">Registered Users</h2>
             <p className="text-sm text-gray-500">
-              Total Records: {filteredAndSortedData.length} of {registrations.length}
+              Total Records: {filteredAndSortedData.length} of{" "}
+              {registrations.length}
             </p>
           </div>
           <div className="flex gap-2 mt-4 md:mt-0">
@@ -344,7 +388,9 @@ export default function AdminPage() {
               </select>
               <select
                 value={filters.day}
-                onChange={(e) => setFilters({ ...filters, day: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, day: e.target.value })
+                }
                 className="border p-2 rounded w-48"
               >
                 <option value="all">All Days</option>
@@ -392,25 +438,30 @@ export default function AdminPage() {
                         "College",
                         "Pass",
                         "Amount",
-                        "Paid"
+                        "Paid",
                       ].map((header) => (
                         <th
                           key={header}
                           className="px-4 py-2 border cursor-pointer hover:bg-gray-50"
                           onClick={() =>
                             header !== "Paid" &&
-                            handleSort(header.toLowerCase() as keyof Registration)
+                            handleSort(
+                              header.toLowerCase() as keyof Registration
+                            )
                           }
                         >
                           <div className="flex items-center justify-between">
                             {header}
-                            {sortConfig.key === header.toLowerCase() && header !== "Paid" && (
-                              <Filter
-                                className={`h-4 w-4 ${
-                                  sortConfig.direction === "asc" ? "transform rotate-180" : ""
-                                }`}
-                              />
-                            )}
+                            {sortConfig.key === header.toLowerCase() &&
+                              header !== "Paid" && (
+                                <Filter
+                                  className={`h-4 w-4 ${
+                                    sortConfig.direction === "asc"
+                                      ? "transform rotate-180"
+                                      : ""
+                                  }`}
+                                />
+                              )}
                           </div>
                         </th>
                       ))}
@@ -456,7 +507,9 @@ export default function AdminPage() {
                             <div className="flex items-center justify-between">
                               <span>{JSON.stringify(reg.pass)}</span>
                               <button
-                                onClick={() => startEditPass(reg.email, reg.pass)}
+                                onClick={() =>
+                                  startEditPass(reg.email, reg.pass)
+                                }
                                 className="ml-2 text-sm text-blue-600 underline"
                               >
                                 Edit
@@ -464,7 +517,45 @@ export default function AdminPage() {
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-2 border">{reg.amount}</td>
+                        <td className="px-4 py-2 border text-center">
+                          {editingAmount[reg.email] !== undefined ? (
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="number"
+                                value={editingAmount[reg.email]}
+                                onChange={(e) =>
+                                  setEditingAmount((prev) => ({
+                                    ...prev,
+                                    [reg.email]: e.target.value,
+                                  }))
+                                }
+                                className="border px-2 py-1 rounded w-20"
+                              />
+                              <button
+                                onClick={() => saveEditAmount(reg.email)}
+                                className="text-green-600"
+                              >
+                                ✅
+                              </button>
+                              <button
+                                onClick={() => cancelEditAmount(reg.email)}
+                                className="text-red-600"
+                              >
+                                ❌
+                              </button>
+                            </div>
+                          ) : (
+                            <span
+                              onDoubleClick={() =>
+                                startEditAmount(reg.email, reg.amount)
+                              }
+                              className="cursor-pointer"
+                            >
+                              ₹{reg.amount}
+                            </span>
+                          )}
+                        </td>
+
                         <td className="px-4 py-2 border text-center">
                           <input
                             type="checkbox"
@@ -480,30 +571,39 @@ export default function AdminPage() {
               <div className="flex items-center justify-between mt-4">
                 <p className="text-sm text-gray-500">
                   Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to{" "}
-                  {Math.min(currentPage * ITEMS_PER_PAGE, filteredAndSortedData.length)} of{" "}
-                  {filteredAndSortedData.length} entries
+                  {Math.min(
+                    currentPage * ITEMS_PER_PAGE,
+                    filteredAndSortedData.length
+                  )}{" "}
+                  of {filteredAndSortedData.length} entries
                 </p>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(1, prev - 1))
+                    }
                     disabled={currentPage === 1}
                     className="border px-3 py-1 rounded hover:bg-gray-50 disabled:opacity-50"
                   >
                     Previous
                   </button>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`border px-3 py-1 rounded hover:bg-gray-50 ${
-                        currentPage === page ? "bg-blue-600 text-white" : ""
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (page) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`border px-3 py-1 rounded hover:bg-gray-50 ${
+                          currentPage === page ? "bg-blue-600 text-white" : ""
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    )
+                  )}
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                    }
                     disabled={currentPage === totalPages}
                     className="border px-3 py-1 rounded hover:bg-gray-50 disabled:opacity-50"
                   >
@@ -516,5 +616,5 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
