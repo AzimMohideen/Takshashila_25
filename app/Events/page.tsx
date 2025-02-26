@@ -26,7 +26,7 @@ const eventlist: CustomEvent[] = [
     id: 1,
     title: "Binary Symphony (Duo Code)",
     category: "Technical" as const,
-    date: "February 26,2025",
+    date: "February 28,2025",
     image: "/tech/BINARYSYMPHONY.png",
     description: `Coding duos! Two participants are paired and are given a problem to solve.
     The duo should take turns to code the solution. But the catch is, they can't be together at the
