@@ -47,6 +47,7 @@ export default function U1RegistrationPage() {
                         {/* <li>Date: February 27, 2025</li> */}
                         <li>Time: 7:00 PM</li>
                         <li>Venue: CIT Main Ground</li>
+                        <li></li>
                       </ul>
                     </div>
                     

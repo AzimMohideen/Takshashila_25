@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { color, motion } from "framer-motion"
 import axios from "axios"
 import { showCassetteToast, StyledToastContainer } from "./CassetteToast"
 
@@ -126,6 +126,7 @@ export function RegForm() {
             className="w-full p-3 rounded-lg bg-white/5 border border-white/10 text-white/90 focus:border-emerald-500 transition-colors"
             required
           />
+          <p style={{ color: 'red' , textAlign:"center" , fontSize:'23px'}}>Entry Fee: ₹1000</p>
         </div>
 
         <button
