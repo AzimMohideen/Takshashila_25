@@ -43,7 +43,7 @@ export default function U1RegistrationPage() {
                     <div className="space-y-2">
                       <h3 className="text-xl font-semibold">Event Details</h3>
                       <ul className="list-disc list-inside space-y-2 ml-4">
-                        <li>Date: February 28, 2025</li>
+                        <li>Date: February 27, 2025</li>
                         <li>Time: 7:00 PM</li>
                         <li>Venue: CIT Main Ground</li>
                       </ul>
@@ -56,7 +56,7 @@ export default function U1RegistrationPage() {
                         <li>Entry only with valid college ID</li>
                         <li>No entry after event starts</li>
                         <li>Registration is non-transferable</li>
-                        <li>Report at venue by 6:00 PM</li>
+                        <li>Report at college by 10:00 AM</li>
                       </ul>
                     </div>
                     
