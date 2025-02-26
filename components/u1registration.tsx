@@ -87,7 +87,7 @@ export function RegForm() {
         transition={{ duration: 0.5 }}
       >
         <h3 className="text-white/90 text-xl font-bold mb-6 font-lexend">
-          U1 Concert Registration
+          U1 Musical Night Registration
         </h3>
 
         <div className="space-y-4">

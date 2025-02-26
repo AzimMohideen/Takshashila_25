@@ -129,8 +129,8 @@ export default function Home() {
               }}
             >
               <Image
-                src="/U1CONCERT.png"
-                alt="U1 Concert Announcement"
+                src="/U1MN.png"
+                alt="U1 Musical Night Announcement"
                 fill
                 className="object-contain rounded-lg"
                 priority
