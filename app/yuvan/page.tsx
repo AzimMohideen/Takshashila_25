@@ -31,14 +31,14 @@ export default function U1RegistrationPage() {
         <main className="flex-grow pt-24 pb-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-6 text-white text-center font-lexend">
-              U1 Concert Registration
+              U1 Musical Night Registration
             </h1>
             
             <div className="flex flex-col md:flex-row gap-8">
               {/* Instructions Section */}
               <div className="md:w-3/5">
                 <div className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 text-white/90 p-8 rounded-lg h-full">
-                  <h2 className="text-2xl font-bold mb-6 font-lexend">Concert Information</h2>
+                  <h2 className="text-2xl font-bold mb-6 font-lexend">Musical Night Information</h2>
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <h3 className="text-xl font-semibold">Event Details</h3>
