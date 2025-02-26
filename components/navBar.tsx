@@ -20,7 +20,7 @@ export default function NavBar() {
 
   const getLinkClassName = (href: string) => {
     const isActive = pathname === href;
-    return `text-white hover:text-gray-300 text-xl font-kompot font-bold relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-green-500 after:left-0 after:bottom-[-4px] ${
+    return `text-white hover:text-gray-300 text-xl font-kompot font-bold relative after:content-[""] after:absolute after:w-full after:h-[2px] after:bg-green-500 after:left-0 after:bottom-[-4px] ${
       isActive ? 'after:scale-x-100' : 'after:scale-x-0'
     } hover:after:scale-x-100 after:transition-transform after:duration-300 group-hover:after:scale-x-0 hover:group-hover:after:scale-x-100`;
   };
@@ -47,6 +47,9 @@ export default function NavBar() {
           </Link>
           <Link href="/Proshows" className={getLinkClassName('/Proshows')}>
             Proshows
+          </Link>
+          <Link href="/yuvan" className={getLinkClassName('/yuvan')}>
+            U1&apos;s Arena
           </Link>
           <Link href="/register" className={getLinkClassName('/register')}>
             Register
@@ -90,6 +93,14 @@ export default function NavBar() {
             onClick={() => toggleMobileMenu()}
           >
             Proshows
+          </Link>
+          <Link
+            href="/yuvan"
+            className={`block py-2 ${getLinkClassName('/yuvan')}`}
+            onClick={() => toggleMobileMenu()}
+            scroll={false}
+          >
+            U1&apos;s Arena
           </Link>
           <Link
             href="/register"

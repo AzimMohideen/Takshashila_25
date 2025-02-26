@@ -33,19 +33,9 @@ const proshows: ProShow[] = [
     mobileImage: "/web cida mobile.png",
     description: "Get ready for an electrifying night of music and dance with our spectacular DJ performance."
   },
+  
   {
     id: 2,
-    title: "U1 Musical Night",
-    artist: "Yuvan Shankar Raja",
-    date: "February 27,2025",
-    time: "7:00 PM",
-    venue: "Main Ground",
-    image: "/u1-bg-lap.png",
-    mobileImage: "/u1-bg-mob.png",
-    description: "Get ready for an electrifying night of music with Yuvan Shankar Raja."
-  },
-  {
-    id: 3,
     title: "DJ Night",
     artist: "DJ Suman",
     date: "February 28,2025",
@@ -56,7 +46,7 @@ const proshows: ProShow[] = [
     description: "A celebration of culture and tradition through music, dance, and performances."
   },
   {
-    id: 4,
+    id: 3,
     title: "Euphonic Originals",
     artist: "Various Artists from CIT",
     date: "February 28,2025",
@@ -155,10 +145,9 @@ export default function ProShows() {
     rounded-full border border-white/20 shadow-lg">
           <p className="text-white text-sm sm:text-base md:text-xl font-semibold tracking-wide 
       break-words leading-relaxed">
-            Exclusive Entertainment only for CITians!! 
-      {/* <span className="text-red-500 font-bold block sm:inline">
-        Other college students are not allowed.
-      </span> */}
+            {currentShow.title === "U1 Musical Night" 
+              ? "Limited Seats available!!!" 
+              : "Exclusive for CIT Students"}
           </p>
         </div>
       </motion.div>
@@ -262,6 +251,7 @@ export default function ProShows() {
           <ChevronRight className="w-12 h-12" />
         </button>
 
+        {/* Progress Indicators */}
         {/* Progress Indicators */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
           {proshows.map((_, index) => (
