@@ -1,66 +1,96 @@
 "use client"
 
-import { useState } from 'react'
-import Image from 'next/image'
 import NavBar from '@/components/navBar'
-import { motion } from 'framer-motion'
+import Footer from '@/components/footer'
+import { RegForm } from "@/components/u1registration"
 import InteractiveCursor from '@/components/interactiveCursor'
-import { Notable } from "next/font/google"
 
-const notable = Notable({
-  weight: '400',
-  subsets: ['latin'],
-})
-
-export default function YuvanPage() {
+export default function U1RegistrationPage() {
   return (
-    <div className="h-screen overflow-hidden bg-black cursor-none">
-      <NavBar />
-      <InteractiveCursor />
+    <div className="cursor-none min-h-screen flex flex-col relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: "url('/U1CONCERT.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      />
       
-      <div className="relative w-full h-full">
-        <Image
-          src="/u1back.png"  // Add your U1 banner image
-          alt="U1 Musical Night"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+      {/* Black Overlay */}
+      <div className="fixed inset-0 bg-black/80 z-10" />
+      
+      {/* Content */}
+      <div className="relative z-20 flex flex-col min-h-screen">
+        <InteractiveCursor />
+        <NavBar />
         
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className={`text-4xl md:text-6xl lg:text-7xl text-white mb-6 ${notable.className}`}>
-              U1 Musical Night
+        {/* Main content */}
+        <main className="flex-grow pt-24 pb-16">
+          <div className="container mx-auto px-4">
+            <h1 className="text-4xl font-bold mb-6 text-white text-center font-lexend">
+              U1 Concert Registration
             </h1>
-            <p className="text-white/90 text-xl md:text-2xl mb-8">
-              A Magical Evening with Yuvan Shankar Raja
-            </p>
-            <div className="space-y-4">
-              <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 max-w-2xl mx-auto">
-                <p className="text-red-500 text-xl font-bold mb-4">
-                  Limited Seats Available!!!
-                </p>
-                <div className="text-white space-y-2">
-                  <p>📅 Date: March 1, 2025</p>
-                  <p>⏰ Time: 6:00 PM</p>
-                  <p>📍 Venue: CIT Main Ground</p>
+            
+            <div className="flex flex-col md:flex-row gap-8">
+              {/* Instructions Section */}
+              <div className="md:w-3/5">
+                <div className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 text-white/90 p-8 rounded-lg h-full">
+                  <h2 className="text-2xl font-bold mb-6 font-lexend">Concert Information</h2>
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Event Details</h3>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>Date: February 28, 2025</li>
+                        <li>Time: 7:00 PM</li>
+                        <li>Venue: CIT Main Ground</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Important Instructions</h3>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>Limited seats available</li>
+                        <li>Entry only with valid college ID</li>
+                        <li>No entry after event starts</li>
+                        <li>Registration is non-transferable</li>
+                        <li>Report at venue by 6:00 PM</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">Registration Process</h3>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>Fill out all required fields</li>
+                        <li>Double-check your contact information</li>
+                        <li>Confirmation will be sent via email</li>
+                        <li>Bring the confirmation email on event day</li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-8 p-4 bg-red-500/20 rounded-lg border border-red-500/40">
+                      <h3 className="text-xl font-semibold text-red-400">Important Notice</h3>
+                      <ul className="list-disc list-inside space-y-2 mt-2 text-red-300">
+                        <li>Registration is not needed for CIT students</li>
+                        <li>Other Colleges Bring your college ID for verification</li>
+                        <li>No refunds after registration</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <button 
-                onClick={() => window.open('/register', '_self')}
-                className="bg-green-500 text-white px-8 py-3 rounded-full text-lg font-bold
-                hover:bg-green-600 transition-colors cursor-none"
-              >
-                Register Now
-              </button>
+
+              {/* Registration Form Section */}
+              <div className="md:w-2/5">
+                <RegForm />
+              </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </main>
+
+        <Footer />
       </div>
     </div>
   )
