@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo } from "react"
 import { Search, Download, RefreshCw, Filter, Plus, X } from "lucide-react"
 import axios from "axios"
 import * as XLSX from "xlsx"
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const ADMIN_PASSWORD = "therilaiye"
@@ -69,8 +71,10 @@ export default function AdminPage() {
     if (password === ADMIN_PASSWORD) {
       setAuthenticated(true)
       setError(null)
+      toast.success("Login successful")
     } else {
       setError("Incorrect password.")
+      toast.error("Incorrect password")
     }
   }
 
@@ -80,9 +84,11 @@ export default function AdminPage() {
       const { data } = await axios.get(`${API_URL}/u1`)
       setRegistrations(data)
       setError(null)
+      toast.success("Data refreshed successfully")
     } catch (err) {
       console.error("Error fetching registrations:", err)
       setError("Error fetching registrations.")
+      toast.error("Failed to fetch registrations")
     } finally {
       setLoading(false)
     }
@@ -238,6 +244,7 @@ export default function AdminPage() {
     const newAmount = parseFloat(editingAmount[email]);
     if (isNaN(newAmount)) {
       setError("Invalid amount format.");
+      toast.error("Invalid amount format");
       return;
     }
   
@@ -254,9 +261,11 @@ export default function AdminPage() {
   
       cancelEditAmount(email);
       setError(null);
+      toast.success(`Amount updated to ₹${newAmount} for ${reg.username}`);
     } catch (err) {
       console.error("Error updating amount:", err);
       setError("Error updating amount.");
+      toast.error("Failed to update amount");
     }
   };
   
@@ -279,8 +288,10 @@ export default function AdminPage() {
       
       // Generate file in browser
       XLSX.writeFile(wb, "registrations.csv")
+      toast.success("CSV file exported successfully");
     } catch (err) {
       console.error("Error exporting to CSV:", err);
+      toast.error("Failed to export CSV file");
     }
   }
 
@@ -299,9 +310,11 @@ export default function AdminPage() {
         )
       )
       setError(null)
+      toast.success(`Payment status ${newPaidStatus ? 'confirmed' : 'unconfirmed'} for ${reg.username}`);
     } catch (err) {
       console.error("Error updating paid status:", err)
       setError("Error updating paid status.")
+      toast.error("Failed to update payment status");
     }
   }
 
@@ -325,7 +338,8 @@ export default function AdminPage() {
       parsedPass = JSON.parse(editingPass[email])
     } catch (error) {
       setError("Invalid JSON format for pass.")
-      return
+      toast.error("Invalid JSON format for pass");
+      return;
     }
     try {
       // Call the endpoint /update-pass to update the pass
@@ -341,9 +355,11 @@ export default function AdminPage() {
       )
       cancelEditPass(email)
       setError(null)
+      toast.success(`Pass updated for ${reg.username}`);
     } catch (err) {
       console.error("Error updating pass:", err)
       setError("Error updating pass.")
+      toast.error("Failed to update pass details");
     }
   }
 
@@ -353,18 +369,21 @@ export default function AdminPage() {
     // Validate the form
     if (!newUser.username || !newUser.phone || !newUser.email) {
       setError("Username, phone and email are required fields");
+      toast.error("Username, phone and email are required fields");
       return;
     }
     
     // Validate phone number (10 digits)
     if (!/^\d{10}$/.test(newUser.phone)) {
       setError("Phone number must be exactly 10 digits");
+      toast.error("Phone number must be exactly 10 digits");
       return;
     }
     
     // Validate email
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newUser.email)) {
       setError("Invalid email format");
+      toast.error("Invalid email format");
       return;
     }
     
@@ -396,9 +415,12 @@ export default function AdminPage() {
       setShowAddUserForm(false);
       
       setError(null);
+      toast.success(`User ${newUser.username} added successfully`);
     } catch (err: any) {
       console.error("Error adding user:", err);
-      setError(err.response?.data?.error || "Error adding user");
+      const errorMessage = err.response?.data?.error || "Error adding user";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -426,12 +448,24 @@ export default function AdminPage() {
             </button>
           </form>
         </div>
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
+      <ToastContainer 
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       
       {/* Add User Form Modal */}
       {showAddUserForm && (
@@ -577,7 +611,7 @@ export default function AdminPage() {
                     </option>
                   ))}
               </select>
-              <input
+              {/* <input
                 type="number"
                 placeholder="Min Amount"
                 value={filters.minAmount}
@@ -594,7 +628,7 @@ export default function AdminPage() {
                   setFilters({ ...filters, maxAmount: e.target.value })
                 }
                 className="border p-2 rounded w-32"
-              />
+              /> */}
             </div>
           </div>
           {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -652,91 +686,6 @@ export default function AdminPage() {
                         <td className="px-4 py-2 border">{reg.phone}</td>
                         <td className="px-4 py-2 border">{reg.username}</td>
                         <td className="px-4 py-2 border">{reg.college}</td>
-                        {/* <td className="px-4 py-2 border">
-                          {editingPass[reg.email] ? (
-                            <div className="flex flex-col gap-2">
-                              <textarea
-                                value={editingPass[reg.email]}
-                                onChange={(e) =>
-                                  setEditingPass({
-                                    ...editingPass,
-                                    [reg.email]: e.target.value,
-                                  })
-                                }
-                                className="w-full border p-2 rounded text-xs font-mono"
-                                rows={3}
-                              />
-                              <div className="flex gap-2">
-                                <button
-                                  onClick={() => saveEditPass(reg.email)}
-                                  className="bg-green-500 text-white px-2 py-1 rounded text-xs"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  onClick={() => cancelEditPass(reg.email)}
-                                  className="bg-gray-500 text-white px-2 py-1 rounded text-xs"
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="flex items-center justify-between">
-                              <div className="truncate max-w-[120px]">
-                                {reg.pass && reg.pass.length > 0
-                                  ? JSON.stringify(reg.pass).substring(0, 30) +
-                                    (JSON.stringify(reg.pass).length > 30 ? "..." : "")
-                                  : "N/A"}
-                              </div>
-                              <button
-                                onClick={() => startEditPass(reg.email, reg.pass || [])}
-                                className="text-blue-600 hover:text-blue-800 ml-2"
-                              >
-                                Edit
-                              </button>
-                            </div>
-                          )}
-                        </td> */}
-                        {/* <td className="px-4 py-2 border">
-                          {editingAmount[reg.email] !== undefined ? (
-                            <div className="flex items-center gap-2">
-                              <input
-                                type="number"
-                                value={editingAmount[reg.email]}
-                                onChange={(e) =>
-                                  setEditingAmount({
-                                    ...editingAmount,
-                                    [reg.email]: e.target.value,
-                                  })
-                                }
-                                className="w-full border p-1 rounded"
-                              />
-                              <button
-                                onClick={() => saveEditAmount(reg.email)}
-                                className="bg-green-500 text-white px-2 py-1 rounded text-xs"
-                              >
-                                Save
-                              </button>
-                              <button
-                                onClick={() => cancelEditAmount(reg.email)}
-                                className="bg-gray-500 text-white px-2 py-1 rounded text-xs"
-                              >
-                                Cancel
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="flex items-center justify-between">
-                              <span>₹{reg.amount}</span>
-                              <button
-                                onClick={() => startEditAmount(reg.email, reg.amount)}
-                                className="text-blue-600 hover:text-blue-800 ml-2"
-                              >
-                                Edit
-                              </button>
-                            </div>
-                          )}
-                        </td>  */}
                         <td className="px-4 py-2 border text-center">
                           <input
                             type="checkbox"
