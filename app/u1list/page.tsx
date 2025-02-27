@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from "react"
 import { Search, Download, RefreshCw, Filter, Plus, X } from "lucide-react"
 import axios from "axios"
 import * as XLSX from "xlsx"
-import { toast, Toaster } from "react-hot-toast"
+
 
 const ADMIN_PASSWORD = "therilaiye"
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
@@ -69,10 +69,8 @@ export default function AdminPage() {
     if (password === ADMIN_PASSWORD) {
       setAuthenticated(true)
       setError(null)
-      toast.success("Login successful")
     } else {
       setError("Incorrect password.")
-      toast.error("Incorrect password")
     }
   }
 
@@ -82,11 +80,9 @@ export default function AdminPage() {
       const { data } = await axios.get(`${API_URL}/u1`)
       setRegistrations(data)
       setError(null)
-      toast.success("Data refreshed successfully")
     } catch (err) {
       console.error("Error fetching registrations:", err)
       setError("Error fetching registrations.")
-      toast.error("Failed to fetch registrations")
     } finally {
       setLoading(false)
     }
@@ -242,7 +238,6 @@ export default function AdminPage() {
     const newAmount = parseFloat(editingAmount[email]);
     if (isNaN(newAmount)) {
       setError("Invalid amount format.");
-      toast.error("Invalid amount format");
       return;
     }
   
@@ -259,11 +254,9 @@ export default function AdminPage() {
   
       cancelEditAmount(email);
       setError(null);
-      toast.success(`Amount updated for ${reg.username}`);
     } catch (err) {
       console.error("Error updating amount:", err);
       setError("Error updating amount.");
-      toast.error("Failed to update amount");
     }
   };
   
@@ -286,10 +279,8 @@ export default function AdminPage() {
       
       // Generate file in browser
       XLSX.writeFile(wb, "registrations.csv")
-      toast.success("CSV export completed");
     } catch (err) {
       console.error("Error exporting to CSV:", err);
-      toast.error("Failed to export data");
     }
   }
 
@@ -308,11 +299,9 @@ export default function AdminPage() {
         )
       )
       setError(null)
-      toast.success(`Payment status updated for ${reg.username}`);
     } catch (err) {
       console.error("Error updating paid status:", err)
       setError("Error updating paid status.")
-      toast.error("Failed to update payment status");
     }
   }
 
@@ -336,7 +325,6 @@ export default function AdminPage() {
       parsedPass = JSON.parse(editingPass[email])
     } catch (error) {
       setError("Invalid JSON format for pass.")
-      toast.error("Invalid JSON format for pass");
       return
     }
     try {
@@ -353,11 +341,9 @@ export default function AdminPage() {
       )
       cancelEditPass(email)
       setError(null)
-      toast.success(`Pass updated for ${reg.username}`);
     } catch (err) {
       console.error("Error updating pass:", err)
       setError("Error updating pass.")
-      toast.error("Failed to update pass");
     }
   }
 
@@ -367,21 +353,18 @@ export default function AdminPage() {
     // Validate the form
     if (!newUser.username || !newUser.phone || !newUser.email) {
       setError("Username, phone and email are required fields");
-      toast.error("Please fill all required fields");
       return;
     }
     
     // Validate phone number (10 digits)
     if (!/^\d{10}$/.test(newUser.phone)) {
       setError("Phone number must be exactly 10 digits");
-      toast.error("Phone number must be exactly 10 digits");
       return;
     }
     
     // Validate email
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newUser.email)) {
       setError("Invalid email format");
-      toast.error("Invalid email format");
       return;
     }
     
@@ -413,11 +396,9 @@ export default function AdminPage() {
       setShowAddUserForm(false);
       
       setError(null);
-      toast.success(`User ${newUser.username} added successfully`);
     } catch (err: any) {
       console.error("Error adding user:", err);
       setError(err.response?.data?.error || "Error adding user");
-      toast.error("Failed to add user");
     } finally {
       setLoading(false);
     }
@@ -426,7 +407,6 @@ export default function AdminPage() {
   if (!authenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <Toaster position="top-right" />
         <div className="w-96 bg-white shadow rounded p-6">
           <h2 className="text-xl font-bold mb-4">Admin Login</h2>
           {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -452,7 +432,6 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <Toaster position="top-right" />
       
       {/* Add User Form Modal */}
       {showAddUserForm && (
