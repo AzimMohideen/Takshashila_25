@@ -278,10 +278,14 @@ export default function AdminPage() {
         Amount: reg.amount,
         Paid: reg.paid ? "Yes" : "No"
       }))
+      
+      // Use browser-based approach instead of native filesystem
       const ws = XLSX.utils.json_to_sheet(exportData)
       const wb = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(wb, ws, "Registrations")
-      XLSX.writeFile(wb, "registrations.csv", { bookType: "csv", type: "string" })
+      
+      // Generate file in browser
+      XLSX.writeFile(wb, "registrations.csv")
       toast.success("CSV export completed");
     } catch (err) {
       console.error("Error exporting to CSV:", err);
@@ -639,7 +643,7 @@ export default function AdminPage() {
                           key={header}
                           className="px-4 py-2 border cursor-pointer hover:bg-gray-50"
                           onClick={() =>
-                            header !== "Paid" &&
+                            header !== "Paid" && header !== "Pass" &&
                             handleSort(
                               header.toLowerCase() as keyof Registration
                             )
@@ -648,7 +652,7 @@ export default function AdminPage() {
                           <div className="flex items-center justify-between">
                             {header}
                             {sortConfig.key === header.toLowerCase() &&
-                              header !== "Paid" && (
+                              header !== "Paid" && header !== "Pass" && (
                                 <Filter
                                   className={`h-4 w-4 ${
                                     sortConfig.direction === "asc"
@@ -669,6 +673,91 @@ export default function AdminPage() {
                         <td className="px-4 py-2 border">{reg.phone}</td>
                         <td className="px-4 py-2 border">{reg.username}</td>
                         <td className="px-4 py-2 border">{reg.college}</td>
+                        {/* <td className="px-4 py-2 border">
+                          {editingPass[reg.email] ? (
+                            <div className="flex flex-col gap-2">
+                              <textarea
+                                value={editingPass[reg.email]}
+                                onChange={(e) =>
+                                  setEditingPass({
+                                    ...editingPass,
+                                    [reg.email]: e.target.value,
+                                  })
+                                }
+                                className="w-full border p-2 rounded text-xs font-mono"
+                                rows={3}
+                              />
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => saveEditPass(reg.email)}
+                                  className="bg-green-500 text-white px-2 py-1 rounded text-xs"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={() => cancelEditPass(reg.email)}
+                                  className="bg-gray-500 text-white px-2 py-1 rounded text-xs"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-between">
+                              <div className="truncate max-w-[120px]">
+                                {reg.pass && reg.pass.length > 0
+                                  ? JSON.stringify(reg.pass).substring(0, 30) +
+                                    (JSON.stringify(reg.pass).length > 30 ? "..." : "")
+                                  : "N/A"}
+                              </div>
+                              <button
+                                onClick={() => startEditPass(reg.email, reg.pass || [])}
+                                className="text-blue-600 hover:text-blue-800 ml-2"
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          )}
+                        </td> */}
+                        {/* <td className="px-4 py-2 border">
+                          {editingAmount[reg.email] !== undefined ? (
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="number"
+                                value={editingAmount[reg.email]}
+                                onChange={(e) =>
+                                  setEditingAmount({
+                                    ...editingAmount,
+                                    [reg.email]: e.target.value,
+                                  })
+                                }
+                                className="w-full border p-1 rounded"
+                              />
+                              <button
+                                onClick={() => saveEditAmount(reg.email)}
+                                className="bg-green-500 text-white px-2 py-1 rounded text-xs"
+                              >
+                                Save
+                              </button>
+                              <button
+                                onClick={() => cancelEditAmount(reg.email)}
+                                className="bg-gray-500 text-white px-2 py-1 rounded text-xs"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-between">
+                              <span>₹{reg.amount}</span>
+                              <button
+                                onClick={() => startEditAmount(reg.email, reg.amount)}
+                                className="text-blue-600 hover:text-blue-800 ml-2"
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          )}
+                        </td>  */}
                         <td className="px-4 py-2 border text-center">
                           <input
                             type="checkbox"
